@@ -1,0 +1,21 @@
+.widget + hr {
+  margin: 30px 0;
+}
+.widget.admissions h2 {
+  font-size: 28px;
+}
+.widget.admissions h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+.widget.admissions .btn {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.widget.email-admissions {
+  font-weight: 600;
+}
+.widget.email-admissions a {
+  color: #cc0134;
+}/*# sourceMappingURL=widgets.css.map */

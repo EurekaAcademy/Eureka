@@ -1,0 +1,52 @@
+@mixin clear{
+    &:after {
+        display: block;
+        clear: both;
+        content: "";
+    }
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}  
+}
+
+@mixin screen($size) {
+    $screen-xs: "(min-width: 320px)";
+    $screen-480: "(min-width: 480px)";
+    $screen-sm: "(min-width: 768px)";
+    $screen-md: "(min-width: 992px)";
+    $screen-lg: "(min-width: 1200px)";
+    @if $size == lg {
+      @media only screen and #{$screen-lg} {
+        @content;
+      }
+    }
+    @else if $size == md {
+      @media only screen and #{$screen-md} {
+        @content;
+      }
+    }
+    @else if $size == sm {
+      @media only screen and #{$screen-sm} {
+        @content;
+      }
+    }
+    @else if $size == 480 {
+      @media only screen and #{$screen-480} {
+        @content;
+      }
+    }
+    @else if $size == xs {
+      @media only screen and #{$screen-xs} {
+        @content;
+      }
+    }
+    @else {
+      @media only screen and #{$size} {
+        @content;
+      }
+    }
+  }

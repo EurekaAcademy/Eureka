@@ -1,0 +1,119 @@
+.info-block {
+    color: #fff;
+    border: 7px solid transparent;
+    padding: 15px;
+    display: block;
+    font-size: 13px;
+    line-height: 1.4em;
+    position: relative;
+    margin: 5px 0;
+	cursor:pointer;
+	
+	transition: background-color 0.2s;
+	
+    .title {
+        margin-top: 0;
+        font-size: 22px;
+        color: inherit;
+        text-align: left;
+		a{
+			color:white;
+		}
+    }
+
+    p {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .arrow-button {
+        top: 0;
+        right: 0;
+        position: absolute;
+        transition: all .2s;
+
+        &:hover {
+            &:after {
+                opacity: 0.8;
+            }
+        }
+
+        &:before {
+            background: url('../img/icon_double_chevron_right_white.svg') center center no-repeat;
+            background-size: 11px 12px;
+            content: "";
+            width: 60%;
+            height: 60%;
+            position: absolute;
+            z-index: 5;
+            display: block;
+            top: 0;
+            right: 0;
+        }
+
+        &:after {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 56px 56px 0;
+            content: "";
+            display: block;
+            transition: all .2s;
+            border-color: transparent;
+        }
+    }
+
+    &.style-1 {
+        background: $info-block-main; 
+        border-color: $info-block-dark;
+
+        .arrow-button:after {
+            border-color: transparent $info-block-corner-color-1 transparent transparent;
+        }
+		
+		
+		&:hover .arrow-button::after{
+			border-color:transparent $info-block-corner-color-1-hover transparent transparent;			
+		}
+    }
+
+    &.style-2 {
+        background: $info-block-secondary;
+        border-color: $info-block-secondary-dark;
+
+        .arrow-button:after {
+            border-color: transparent $info-block-corner-color-2 transparent transparent;
+        }
+		&:hover .arrow-button::after{
+			border-color:transparent $info-block-corner-color-2-hover transparent transparent;			
+		}
+    }
+
+	&:hover{
+		background-color: #222222;
+		border-color: #333333;
+	}
+	
+	
+    @media screen and (min-width: 768px) {
+        border-width: 11px;
+        padding: 25px;
+        font-size: 16px;
+        margin: 25px 0;
+
+        .title {
+            font-size: 30px;
+        }
+
+        .arrow-button {
+            &:before {
+                background-size: 17px 19px;
+            }
+
+            &:after {
+                border-width: 0 85px 85px 0;
+            }
+        }
+    }
+}

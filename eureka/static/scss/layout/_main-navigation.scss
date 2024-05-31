@@ -1,0 +1,156 @@
+.navbar-collapse {
+	padding: 0;
+	margin: 0 !important;
+}
+
+.navbar-default {
+	min-height: 0;
+	border-radius: 0;
+	border: none;
+	margin: 0;
+	z-index: 1001; 
+	.navbar-nav {
+		margin: 0;
+		&>li {
+			&>a {
+				color: inherit;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.navbar-collapse {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0;
+	}
+	.navbar-default {
+		z-index: 2000;
+		background: #ebebeb;
+		font-size: 14px;
+		&:before,
+		&:after {
+			display: none;
+		}
+		.container {
+			padding: 0;
+		}
+		.navbar-nav {
+			&>li {
+				color: #007fac;
+				border-bottom: 1px solid #007fac;
+				&.current {
+					background: #007fac;
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.navbar-default {
+		background: #e5e5e5 linear-gradient(to bottom, rgba(darken(#e5e5e5, 7%), 1) 0%, #e5e5e5 8px);
+		.navbar-nav {
+			background: #222222;
+			font-size: 0;
+			&>li {
+				color: #b9b9b9;
+				font-size: 18px;
+				position: relative;
+				transition: all .15s;
+				&:after {
+					display: inline-block;
+					background: #000;
+					content: "";
+					height: 30px;
+					width: 1px;
+					vertical-align: top;
+					position: absolute;
+					top: 5px;
+					right: 0;
+				}
+				&:last-child {
+					&:after {
+						display: none;
+					}
+				}
+				&:hover {
+					&>a {
+						background: #f8f8f8;
+						color: #cc0134;
+						position: relative;
+						z-index: 1005;
+					}
+					ul {
+						display: block;
+					}
+				}
+				&>a {
+					padding: 0 35px;
+					line-height: 40px;
+					display: inline-block;
+					text-transform: uppercase;
+					font-weight: 600;
+					position: relative;
+					z-index: 3;
+					transition: all .15s;
+				}
+				&.apply {
+					margin-left: -1px;
+					a {
+						background: #9ea900 linear-gradient(to bottom, rgba(darken(#9ea900, 7%), 1) 0%, #9ea900 8px);
+						color: #fff;
+						&:hover {
+							background: lighten(#9ea900, 5%);
+						}
+					}
+				}
+			}
+		}
+		.current-menu-ancestor>a {
+			color: #555 !important;
+			background-color: #e7e7e7;
+		}
+		.dropdown-menu {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: auto;
+			display: none;
+			white-space: nowrap;
+			min-width: 100%;
+			box-shadow: 0 0 5px rgba(#000, 0.5);
+			border-radius: 0;
+			border: none;
+			padding: 0;
+			li {
+				a {
+					display: block;
+					padding: 6px 32px 6px 24px;
+					background: #fff;
+					color: #222;
+					font-weight: 600;
+					&:hover {
+						background: #f3f3f3;
+					}
+					&:before {
+						content: "\00BB";
+						font-family: Georgia, serif;
+						color: #cc0134;
+						margin-right: 7px;
+						font-size: 22px;
+					}
+				}
+			}
+			li.current-menu-item {
+				a {
+					&:hover {
+						color: #222;
+					}
+				}
+			}
+		}
+	}
+}

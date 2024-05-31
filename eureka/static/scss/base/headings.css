@@ -1,0 +1,60 @@
+h1 {
+  font-size: 30px;
+  color: #cc0134;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+h1:first-child {
+  margin-top: 0;
+}
+
+.h1-text {
+  font-size: 30px !important;
+}
+
+h2 {
+  color: #666;
+  font-size: 24px;
+  font-weight: 600;
+}
+h2:first-child {
+  margin-top: 0;
+}
+
+.h2-text {
+  font-size: 24px !important;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.h3-text {
+  font-size: 18px !important;
+}
+
+.h4-text {
+  font-size: 18px !important;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 48px;
+  }
+  h2 {
+    font-size: 36px;
+  }
+  .h2-text {
+    font-size: 36px !important;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  .h3-text {
+    font-size: 20px !important;
+  }
+  .h4-text {
+    font-size: 18px !important;
+  }
+}/*# sourceMappingURL=headings.css.map */

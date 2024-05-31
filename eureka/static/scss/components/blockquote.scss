@@ -1,0 +1,71 @@
+%quotation-mark {
+	color: #dbdbdb;
+	display: inline-block;
+	font-size: 3em;
+	height: 15px;
+	line-height: 0;
+	position: relative;
+	width: 30px;
+
+	@media screen and (min-width: 768px) {
+		width: 60px;
+		height: 20px;
+	}
+}
+
+.quote {
+	text-align: center;
+	font-family: "Times New Roman", Times, Georgia, serif;
+	font-size: 1.1em;
+	line-height: 1.2em;
+	border: 0;
+	margin: 0.5em 0 0.8em 0;
+	border: none;
+
+	p {
+		position: relative;
+
+		&:first-child {
+			&:before {
+				@extend %quotation-mark;
+				content: '\201C';
+				margin-left: -20px;
+				top: 0.45em;
+				text-align: left;
+			}
+		}
+		
+		&:last-of-type {
+			&:after {
+				@extend %quotation-mark;
+				content: '\201D';
+				margin-right: -20px;
+				bottom: -0.55em;
+				text-align: right;
+			}
+		}
+	}
+
+	
+	@media screen and (min-width: 768px) {
+		font-size: 34px;
+
+		&.small {
+			font-size: 22px;		
+		}
+
+		p {
+			&:first-child {
+				&:before {
+					margin-left: -50px;
+				}
+			}
+			
+			&:last-child {
+				&:after {
+					margin-right: -50px;
+				}
+			}
+		}
+	}
+}

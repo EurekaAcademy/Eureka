@@ -1,0 +1,12 @@
+#thank-you {
+    .main-content {
+        margin-top: 45px;
+        .button {
+            background-color: #ebb600;
+            &:hover {
+                color:black;
+                background-color: #fcd655;
+            }
+        }
+    }
+}

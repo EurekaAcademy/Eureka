@@ -1,0 +1,10 @@
+#thank-you .main-content {
+  margin-top: 45px;
+}
+#thank-you .main-content .button {
+  background-color: #ebb600;
+}
+#thank-you .main-content .button:hover {
+  color: black;
+  background-color: #fcd655;
+}/*# sourceMappingURL=thank-you.css.map */

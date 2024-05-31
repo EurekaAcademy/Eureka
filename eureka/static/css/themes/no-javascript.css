@@ -1,0 +1,26 @@
+.no-js .track_btop{display:none;}
+
+.no-js .salesforce-form.dynamic{display:none;}
+.no-js label.tcpa input{
+	float:left;
+	top:0 !important;
+	display: inline-block;
+	vertical-align: top;
+}
+.no-js label.tcpa span{
+	vertical-align: top;
+	display: inline-block;
+	float:left !important;
+	top:-15px !important;
+	line-height:1.5em;
+	display:block;
+	padding-top:0 !important;
+	width:95%;
+	padding-left:3px;
+	margin-top:0 !important;
+}
+.no-js label.tcpa::after{
+	content:'';
+	clear:both;
+	display: table;
+}

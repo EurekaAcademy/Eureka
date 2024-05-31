@@ -1,0 +1,283 @@
+.section-apply {
+	@include clear {
+	max-width: 1920px;
+	margin: auto;
+	position: relative;
+	height: 100vh;
+	}
+
+	.apply-image {
+		background: center top;
+		background-size: cover;
+		height: 30vh;
+	}
+
+	.apply-form {
+		box-sizing: border-box;
+		padding: 20px 20px 100px 20px;
+
+		& .title {
+			text-transform: uppercase;
+			text-align: right;
+			color: $color-main;
+			font-family: inherit;
+			font-weight: 600;
+			font-size: 30px;
+			margin: 0 0 1em 0;
+		}
+
+		& > .info {
+			margin-bottom: 1.5em;
+		}
+	}
+
+	.form-group {
+		& > label {
+			font-weight: 600;
+			color: $color-main;
+			margin-top: 15px;
+			margin-bottom: 10px;
+
+			& + p {
+				margin-top: -5px;
+			}
+		}
+	}
+
+	.form-group-terms {
+		display: table;
+		table-layout: fixed;
+
+		& > label {
+			color: inherit;
+			display: table-cell;
+			vertical-align: top;
+		}
+	}
+
+	.form-control {
+		background: #fff;
+		border: none;
+		border-bottom: 1px solid #e2e2e2;
+		font-family: inherit;
+	}
+
+	.spacer {
+		height: 40px;
+		display: block;
+		clear: both;
+	}
+
+	.radio {
+		display: inline-block;
+		margin: 0;
+		vertical-align: middle;
+		margin-left: 10px;
+
+		& + .radio {
+			margin-left: 2px;
+		}
+	}
+
+	.radio-yn {
+		height: 24px;
+		width: 24px;
+		position: relative;
+		margin: 0;
+		padding: 0;
+
+		input[type="radio"] {
+			opacity: 0;
+			width: 24px;
+			height: 24px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			display: block;
+			appearance: none;
+			visibility: hidden;
+
+			&:checked + span {
+				background: $color-main;
+				color: rgba(#fff, 0.8);
+			}
+		}
+
+		span {
+			height: 24px;
+			width: 24px;
+			line-height: 24px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			box-shadow: 0 1px 2px rgba(#000, 0.3) inset;
+			border-radius: 3px;
+			background: #f4f4f4;
+			text-align: center;
+			font-weight: 600;
+			font-size: 18px;
+			color: #777;
+			z-index: -1;
+		}
+	}
+
+	select {
+		background: #fff;
+	}
+
+	input[type="submit"] {
+		min-width: 200px;
+	}
+
+	.select-state {
+		background: #fff url('../img/icons/select.png') right 15px center no-repeat;
+		background-size: 20px;
+		border: none;
+		border-bottom: 1px solid #e2e2e2;
+		height: 46px;
+		margin: 0 -20px;
+		border-radius: 6px;
+
+		label {
+			height: 46px;
+			margin: 0;
+			line-height: 46px;
+			display: block;
+			padding-left: 15px;
+			color: #999;
+			font-weight: normal;
+		}
+
+		select {
+			background: none;
+			border: none;
+			float: right;
+			width: auto;
+			box-shadow: none;
+			min-width: 110px;
+			appearance: none;
+			height: 46px;
+			line-height: 46px;
+			padding: 0;
+			cursor: pointer;
+			appearance: none;
+		}
+	}
+
+	.terms-check {
+		margin-top: 3px;
+		display: table-cell;
+		width: 1px;
+		padding-right: 15px;
+		vertical-align: top;
+
+		label {
+			cursor: pointer;
+		}
+
+		input[type="checkbox"] {
+			opacity: 0;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: -1;
+
+			&:checked + span {
+				background-image: url('../img/icons/terms-accepted.png');
+				width: 22px;
+				height: 20px;
+				border: none;
+				margin: 0;
+				border-radius: 0;
+			}
+		}
+
+		span {
+			background-size: contain;
+			background-position: center center;
+			display: block;
+			width: 21px;
+			height: 16px;
+			border: 2px solid #777;
+			margin-top: 4px;
+			margin-right: 1px;
+			border-radius: 3px;
+		}
+	}
+
+	@media screen and (max-width: 777px) {
+		.form-group {
+			[class*="col-"] {
+				margin-bottom: 15px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		.select-state {
+			margin: 0;
+
+			select {
+				width: 60%;
+			}
+		}
+	}
+
+	@media screen and (min-width: 992px) {
+		.apply-image {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 40%;
+			height: 100%;
+		}
+
+		.apply-form {
+			padding: 40px;
+			float: right;
+			width: 60%;
+			height: 100vh;
+			overflow: auto;
+		}
+	}
+
+	@media screen and (min-width: 1200px) {
+		.apply-image {
+			width: 50%;
+		}
+
+		.apply-form {
+			width: 50%;
+		}
+	}
+
+	@media screen and (min-width: 1600px) {
+		.apply-image {
+			width: 60%;
+		}
+
+		.apply-form {
+			width: 40%;
+		}
+	}
+}
+.contact-us{
+	.global_all_biz_broad{
+		
+			margin-top: 30px;
+		
+	}
+}
+form.contact{
+	.tcpa.edx-broad-tcpa{
+		margin-top: 30px !important;
+	}
+	.tcpa{
+		margin-bottom: 30px;
+		margin-top: 10px !important;
+	}
+}

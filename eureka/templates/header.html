@@ -1,0 +1,130 @@
+{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}{% load static menus_tags %}
+{% get_menu "course-menu" as coursemenu %}
+{% load wagtailcore_tags navigation_tags %}
+{% get_site_root as site_root %}
+<style>
+    .hide-TBN .TrilogyTBN {
+        display: none !important;
+    }
+</style>
+<div data-new="X1" id="TrilogyTBN" class="TrilogyTBN" style="background-color: #f4f4f4; ">
+    <div class="alert alert-dismissible alert-TrilogyTBN" role="alert" aria-atomic="true" style="margin: 0; color: #000; font-size: 14px; line-height: 40px; padding: 2px 15px 2px 15px; vertical-align: middle; ">
+        <div class="container" style="width: 100%; max-width: 100%; padding: 0;">
+            <div class="col-xs-12" style="padding: 0; position: relative; display: flex">
+                <div class="TrilogyTBNText" style="color: #000; font-size: 14px; line-height: 16px; float: left; padding: 10px 0;  flex-grow: 1; align-items: center; ">
+                    <strong style='font-weight:bold'>Learn online!</strong>&nbsp;Get instruction from knowledgeable industry professionals and collaborate with peers in an engaging virtual environment.<a title="Open Live Chat" aria-label="click to chat"
+                        class="livechatBtnClicker " style="display: none; margin-left: 10px; margin-top: 0; margin-bottom: 0; margin-right: 0; padding: 0; text-decoration: underline;" data-LP-event="click" href="#">Learn More</a> </div>
+                        <button id="close-trilogyTBN" type="button" class="close" data-dismiss="alert" aria-label="Close" style="right: -15px; opacity: 1; padding: 10px 14px;  background-color: #f4f4f4; color: #000;">
+                            <span aria-hidden="true" >X</span>
+                        </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=track_btop>
+    <!-- Body Top Tracking -->
+    <style>
+        .lead_form.get-program-info {
+            overflow: visible;
+        }
+
+        .wpb_widgetised_column.wpb_content_element form ul li {
+            list-style-image: none;
+        }
+
+        figure.svg-icon svg {
+            fill: currentColor;
+        }
+
+        form.contact .styled-radio-fieldset .legend-label,
+        form.contact .styled-radio-fieldset .radio-inline-wrap .radio-inline-label .radio-inline-text,
+        form.contact .styled-radio-fieldset .radio-inline-wrap .radio-inline-label .radio-inline-text:before {
+            color: #000
+        }
+
+        form.contact .styled-radio-fieldset .radio-inline-wrap .radio-inline-label .radio-inline-text:before {
+            border-color: #000
+        }
+    </style>
+</div>
+
+<div id="header" class=navbar-v2>
+    <div class="inner">
+        <div class="container">
+            <a href="/" target=_blank rel=nofollow>
+                <img src="{% static 'images/shiningtutor.png' %}" alt="Rutgers coding, data and cybersecurity bootcamps" class="logo">
+            </a>
+
+            <a title="Open Live Chat" class="chatBtnClicker hidden-xs pull-right" data-LP-event="click" href="#">
+                <img src="https://usa.bootcampcdn.com/wp-content/themes/RutgersV3/media/img/livechat.svg" height="35px" width="35px"
+                alt="Live Chat icon" class="chat-icon"> 
+                Live Chat
+            </a>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container-fluid wrapper">
+            <a class="mobile-apply text-center" data-linkid="2681" href="/enroll/ui/begin/?utm_adid=ocs-apply-nav&bc_link_in=mnm" title="Apply">Apply</a> <a title="Menu Open Live Chat" data-LP-event="click" class="mobile-menu chatBtnClicker hidden-sm hidden-md hidden-lg  pull-left"
+                href="#"><span class="menu-text">Live Chat</span> <img src="https://usa.bootcampcdn.com/wp-content/themes/CodingBootcamp/media/img/livechat_blk.svg" width="20px" alt="Live Chat icon" class="chat-icon"></a>
+            <div class=mobile-menu>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="menu-text">Menu</span>
+                <span class=bars>
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </span>
+            </button>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul id="menu-navigation" class="nav navbar-nav navbar-right">
+                    <!-- <li id="menu-item-2678" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2678 about dropdown"><a title="About" href="https://bootcamp.rutgers.edu/about/" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">About <span class="caret"></span></a>
+                        <ul role="menu" class=" dropdown-menu">
+                            <li id="menu-item-2683" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2683 our-programs"><a title="Our Programs" href="/about/">Our Programs</a></li>
+                            <li id="menu-item-2671" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2671 about-rutgers"><a title="About Rutgers" href="https://bootcamp.rutgers.edu/about/about-rutgers/">About Rutgers</a></li>
+                            <li id="menu-item-2672" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2672 meet-the-leadership"><a title="Meet The Leadership" href="https://bootcamp.rutgers.edu/about/leadership/">Meet The Leadership</a></li>
+                        </ul>
+                    </li> -->
+                    {% for item in site_root.get_children.live.in_menu %}
+                    <li id="menu-item-268{{item.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2682 coding dropdown"><a title="{{item.title}}" href="{% pageurl item %}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{item.title}} <span class="caret"></span></a>
+                        <ul role="menu" class=" dropdown-menu">
+                            <li id="menu-item-269{{item.id}}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2690 overview"><a title="Overview" href="{% pageurl item %}">Overview</a></li>
+                            {% for cpage in item.get_children.live.in_menu %}
+                                <li id="menu-item-268{{cpage.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2689 curriculum"><a title="{{cpage.title|title}}" href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                    
+                    <li id="menu-item-2679" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2679 experience dropdown"><a title="Experience" href="https://bootcamp.rutgers.edu/experience/" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Experience <span class="caret"></span></a>
+                        <ul role="menu" class=" dropdown-menu">
+                            <li id="menu-item-2680" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2680 overview"><a title="Overview" href="/experience/">Overview</a></li>
+                            <li id="menu-item-2674" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2674 student-support"><a title="Student Support" href="https://bootcamp.rutgers.edu/experience/student-support/">Student Support</a></li>
+                            <li id="menu-item-3558" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3558 career-services"><a title="Career Services" href="https://bootcamp.rutgers.edu/experience/career-services/">Career Services</a></li>
+                            <li id="menu-item-2675" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2675 in-the-classroom"><a title="In The Classroom" href="https://bootcamp.rutgers.edu/experience/classroom/">In The Classroom</a></li>
+                            <li id="menu-item-2676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2676 testimonials"><a title="Testimonials" href="https://bootcamp.rutgers.edu/experience/testimonials/">Testimonials</a></li>
+                            <li id="menu-item-2677" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2677 meet-our-alumni"><a title="Meet Our Alumni" href="https://bootcamp.rutgers.edu/experience/alumni/">Meet Our Alumni</a></li>
+                            <li id="menu-item-5854" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5854 "><a title="Events" href="https://bootcamp.rutgers.edu/events/">Events</a></li>
+                        </ul>
+                    </li>
+                    <li id="menu-item-2670" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2670 faq"><a title="FAQ" href="https://bootcamp.rutgers.edu/faq/">FAQ</a></li>
+                    <li id="menu-item-2669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669 "><a title="Blog" href="https://bootcamp.rutgers.edu/blog/">Blog</a></li>
+                    <li id="menu-item-2681" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2681 apply"><a title="Apply" href="/enroll/ui/begin/?utm_adid=ocs-apply-nav&#038;bc_link_in=dnm">Apply</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="get-info-btn-container get-info-btn-container-v3  sticky--top  hidden hidden-md hidden-lg " id=get_info_sticky>
+    <div class="container">
+
+        <a title="Open Live Chat" aria-label="click to chat" class="livechatBtnClicker " onclick="trilogyTrackingEvent('Mobile Sticky Bar','click','Open-LiveChat-Button-v3-chat');" style="display: none; margin-left: 10px; margin-top: 0; margin-bottom: 0; margin-right: 0; padding: 0;  margin:0 auto; line-height: 40px;"
+            data-LP-event="click" href="#"><svg version="1.1" class="livechat-bubble-svg" style="height: 24px; width: auto; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.4 18" style="enable-background:new 0 0 19.4 18;" xml:space="preserve"><path  fill-rule="evenodd" clip-rule="evenodd" d="M9.7,0.2c5.4,0,9.7,3.4,9.7,7.7c-0.1,2.6-1.6,5-3.9,6.2c0.3,1.4,1,2.8,2,3.8c-2.3,0-4.5-0.9-6.2-2.4c-0.5,0.1-1.1,0.1-1.6,0.1C4.3,15.5,0,12.1,0,7.9S4.3,0.2,9.7,0.2z M14.3,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5c-0.8,0-1.5,0.7-1.5,1.5l0,0C12.8,8.7,13.4,9.4,14.3,9.4C14.3,9.4,14.3,9.4,14.3,9.4z M9.7,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5C8.9,6.3,8.2,7,8.2,7.8l0,0C8.2,8.7,8.9,9.4,9.7,9.4C9.7,9.4,9.7,9.4,9.7,9.4z M5.2,9.4c0.8,0,1.5-0.7,1.5-1.5C6.7,7,6,6.3,5.2,6.3S3.7,7,3.7,7.9C3.6,8.7,4.3,9.4,5.2,9.4C5.2,9.4,5.2,9.4,5.2,9.4z"/></svg>Chat</a>
+
+        <a href="#" onclick="trilogyTrackingEvent('Mobile Sticky Bar', 'click', 'GoToForm-Button-v2-Learn-More');" class="btn btn-block go-to-closest-form-btn">Learn More</a>
+    </div>
+</div>

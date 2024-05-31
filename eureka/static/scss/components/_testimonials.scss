@@ -1,0 +1,173 @@
+.testimonial {
+	background: #fff;
+	border: 1px solid #999;
+	border-radius: 5px;
+	padding: 15px;
+	margin: 1em -10px;
+	box-sizing: border-box;
+
+	.inner {
+		
+	}
+
+	.image {
+		margin-bottom: 15px;
+		width: 150px;
+	}
+
+	.content {
+		
+	} 
+
+	.title {
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom: 1em;
+		line-height: 1.2em;
+		cursor: pointer;
+	}
+
+	.name {
+		color: #666;
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom: 5px;
+	}
+
+	ul.meta {
+		color: #666;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		font-size: 13px;
+		line-height: 1.2em;
+
+		li {
+			display: inline-block;
+
+			&:last-child {
+				&:after {
+					display: none;
+				}
+			}
+
+			&:after {
+				display: inline-block;
+				content: "\2022";
+				margin: 0 7px;
+			}
+		}
+	}
+
+	.ratings {
+		@include clear;
+		background: #ebebeb;
+		font-size: 15px;
+		padding: 5px 5px;
+		margin: 15px -15px;
+
+		.rating {
+			@include clear;
+			padding: 5px 10px;
+			box-sizing: border-box;
+			line-height: 15px;
+			width: 50%;
+			float: left;
+
+			.label {
+				color: inherit;
+				font-weight: normal;
+				padding: 0;
+				margin-bottom: 5px;
+				display: block;
+				text-align: left;
+			}
+
+			.stars {
+				.star.full {
+					height: 15px;
+					width: 15px;
+					background: url('../img/icons/star-full.png') center center no-repeat;
+					background-size: contain;
+					display: inline-block;
+				}
+			}
+		}
+	}
+
+	.review {
+		@include clear;	
+		font-size: 15px;
+		line-height: 1.5em;
+	}
+
+	.btn-read-more {
+		float: right;
+	}
+
+	@media screen and (min-width: 460px) {
+		.inner {
+			display: table;
+			width: 100%;
+		}
+
+		.image {
+			display: table-cell;
+			width: 30%;
+			padding-right: 15px;
+			vertical-align: top;
+			margin-bottom: 0;
+		}
+
+		.content {
+			display: table-cell;
+			vertical-align: top;
+		}
+
+		.ratings {
+			padding: 5px 0;
+			margin: 15px 0;
+
+			.rating {
+				
+			}
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		margin: 1em 0;
+
+		.image {
+			width: 25%;
+		}
+
+		.title {
+			font-size: 28px;
+		}
+
+		.name {
+			font-size: 24px;
+		}
+
+		.meta {
+			font-size: 15px;
+		}
+
+		.ratings {
+			.rating {
+				.label {
+					float: left;
+				}
+
+				.stars {
+					float: right;
+					text-align: right;
+				}
+			}
+		}
+
+		.review {
+			font-size: 18px;
+		}
+	}
+}

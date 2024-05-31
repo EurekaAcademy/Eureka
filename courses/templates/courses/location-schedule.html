@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}{% load wagtailcore_tags %}
+<!doctype html>
+<html lang="en" class="no-js gutenberg">
+
+<body class="page-template page-template-templates page-template-two-col page-template-templatestwo-col-php page page-id-2263 page-child parent-pageid-2258 v3 organic form-1a trilogy-form-sfps wpb-js-composer js-comp-ver-7.2 vc_responsive region-USA">
+	{% block content %}
+    <style>.lead_form.get-program-info { overflow: visible; }.wpb_widgetised_column.wpb_content_element form ul li { list-style-image: none; }figure.svg-icon svg {fill: currentColor;} form.contact .styled-radio-fieldset .legend-label, form.contact .styled-radio-fieldset .radio-inline-wrap .radio-inline-label .radio-inline-text, form.contact .styled-radio-fieldset .radio-inline-wrap .radio-inline-label .radio-inline-text:before{color: #000} form.contact .styled-radio-fieldset .radio-inline-wrap .radio-inline-label .radio-inline-text:before {border-color: #000}</style>
+	<div class="breadcrumbs hidden-xs hidden-sm">
+        <div class="container">
+            <ul class="crumbs">
+                <li><a href="/">Home</a></li>					
+                <li><a href="{{ page.get_parent.url }}">{{ page.get_parent.title|title }}</a></li>									
+                <li>{{page.title|title}}</li>
+            </ul>
+        </div>
+    </div>
+  
+    <section class="section-main">
+        <div class="container main-content">
+            <div class="row">
+                <div class="col-md-3 sidebar visible-md visible-lg background">
+                    <!-- SubPages Widget: From Menu -->				
+                    <aside class=no-border>
+                        <h2 class="category-list-title"><a href="{{ page.get_parent.url }}">{{ page.get_parent.title|title }}</a></h2>
+                        <ul class=category-list>
+                            {% for cpage in page.get_siblings.live.in_menu %}
+                                <li class=""><a href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                    <hr/>
+                    {% include 'left-sidebar.html' %}
+                    <hr/>			
+                </div>
+                <main class="col-md-9 main">						
+                    <h1 class="wp-block-heading"><h1 style="box-sizing: border-box; margin-bottom: 0px; line-height: 1.1; white-space-collapse: collapse;">{{page.heading_title|title}}</h1></h1>
+                    <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+                        <div class="wp-block-group__inner-container">
+                            {{page.intro|richtext}}
+                        </div>
+                    </div>
+                    <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+                        <div class="wp-block-group__inner-container">
+                            <h2 class="wp-block-heading" style="margin-top:var(--wp--preset--spacing--80)">Location</h2>
+                            <p>Explore some of the facilities.</p>
+                            <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained" style="margin-bottom:var(--wp--preset--spacing--70)">
+                                <div class="wp-block-group__inner-container">
+                                    {% for block in page.location %}
+                                    {% if block.block_type == 'intro' %}
+                                    {{block.value|richtext}}
+                                    
+                                    <div class="wp-block-columns is-layout-flex wp-container-core-columns-layout-1 wp-block-columns-is-layout-flex">
+                                        {% elif block.block_type == 'location_image' %}
+                                        <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+                                            
+                                            <figure class="wp-block-image size-large is-resized">
+                                                {% image block.value fill-410x245 %}
+                                                <!-- <img decoding="async" src="{{block.value}}" alt="" style="object-fit:cover;width:410px;height:245px"/> -->
+                                            </figure>
+                                        </div>
+                                        {% elif block.block_type == 'map_url' %}
+                                        <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+                                            <div class="bc-location">
+                                                <iframe loading="lazy" style="aspect-ratio: 16 / 9;width:100%;" frameborder=none scrolling=no src="{{block.value}}"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    {{block.value|richtext}}
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                        </div>
+                    </div>
+                    <section class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+                        <div class="wp-block-group__inner-container">
+                            <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                            <p class="has-text-align-center" style="padding-right:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">If you’re ready to learn more about&nbsp;<strong>Rutgers&nbsp;Data</strong>&nbsp;<strong>Science&nbsp;Bootcamp</strong>,&nbsp;contact an admissions advisor&nbsp;at <a data-phone-type="data" class=phone href="tel:7323614853" aria-label="data telephone number">(732) 361-4853</a>.</p>
+                            <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                            <div class="bc-drip-form" id="bc_form_1">
+                                <div class=consent></div>
+                                {% include 'get_info.html' %}
+                            </div>
+                        </div>
+                    </section>
+                    <div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
+                </main>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+</body>
+</html><!--
+Performance optimized by Redis Object Cache. Learn more: https://wprediscache.com
+
+Retrieved 5363 objects (3 MB) from Redis using PhpRedis (v6.0.2).
+-->
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1716586692 -->
