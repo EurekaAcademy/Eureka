@@ -96,8 +96,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://dlbcnashville-production.up.railway.app', 'https://dlbcnashville.org', 'http://dlbcnashville.org']
+CSRF_TRUSTED_ORIGINS = ['https://eureka-production-6efb.up.railway.app', 'https://www.eurekadataacademy.com/', 'https://eurekadataacademy.com/']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
@@ -118,12 +117,7 @@ WSGI_APPLICATION = "eureka.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
+
 
 
 # Password validation
