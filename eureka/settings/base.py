@@ -116,7 +116,15 @@ WSGI_APPLICATION = "eureka.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
+DATABASES = {
+    "default": dj_database_url.config(default='postgresql://postgres:qDeZYDXnjsGIKOhMQjofGqcPUwWPuiPS@monorail.proxy.rlwy.net:31039/railway', conn_max_age=1800),
+}
 
 
 
