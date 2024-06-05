@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.quote p:last-of-type:after, .quote p:first-child:before {
+  color: #dbdbdb;
+  display: inline-block;
+  font-size: 3em;
+  height: 15px;
+  line-height: 0;
+  position: relative;
+  width: 30px;
+}
+@media screen and (min-width: 768px) {
+  .quote p:last-of-type:after, .quote p:first-child:before {
+    width: 60px;
+    height: 20px;
+  }
+}
+
+.quote {
+  text-align: center;
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  border: 0;
+  margin: 0.5em 0 0.8em 0;
+  border: none;
+}
+.quote p {
+  position: relative;
+}
+.quote p:first-child:before {
+  content: "“";
+  margin-left: -20px;
+  top: 0.45em;
+  text-align: left;
+}
+.quote p:last-of-type:after {
+  content: "”";
+  margin-right: -20px;
+  bottom: -0.55em;
+  text-align: right;
+}
+@media screen and (min-width: 768px) {
+  .quote {
+    font-size: 34px;
+  }
+  .quote.small {
+    font-size: 22px;
+  }
+  .quote p:first-child:before {
+    margin-left: -50px;
+  }
+  .quote p:last-child:after {
+    margin-right: -50px;
+  }
+}/*# sourceMappingURL=blockquote.css.map */

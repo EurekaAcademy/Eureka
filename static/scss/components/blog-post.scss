@@ -1,0 +1,123 @@
+.blog-posts-load {
+    padding: 30px 0;
+    text-align: center;
+}
+
+.blog-post {
+    border-bottom: 2px solid #dededd;
+    padding: 30px 0;
+    box-sizing: border-box;
+    position: relative;
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    .inner {
+        &:after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+    }
+
+    .post-thumbnail {
+        margin-bottom: 10px;
+    }
+
+    .title {
+        line-height: 1.05em;
+        margin-bottom: 0.8em;
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    .meta {
+        font-size: 16px;
+        color: #666766;
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+
+            &:hover {
+                color: $color-main;
+            }
+        }
+
+        .date {
+            font-weight: bold;
+        }
+        
+        .category {
+            font-style: italic;
+        }
+    }
+
+    .content {
+        p {
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .post-thumbnail {
+            width: 25%;
+            float: left;
+            min-height: 1px;
+        }
+
+        .post-content {
+            width: 75%;
+            padding-left: 20px;
+            box-sizing: border-box;
+            float: left;
+            min-height: 1px;
+        }
+
+        .title {
+            font-size: 28px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 15px 0;
+        min-height: 80px;
+
+        &:first-child {
+            .post-thumbnail {
+                top: 0;
+            }
+        }
+
+        .post-thumbnail {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 50px;
+        }
+
+        .post-content {
+            padding-left: 65px;
+
+            .meta {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .content {
+                font-size: 14px;
+                line-height: 1.4em;
+            }
+        }
+
+        .title {
+            padding-left: 65px;
+            line-height: 1.2em;
+            margin-bottom: 2px;
+        }
+    }
+
+}

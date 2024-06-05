@@ -1,0 +1,52 @@
+.breadcrumbs {
+	padding: 10px 0;
+
+	&:after {
+		clear: both;
+		display: block;
+		content: "";
+	}
+
+	ul.crumbs {
+		float: left;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 30px;
+		color: #222;
+
+		li {
+			display: inline-block;
+
+			&:after {
+				content: "\00bb";
+				padding: 0 4px 0 7px;
+			}
+
+			&:last-child {
+				&:after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.phone {
+		float: right;
+		font-weight: 700;
+		line-height: 30px;
+	}
+
+	@media screen and (max-width: 767px) {
+		padding-bottom: 20px;
+		padding-top: 5px;
+
+		ul.crumbs {
+			line-height: 1.4em;
+			font-size: 11px;
+			color: #666;
+		}
+	}
+}

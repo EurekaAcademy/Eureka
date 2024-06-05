@@ -33,6 +33,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # Application definition
 
 INSTALLED_APPS = [
+    "authentication",
     "menus",
     "experience",
     "about",
@@ -126,6 +127,11 @@ DATABASES = {
     "default": dj_database_url.config(default='postgresql://postgres:qDeZYDXnjsGIKOhMQjofGqcPUwWPuiPS@monorail.proxy.rlwy.net:31039/railway', conn_max_age=1800),
 }
 
+
+AUTH_USER_MODEL = 'authentication.User'
+WAGTAIL_USER_EDIT_FORM = 'authentication.forms.CustomUserEditForm'
+WAGTAIL_USER_CREATION_FORM = 'authentication.forms.CustomUserCreationForm'
+WAGTAIL_USER_CUSTOM_FIELDS = ['email', 'country', 'city', 'phone_number', 'region', 'residential_address', 'avatar']
 
 
 # Password validation
