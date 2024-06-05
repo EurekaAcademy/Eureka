@@ -124,7 +124,7 @@ WSGI_APPLICATION = "eureka.wsgi.application"
 #     }
 # }
 DATABASES = {
-    "default": dj_database_url.config(default='postgresql://postgres:qDeZYDXnjsGIKOhMQjofGqcPUwWPuiPS@monorail.proxy.rlwy.net:31039/railway', conn_max_age=1800),
+    "default": dj_database_url.config(default='postgresql://postgres:hasrjWpYYnQPLVWbBfVOGMkKZtWFwugu@monorail.proxy.rlwy.net:30850/railway', conn_max_age=1800),
 }
 
 
