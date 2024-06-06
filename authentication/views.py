@@ -69,7 +69,7 @@ class UserLoginView(View):
             messages.success(request, f"Login Successful ! "
                                 f"Welcome {user.email}.")
             
-            return redirect('shop:home')
+            return redirect('')
 
         else:
             messages.error(request,

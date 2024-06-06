@@ -97,6 +97,11 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 CSRF_TRUSTED_ORIGINS = ['https://eureka-production-6efb.up.railway.app', 'https://www.eurekadataacademy.com/', 'https://eurekadataacademy.com/']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
@@ -220,3 +225,4 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
