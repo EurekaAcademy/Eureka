@@ -69,3 +69,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.email}'
+    
+    def has_perm(self, perm, obj=None):
+        return True

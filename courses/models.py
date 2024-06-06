@@ -6,6 +6,9 @@ from wagtail.snippets.models import register_snippet
 from wagtail.fields import StreamField
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtailcloudinary.fields import CloudinaryField
+from wagtailcloudinary.widgets import AdminCloudinaryChooser
+from wagtailcloudinary.blocks import CloudinaryImageBlock
 # Create your models here.
 @register_snippet
 class ProgramCategory(models.Model):
@@ -69,7 +72,7 @@ class SupportTeam(models.Model):
 class Course(Page):
     template = 'courses/course.html'
     course_title = models.CharField(max_length=500, null=True, blank=True)
-    banner = models.ImageField(null=True, blank=True, help_text='upload image banner to display.')
+    banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     program_category = models.ForeignKey('ProgramCategory', on_delete=models.SET_NULL, null=True, blank=True)
@@ -77,10 +80,10 @@ class Course(Page):
     program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True)
     introduction = RichTextField(null=True, blank=True)
     course_metric = StreamField([
-        ('image', ImageChooserBlock(required=False)),
+        ('image', CloudinaryImageBlock(required=False)),
         ('metric', blocks.CharBlock(required=False)),
         ('text', blocks.RichTextBlock(required=False)),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
     course_metric1 = RichTextField(null=True, blank=True)
     course_metric2 = RichTextField(null=True, blank=True)
     course_metric3 = RichTextField(null=True, blank=True)
@@ -118,7 +121,7 @@ class Course(Page):
             ('description', blocks.RichTextBlock(required=False)),
         ])),
         ('more_text', blocks.RichTextBlock(required=False)),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
     career_services = RichTextField(null=True, blank=True)
     testimonials = StreamField([
         ('intro', blocks.RichTextBlock(required=False)),
@@ -135,7 +138,7 @@ class Course(Page):
             ('personal_info', blocks.CharBlock(required=False)),
         ])),
         ('paragraph', blocks.RichTextBlock(required=False)),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
     faq = StreamField([
         ('faq1', blocks.StructBlock([
             ('question', blocks.CharBlock(required=False)),
@@ -161,13 +164,13 @@ class Course(Page):
             ('question', blocks.CharBlock(required=False)),
             ('answer', blocks.RichTextBlock(required=False)),
         ])),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
     how_to_apply = RichTextField(null=True, blank=True)
     course_schedule = RichTextField(null=True, blank=True)
     
     content_panels = Page.content_panels + [
         FieldPanel('course_title'),
-        FieldPanel('banner'),
+        FieldPanel('banner', widget=AdminCloudinaryChooser),
         FieldPanel('start_date'),
         FieldPanel('end_date'),
         FieldPanel('program_category'),
@@ -195,7 +198,7 @@ class Course(Page):
 class Curriculum(Page):
     template = 'courses/curriculum.html'
     heading_title = models.CharField(max_length=500, null=True, blank=True)
-    banner = models.ImageField(null=True, blank=True, help_text='upload image banner to display.')
+    banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
     intro = RichTextField(null=True, blank=True)
     modules = StreamField([
         ('introduction', blocks.RichTextBlock(required=False)),
@@ -320,14 +323,14 @@ class Curriculum(Page):
             ('what_you_will_learn', blocks.RichTextBlock(required=False)),
         ])),
         ('more_text', blocks.RichTextBlock(required=False)),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     course_tip_1 = RichTextField(null=True, blank=True)
     course_tip_2 = RichTextField(null=True, blank=True)
     
     content_panels = Page.content_panels + [
         FieldPanel('heading_title'),
-        FieldPanel('banner'),
+        FieldPanel('banner', widget=AdminCloudinaryChooser),
         FieldPanel('intro'),
         FieldPanel('modules'),
         FieldPanel('course_tip_1'),
@@ -341,10 +344,10 @@ class LocationSchedule(Page):
 
     location = StreamField([
         ('intro', blocks.RichTextBlock(required=False)),
-        ('location_image', ImageChooserBlock(required=False)),
+        ('location_image', CloudinaryImageBlock(required=False)),
         ('map_url', blocks.URLBlock(required=False)),
         ('more_text', blocks.RichTextBlock(required=False)),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
     
     content_panels = Page.content_panels + [
         FieldPanel('heading_title'),

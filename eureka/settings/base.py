@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 import dj_database_url
 import environ
+import cloudinary
 from django.core.management.utils import get_random_secret_key
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -61,6 +62,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django_extensions',
+    'cloudinary',
+    'wagtailcloudinary',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +80,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "eureka.urls"
+
+          
+cloudinary.config( 
+  cloud_name = "dd90xibdi", 
+  api_key = "186171315936462", 
+  api_secret = "zl5B7bpvRDBCwk-KvtX3pNCbgAQ"
+)
 
 TEMPLATES = [
     {
