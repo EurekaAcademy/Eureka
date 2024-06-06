@@ -6,9 +6,9 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtailcloudinary.fields import CloudinaryField
-from wagtailcloudinary.widgets import AdminCloudinaryChooser
-from wagtailcloudinary.blocks import CloudinaryImageBlock
+# from wagtailcloudinary.fields import CloudinaryField
+# from wagtailcloudinary.widgets import AdminCloudinaryChooser
+from cloudinary.models import CloudinaryField
 
 
 class HomePage(Page):
@@ -24,9 +24,9 @@ class HomePage(Page):
         FieldPanel('why_get_skills'),
         FieldPanel('ad_note'),
         FieldPanel('what_you_will_learn'),
-        FieldPanel('image1', widget=AdminCloudinaryChooser),
+        FieldPanel('image1'),
         FieldPanel('what_graduates_receive'),
-        FieldPanel('image2', widget=AdminCloudinaryChooser),
+        FieldPanel('image2'),
     ]
 
 class About(Page):
@@ -37,52 +37,52 @@ class About(Page):
     contents = StreamField([
         ('content1', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content2', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content3', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content4', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content5', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content6', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content7', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content8', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content9', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         ('content10', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
-            ('image', CloudinaryImageBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
             ('text', blocks.RichTextBlock(required=False)),
         ])),
         
@@ -91,7 +91,7 @@ class About(Page):
     
     content_panels = Page.content_panels + [
         FieldPanel('heading_title'),
-        FieldPanel('banner', widget=AdminCloudinaryChooser),
+        FieldPanel('banner'),
         FieldPanel('intro'),
         FieldPanel('contents'),
     ]

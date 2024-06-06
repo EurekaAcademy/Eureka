@@ -6,9 +6,10 @@ from wagtail.snippets.models import register_snippet
 from wagtail.fields import StreamField
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtailcloudinary.fields import CloudinaryField
-from wagtailcloudinary.widgets import AdminCloudinaryChooser
-from wagtailcloudinary.blocks import CloudinaryImageBlock
+# from wagtailcloudinary.fields import CloudinaryField
+# from wagtailcloudinary.widgets import AdminCloudinaryChooser
+# from wagtailcloudinary.blocks import CloudinaryImageBlock
+from cloudinary.models import CloudinaryField
 # Create your models here.
 @register_snippet
 class ProgramCategory(models.Model):
@@ -80,7 +81,7 @@ class Course(Page):
     program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True)
     introduction = RichTextField(null=True, blank=True)
     course_metric = StreamField([
-        ('image', CloudinaryImageBlock(required=False)),
+        ('image', ImageChooserBlock(required=False)),
         ('metric', blocks.CharBlock(required=False)),
         ('text', blocks.RichTextBlock(required=False)),
     ], null=True, blank=True, use_json_field=True)
@@ -170,7 +171,7 @@ class Course(Page):
     
     content_panels = Page.content_panels + [
         FieldPanel('course_title'),
-        FieldPanel('banner', widget=AdminCloudinaryChooser),
+        FieldPanel('banner'),
         FieldPanel('start_date'),
         FieldPanel('end_date'),
         FieldPanel('program_category'),
@@ -330,7 +331,7 @@ class Curriculum(Page):
     
     content_panels = Page.content_panels + [
         FieldPanel('heading_title'),
-        FieldPanel('banner', widget=AdminCloudinaryChooser),
+        FieldPanel('banner'),
         FieldPanel('intro'),
         FieldPanel('modules'),
         FieldPanel('course_tip_1'),
@@ -344,7 +345,7 @@ class LocationSchedule(Page):
 
     location = StreamField([
         ('intro', blocks.RichTextBlock(required=False)),
-        ('location_image', CloudinaryImageBlock(required=False)),
+        ('location_image', ImageChooserBlock(required=False)),
         ('map_url', blocks.URLBlock(required=False)),
         ('more_text', blocks.RichTextBlock(required=False)),
     ], null=True, blank=True, use_json_field=True)
