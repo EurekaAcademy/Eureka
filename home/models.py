@@ -9,6 +9,7 @@ from wagtail.images.blocks import ImageChooserBlock
 # from wagtailcloudinary.fields import CloudinaryField
 # from wagtailcloudinary.widgets import AdminCloudinaryChooser
 from cloudinary.models import CloudinaryField
+from courses.models import Course
 
 
 class HomePage(Page):
@@ -93,5 +94,36 @@ class About(Page):
         FieldPanel('heading_title'),
         FieldPanel('banner'),
         FieldPanel('intro'),
+        FieldPanel('contents'),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(About, self).get_context(request, *args, **kwargs)
+        courses = Course.objects.all()
+        context['courses'] = courses
+        
+        return context
+
+class AboutProgram(Page):
+    template = 'home/about-program.html'
+    heading_title = models.CharField(max_length=500, null=True, blank=True)
+    banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
+    intro = RichTextField(null=True, blank=True)
+    
+    content_panels = Page.content_panels + [
+        FieldPanel('heading_title'),
+        FieldPanel('banner'),
+        FieldPanel('intro'),
+    ]
+
+class MeetLeadership(Page):
+    template = 'home/meet-leadership.html'
+    heading_title = models.CharField(max_length=500, null=True, blank=True)
+    banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
+    contents = RichTextField(null=True, blank=True)
+    
+    content_panels = Page.content_panels + [
+        FieldPanel('heading_title'),
+        FieldPanel('banner'),
         FieldPanel('contents'),
     ]

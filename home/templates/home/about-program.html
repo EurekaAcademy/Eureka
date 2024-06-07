@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}{% load wagtailcore_tags %}
+<!doctype html>
+<html lang="en" class="no-js gutenberg">
+
+<body class="page-template page-template-templates page-template-two-col page-template-templatestwo-col-php page page-id-1181 page-parent v3 organic form-1a trilogy-form-sfps wpb-js-composer js-comp-ver-7.2 vc_responsive region-USA">
+{% block content %}
+<div class="breadcrumbs hidden-xs hidden-sm">
+    <div class="container">
+        <ul class="crumbs">
+            <li><a href="/">Home</a></li>															
+            <li>{{page.title|title}}</li>
+        </ul>
+    </div>
+</div>
+
+<section class="section-main">
+    <div class="container main-content">
+        <div class="row">
+			<div class="col-md-3 sidebar visible-md visible-lg background">
+				<!-- SubPages Widget: From Menu -->				
+                <aside class=no-border>
+			        <h2 class="category-list-title">About</h2>
+                    <ul class=category-list>
+                        {% for cpage in page.get_children.live.in_menu %}
+                            <li class=""><a href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+                <hr/>
+                {% include 'left-sidebar.html' %}
+            </div>
+            <main class="col-md-9 main">									
+                <h1 class="wp-block-heading">
+                    <div class="wpb_text_column wpb_content_element " style="box-sizing: border-box; white-space-collapse: collapse;">
+                        <div class="wpb_wrapper" style="box-sizing: border-box; margin-bottom: 0px;">
+                            <h1 style="box-sizing: border-box; margin-bottom: 0px; line-height: 1.1;">{{page.heading_title|title}}</h1>
+                        </div>
+                    </div>
+                </h1>
+                <p></p>
+                <div class="page-cover">
+                    <img decoding="async" src="{{page.banner.url}}" alt="" width=1140 height=440 fetchpriority=high />
+                    <div class="content">
+                        <div class="title"></div>
+                    </div>
+                </div>
+
+                <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+                    <div class="wp-block-group__inner-container">
+                        <h1 class="wp-block-heading">{{page.heading_title|title}}</h1>
+                        {{page.intro|richtext}}
+                        <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                    </div>
+                </div>
+                
+                <section class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+                    <div class="wp-block-group__inner-container">
+                        <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                        <p class="has-text-align-center" style="padding-right:var(--wp--preset--spacing--80);padding-left:var(--wp--preset--spacing--80)">If you are ready to learn more about&nbsp;<strong>Rutgers&nbsp;Bootcamps</strong>, contact an admissions advisor&nbsp;by filling out the&nbsp;form below.</p>
+                        <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                        <div class="bc-drip-form" id="bc_form_1">
+                            <div class=consent></div>
+                            {% include 'get_info.html' %}
+                        </div>
+                    </div>
+                </section>
+			</main>
+		</div>
+	</div>
+</section>
+{% endblock %}
+</body>
+</html><!--
+Performance optimized by Redis Object Cache. Learn more: https://wprediscache.com
+
+Retrieved 5357 objects (3 MB) from Redis using PhpRedis (v6.0.2).
+-->
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1716583858 -->

@@ -48,9 +48,16 @@
                 <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
                     <div class="wp-block-group__inner-container">
                         {{page.intro|richtext}}
-                        <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                        <!-- <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/> -->
                     </div>
                 </div>
+                <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+                <h2 class="wp-block-heading has-text-align-center">
+                    {% for course in courses %}
+                    <a href="{% pageurl course %}">{{course.title|title}}</a>&nbsp;|&nbsp;
+                    {% endfor %}
+                </h2>
+                <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
                 <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
                     <div class="wp-block-group__inner-container">
                         {% for block in page.contents %}
