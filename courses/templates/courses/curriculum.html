@@ -20,7 +20,7 @@
                 <div class="col-md-3 sidebar visible-md visible-lg background">
                     <!-- SubPages Widget: From Menu -->				
                     <aside class=no-border>
-                        <h2 class="category-list-title"><a href="https://bootcamp.rutgers.edu/data/">Data</a></h2>
+                        <h2 class="category-list-title"><a href="{% pageurl page.get_parent %}">Data</a></h2>
                         <ul class=category-list>																																																											<li class="current"><a href="#">Curriculum</a></li>
                             {% for cpage in page.get_siblings.live.in_menu %}
                                 <li class=""><a href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
