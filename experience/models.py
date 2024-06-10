@@ -163,8 +163,16 @@ class CareerServices(Page):
     employment_readiness = StreamField([
         ('title', blocks.CharBlock(required=False)),
         ('intro', blocks.RichTextBlock(required=False)),
-        ('column1', blocks.RichTextBlock(required=False)),
-        ('column2', blocks.RichTextBlock(required=False)),
+        ('column1', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+        ])),
+        ('column2', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+        ])),
         ('more_text', blocks.RichTextBlock(required=False)),
     ], null=True, blank=True, use_json_field=True)
     future_support = StreamField([
@@ -211,4 +219,53 @@ class CareerServices(Page):
         FieldPanel('employment_readiness'),
         FieldPanel('future_support'),
         FieldPanel('faq'),
+    ]
+
+class Classroom(Page):
+    template = 'experience/classroom.html'
+    heading_title = models.CharField(max_length=500, null=True, blank=True)
+    banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
+    intro = StreamField([
+        ('intro_text', blocks.RichTextBlock(required=False)),
+        ('quote', blocks.RichTextBlock(required=False)),
+        ('more_text', blocks.RichTextBlock(required=False)),
+    ], null=True, blank=True, use_json_field=True)
+    class_features = StreamField([
+        ('feature1', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('text', blocks.RichTextBlock(required=False)),
+        ])),
+        ('feature2', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('text', blocks.RichTextBlock(required=False)),
+        ])),
+        ('feature3', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('text', blocks.RichTextBlock(required=False)),
+        ])),
+        ('feature4', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('text', blocks.RichTextBlock(required=False)),
+        ])),
+        ('feature5', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('text', blocks.RichTextBlock(required=False)),
+        ])),
+        ('feature6', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('image', ImageChooserBlock(required=False)),
+            ('text', blocks.RichTextBlock(required=False)),
+        ])),
+    ], null=True, blank=True, use_json_field=True)
+    
+    content_panels = Page.content_panels + [
+        FieldPanel('heading_title'),
+        FieldPanel('banner'),
+        FieldPanel('intro'),
+        FieldPanel('class_features'),
     ]
