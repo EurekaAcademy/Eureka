@@ -1,0 +1,32 @@
+{% load static wagtailcore_tags %} {% load static %} {% load subscribe_form %} {% get_subscribe_form as form %}
+<style>
+    .subscribe-card {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .subscribe-card h3 {
+        text-align: center;
+    }
+    
+    .subscribe-card input {
+        border: none;
+        padding: 10px 10px;
+        outline: none;
+        background: #d4d2d2;
+    }
+    
+    .subscribe-card .subscribe-button {
+        background: #FFC700;
+        cursor: pointer;
+        color: black;
+    }
+</style>
+<div class="subscribe-card">
+    <h3>Subscribe</h3>
+    <form action="{% pageurl form.page %}" method="post">
+        {% csrf_token %}
+        {{form}}
+
+    </form>
+</div>

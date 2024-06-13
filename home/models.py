@@ -138,7 +138,7 @@ class MeetLeadership(Page):
     ]
 
 
-class FormField(AbstractFormField):
+class GetInfoFormField(AbstractFormField):
     page = ParentalKey('GetInfoFormPage', on_delete=models.CASCADE, related_name='form_fields')
 
 
@@ -247,4 +247,63 @@ class GetInfoFormSettings(BaseSiteSetting):
     panels = [
         # note the page type declared within the pagechooserpanel
         PageChooserPanel('get_info_form_page', ['home.GetInfoFormPage']),
+    ]
+
+
+class SubscribeFormField(AbstractFormField):
+    page = ParentalKey('SubscribeFormPage', on_delete=models.CASCADE, related_name='form_fields')
+
+class SubscribeFormPage(AbstractEmailForm):
+    template = 'home/subscribe_form.html'
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+    content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
+        FieldPanel('intro'),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text'),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email"),
+    ]
+
+    def serve(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            form = self.get_form(request.POST, page=self, user=request.user)
+
+            if form.is_valid():
+                self.process_form_submission(form)
+                
+                # Update the original landing page context with other data
+                landing_page_context = self.get_context(request)
+                landing_page_context['email'] = form.cleaned_data['email']
+
+                return render(
+                    request,
+                    self.get_landing_page_template(request),
+                    landing_page_context
+                )
+        else:
+            form = self.get_form(page=self, user=request.user)
+
+        context = self.get_context(request)
+        context['form'] = form
+        return render(
+            request,
+            self.get_template(request),
+            context
+        )
+
+@register_setting
+class SubscribeFormSettings(BaseSiteSetting):
+    subscribe_form_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL)
+
+    panels = [
+        # note the page type declared within the pagechooserpanel
+        PageChooserPanel('subscribe_form_page', ['home.SubscribeFormPage']),
     ]
