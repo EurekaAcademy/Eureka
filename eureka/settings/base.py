@@ -103,6 +103,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 'wagtail.contrib.settings.context_processors.settings',
+                'home.context_processors.base_data',
             ],
         },
     },
@@ -113,7 +114,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://eureka-production-6efb.up.railway.app', 'https://www.eurekadataacademy.com/', 'https://eurekadataacademy.com/']
+CSRF_TRUSTED_ORIGINS = ['https://eureka-production-6efb.up.railway.app','https://www.eurekadataacademy.com', 'https://www.eurekadataacademy.com/', 'https://eurekadataacademy.com/', 'https://eurekadataacademy.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
