@@ -34,6 +34,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # Application definition
 
 INSTALLED_APPS = [
+    "dashboard",
     "authentication",
     "menus",
     "experience",
@@ -65,6 +66,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'cloudinary',
     # 'wagtailcloudinary',
+    'multiselectfield',
+    'formtools',
 ]
 
 MIDDLEWARE = [

@@ -10,6 +10,7 @@ from wagtail.images.blocks import ImageChooserBlock
 # from wagtailcloudinary.widgets import AdminCloudinaryChooser
 # from wagtailcloudinary.blocks import CloudinaryImageBlock
 from cloudinary.models import CloudinaryField
+from multiselectfield import MultiSelectField
 # Create your models here.
 @register_snippet
 class ProgramCategory(models.Model):
@@ -76,7 +77,7 @@ class Course(Page):
     banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    program_category = models.ForeignKey('ProgramCategory', on_delete=models.SET_NULL, null=True, blank=True)
+    program_category = models.ForeignKey('ProgramCategory', on_delete=models.SET_NULL, null=True, blank=True, related_name='course_category')
     delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True)
     program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True)
     introduction = RichTextField(null=True, blank=True)
@@ -196,6 +197,36 @@ class Course(Page):
         FieldPanel('course_schedule'),
     ]
 
+WEEKDAYS = (('Monday', 'Monday'),
+              ('Tuesday', 'Tuesday'),
+              ('Wednesday', 'Wednesday'),
+              ('Thursday', 'Thursday'),
+              ('Friday', 'Friday'),
+              ('Saturday', 'Saturday'),
+              ('Sunday', 'Sunday'),
+              )
+@register_snippet
+class CourseSchedule(models.Model):
+    course = models.ForeignKey('Course', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_course')
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_mode')
+    program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_program_type')
+    days = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. Monday, Tuesday, Wednesday')
+    time = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. 6:30 PM Eastern Standard Time')
+
+    panels = [
+        FieldPanel('course'),
+        FieldPanel('start_date'),
+        FieldPanel('end_date'),
+        FieldPanel('delivery_mode'),
+        FieldPanel('program_type'),
+        FieldPanel('days'),
+        FieldPanel('time'),
+    ]
+    def __str__(self):
+        return f'{self.days} at {self.time}'
+    
 class Curriculum(Page):
     template = 'courses/curriculum.html'
     heading_title = models.CharField(max_length=500, null=True, blank=True)

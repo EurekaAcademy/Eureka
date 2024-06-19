@@ -41,7 +41,8 @@
                     </div>
             </form>
         </noscript> -->
-		<form class="form-1a trilogy-lead-form single-field-per-step  salesforce-form direct dynamic  pardot multi-program tc-ver" accept-charset="UTF-8" action="https://go.trilogyed.com/l/293952/2017-08-30/9wncl" method="POST" target="_top" autocomplete="off" id="leadform_1" novalidate="novalidate">
+		<form class="form-1a single-field-per-step dynamic" accept-charset="UTF-8" action="{% pageurl form_info.page %}" method="post">
+            {% csrf_token %}
 			<div class="hidden_fields">
 				<input type="hidden" name="Accelerator" value="1">
             	<input type="hidden" name="form_name" class="form_name" value="Sidebar">
@@ -53,17 +54,17 @@
                 <input type="hidden" name="programs_of_study" value="4a7aa8fc-5309-4b11-b45c-7710fdba35bb">
                 <input type="hidden" name="credential_type" value="BOOTCAMP">
                 <input type="hidden" class="current_step" value="">
-                <input type="hidden" class="tcpa_content" name="tcpa_content" value="By submitting this form, you agree that edX Boot Camps, in partnership with Rutgers may contact you regarding this boot camp. Your personal data will be used as described in Rutgers Boot Camps’s privacy policy. You may opt out of receiving communications at any time.">
+                <input type="hidden" class="tcpa_content" name="tcpa_content" value="By submitting this form, you agree that Eureka Data Academy may contact you regarding this boot camp. Your personal data will be used as described in Eureka Data Academy’s privacy policy. You may opt out of receiving communications at any time.">
                 <input type="hidden" class="tcpa_accepted_date" name="tcpa_accepted_date" value="2024-6-14">
                 <input class="hidden_sms_optout" id="sms_opt_out_no_1" name="sms_opt_out" type="hidden" value="1">
                 <input type="hidden" name="product_test_id" value="">
                 <input type="hidden" class="cta" name="call_to_action" value="">
                 <input type="hidden" name="timezone" class="timezone">
-                <input class="return_url" name="return_URL" value="https://bootcamp.rutgers.edu/thank-you/" type="hidden">
+                <!-- <input class="return_url" name="return_URL" value="" type="hidden"> -->
                 <input type="hidden" name="path_translated" value="/,/,/,/,/about/,/about/,/about/,/about/,/about/,/about/,/about/,/,/about/,/about/,/about/,/experience/classroom/" class="pathvisited">
                 <input type="hidden" name="browser_support" value="JS" class="browser_support">
-                <input type="hidden" name="ip" value="" class="ip_address">
-                <input type="hidden" name="ipv6" value="" class="ip_v6_address">
+                <!-- <input type="hidden" name="ip" value="" class="ip_address">
+                <input type="hidden" name="ipv6" value="" class="ip_v6_address"> -->
                 <input type="hidden" name="UUID" value="4da17f73-207e-4a98-9eb7-3c4d798ff961" class="Trilogy_UUID">
                 <input type="hidden" name="Lead_IP_Zipcode" value="" class="ipZipcode">
                 <input type="hidden" name="Lead_IP_City" value="" class="ipCity">
@@ -77,10 +78,10 @@
                 <input class="source" name="utm_source" type="hidden" value="">
                 <input class="keywords" name="keywords" type="hidden" value="">
                 <input class="referrer_id" name="Referrer_ID" type="hidden">
-                <input class="referrer" name="referrer" type="hidden" value="https://bootcamp.rutgers.edu/experience/classroom/">
-                <input class="original_referrer" name="original_referrer" type="hidden" value="https://bootcamp.rutgers.edu/">
-                <input class="original_url" name="original_url" type="hidden" value="https://bootcamp.rutgers.edu/">
-                <input class="final_url" name="final_url" type="hidden" value="https://bootcamp.rutgers.edu/experience/classroom/">
+                <input class="referrer" name="referrer" type="hidden" value="">
+                <input class="original_referrer" name="original_referrer" type="hidden" value="">
+                <!-- <input class="original_url" name="original_url" type="hidden" value="">
+                <input class="final_url" name="final_url" type="hidden" value=""> -->
                 <input class="user_agent" name="user_agent" type="hidden" value="Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Mobile Safari/537.36">
                 <input class="form_location" name="form_location" type="hidden" value="/experience/classroom/">
                 <input class="lead_source" name="lead_source" type="hidden" value="Web">
@@ -92,7 +93,7 @@
                 <input class="utm_term" name="utm_term" type="hidden" value="">
                 <input class="utm_cost" name="utm_cost" type="hidden">
 
-                <!-- <input class="utm_campaignname" name="utm_campaignname" type="hidden" value="">
+                <input class="utm_campaignname" name="utm_campaignname" type="hidden" value="">
                 <input class="utm_adsetname" name="utm_adsetname" type="hidden" value="">
                 <input class="utm_adgroupid" name="utm_adgroupid" type="hidden" value="">
                 <input class="utm_locationphysicalms" name="utm_locationphysicalms" type="hidden" value="">
@@ -108,7 +109,7 @@
                 <input type="hidden" name="fbc" class="fbc" value="">
                 <input type="hidden" name="fbp" class="fbp" value="fb.1.1716511062305.1184941354">
                 <input type="hidden" name="fb_event_id" class="fb_lead_event_id" value="LEAD_lm0ix4zn_1718372274433">
-                <input class="sf_contact_id" name="contact_id" type="hidden" value=""> -->
+                <input class="sf_contact_id" name="contact_id" type="hidden" value="">
 			</div>
 			
 			<div class="trilogy_error_container" role="alert">
@@ -117,24 +118,28 @@
 
 			<input class="career_path_hidden" name="Career_Path_Selection" type="hidden">
 			<input class="bootcamp_hidden" name="Boot_Camp_Selection" type="hidden">
-			<input class="cohort_id" name="cohort_id" type="hidden" disabled="disabled" value="">
+			<input class="cohort_id" name="cohort_id" type="hidden" disabled="disabled" value="a0MUH000000tEoj2AE">
 			
 			<div class="step-container">				
 				<div class="step-program-category step active">
 					<div class="inner">						
 						<div class="input select program_category_options">
                             <label id="program_category_option_dm_1" class="" for="id_choose_program">Choose Program</label>
-							<div class="">
-                                <select name="choose_program" id="id_choose_program" title="Choose Program" class="program_category">
+							<div class="program_category">
+                                
+                                <select class="selectpicker" name="choose_program" id="id_choose_program" title="Choose Program">
+                                    <option class="bs-title-option" value="Choose Program">Choose Program</option>
                                     {% for course in all_courses %}
                                     <option class="bs-title-option" value="{{course.program_category|title}}">{{course.program_category|title}}</option>
                                     {% endfor %}
                                 </select>
+                                
+                                
                             </div>
 						</div>
 						<div class="actions">							
 							<button type="button" class="button" title="Continue">Next</button>
-							<a class="back" href="#"><span>Back</span></a>
+							<a class="back" href="#"><span>&#8249;</span></a>
 						</div>
 					</div>
 				</div>		
@@ -146,7 +151,7 @@
                         </div>
                         <div class="actions">								
                             <button type="button" class="button" title="Continue">Next</button>
-                            <a class="back" href="#"><span>Back</span></a>
+                            <a class="back" href="#"><span>&#8249;</span></a>
                         </div>
                     </div>					
 				</div>
@@ -158,7 +163,7 @@
                         </div>				
                         <div class="actions">
                             <button type="button" class="button" title="Continue">Next</button>
-                            <a class="back" href="#"><span>Back</span></a>
+                            <a class="back" href="#"><span>&#8249;</span></a>
                         </div>
                     </div>
                 </div>
@@ -171,7 +176,7 @@
                         </div>
                         <div class="actions">								
                             <button type="button" class="button" title="Continue">Next</button>
-                            <a class="back" href="#"><span>Back</span></a>
+                            <a class="back" href="#"><span>&#8249;</span></a>
                         </div>
                     </div>							
                 </div>
@@ -487,7 +492,7 @@
                         </div>
                         <div class="actions">
                             <button type="button" class="button" title="Continue" aria-label="Next Button">Next</button>
-                            <a class="back" href="#" aria-label="Back Button"><span>Back</span></a>
+                            <a class="back" href="#" aria-label="Back Button"><span>&#8249;</span></a>
                         </div>
                     </div>
                 </div>
@@ -566,7 +571,7 @@
                         <!-- .the-consent-step -->						
                         <div class="actions">
                             <button type="submit" class="button" title="Submit">Submit</button>
-                            <a class="back" href="#"><span>Back</span></a>							
+                            <a class="back" href="#"><span>&#8249;</span></a>							
                         </div>
                     </div>
                 </div>
@@ -583,159 +588,12 @@
 			</div>
 		</form>		
 		
-		<div class="optional-steps hidden">
-			<div data-step="step-age-18-plus" class="step step-age-18-plus ao1">
-    <div class="inner">
-        <fieldset class="styled-radio-fieldset">
-            <legend class="legend-label"> Are you over the age of 18? </legend>
-            <div class="radio-inline-wrap">
-                <label for="age_18_plus_yes_1" class="radio-inline-label">
-                    <input type="radio" value="Yes" id="age_18_plus_yes_1" name="age_18_plus" class="age_18_plus" data-msg="Please specify if you are over 18." aria-label="Yes" required="">
-                    <span class="radio-inline-text">Yes</span>
-                </label>
-                <label for="age_18_plus_no_1" class="radio-inline-label">
-                    <input type="radio" value="No" id="age_18_plus_no_1" name="age_18_plus" class="age_18_plus" data-msg="Please specify if you are over 18." aria-label="No" required="">
-                    <span class="radio-inline-text">No</span>
-                </label>
-            </div>
-        </fieldset>
-        <div class="actions">
-            <button type="button" class="button" title="Continue" aria-label="Next Button">Next</button>
-            <a class="back" href="#" aria-label="Back button"><span>Back</span></a>
-        </div>
-    </div>
-</div>
-
-
-
-    <div data-step="step-zip" class="step step-zip postalcode-usa z">
-        <div class="inner">
-    		<div class="zip ico"><label for="zip_1" class="sr-only">Zip / Postal Code</label>
-    			<input id="zip_1" name="zipcode" class="zip zip-usa masked-input" type="text" data-mask="99999" placeholder="Zip / Postal Code" title="Zip / Postal Code">
-    		</div>
-    		    		<div class="actions">								
-    			<button type="button" class="button" title="Continue">Next</button>
-    			<a class="back" href="#"><span>Back</span></a>
-    		</div>
-    	</div>
-    </div>
-    
-<div data-step="step-highest-level-of-education" class="step step-highest-level-of-education oe2">
-        <div class="inner">
-            <div class="input select highest_level_of_education_options">
-                <label class="sr-only" for="highest_level_of_education_1">Highest level of education</label>
-				<select title="Highest level of education" class="highest_level_of_education" id="highest_level_of_education_1" name="highest_level_of_education" data-msg-required="Please select education" aria-label="education field" aria-required="true" required="">
-                    <option class="bs-title-option" value="">Highest level of education</option>
-                                            <option value="Some High School">Some High School</option>
-                                            <option value="High School Diploma or GED">High School Diploma or GED</option>
-                                            <option value="Associate's Degree">Associate's Degree</option>
-                                            <option value="Bachelor's Degree">Bachelor's Degree</option>
-                                            <option value="Some graduate coursework">Some graduate coursework</option>
-                                            <option value="Graduate Degree">Graduate Degree</option>
-                                    </select>
-            </div>
-            <div class="actions">
-                <button type="button" class="button" title="Continue">Next</button>
-                <a class="back" href="#"><span>Back</span></a>
-            </div>
-        </div>
-</div>
-
-    <div data-step="step-contact-method" class="step step-contact-method">
-    <div class="inner">
-        <div class="input select contact-method">
-            <label class="sr-only" for="contact_method1">Preferred Contact Method</label>
-			<select title="Contact Method" id="contact_method1" name="contact_method" aria-label="contact method field">
-                <option class="bs-title-option" value="">How do you prefer to be contacted?</option>
-                <option value="Phone Call">Phone Call</option>
-                <option value="Email">Email</option>
-            </select>
-        </div>
-        <div class="actions">
-            <button type="button" class="button" title="Continue">Next</button>
-            <a class="back" href="#"><span>Back</span></a>
-        </div>
-    </div>
-</div>
-
-
-<div data-step="step-buyer-readiness" class="step step-buyer-readiness">
-    <div class="inner">
-        <div class="input select buyer-readiness-options">
-            <label class="sr-only" for="when_get_started1">How soon do you want to start?</label>
-			<select title="How soon do you want to start?" id="when_get_started1" name="buyer_readiness" data-msg-required="Please select start time" aria-label="when to start field" aria-required="true" required="">
-                <option class="bs-title-option" value="">How soon do you want to start?</option>
-                <option value="Immediately">Immediately</option>
-                <option value="Within 5 months">Within 6 months</option>
-                <option value="In 6-12 months">In 6-12 months</option>
-                <option value="In a year or more">In a year or more</option>
-            </select>
-        </div>
-        <div class="actions">
-            <button type="button" class="button" title="Continue">Next</button>
-            <a class="back" href="#"><span>Back</span></a>
-        </div>
-    </div>
-</div>
-
-<div data-step="step-experience" class="step step-experience">
-    <div class="inner">
-        <div class="input select">
-            <label class="sr-only" for="experience_1">Experience in this field</label>
-			<select title="Experience" name="Domain_Experience" id="when_get_started1" required="" aria-label="experience field">
-                    <option value="None">None</option>
-                    <option value="Yes, Less than 2 years">Yes, Less than 2 years</option>
-                    <option value="Yes, 2 to 5 years">Yes, 2 to 5 years</option>
-                    <option value="Yes, more than 5 years">Yes, more than 5 years</option>
-                    <option value="Yes, more than 10 years">Yes, more than 10 years</option>
-            </select>
-        </div>
-        <div class="actions">
-            <button type="button" class="button" title="Continue" aria-label="Next Button">Next</button>
-            <a class="back" href="#" aria-label="Back Button"><span>Back</span></a>
-        </div>
-    </div>
-</div>
-
-
-<div data-step="step-persona" class="step step-persona">
-	<div class="inner">
-		<div class="input select persona_options">
-						<label class="sr-only" id="persona_1" for="persona_1">I want to</label>
-			<span> 
-				<select title="I want to" id="select_persona_1" data-msg-required="Please Select an Option" class="lead_persona" name="lead_persona" aria-label="lead persona" required="">
-											<option class="question-v1" value="">I want to...</option>
-						<option class="question-v2" value="">Which best describes your goal?</option>
-						<option class="copy-v1" value="Start a new career">Start a new career</option>
-						<option class="copy-v1" value="Switch career path">Switch career path</option>
-						<option class="copy-v1" value="Advance current career">Advance current career</option>
-						<option class="copy-v1" value="Start/Grow business">Start/Grow business</option>
-						<option class="copy-v1" value="Prefer not to say">Prefer not to say</option>
-						<option class="copy-v1" value="Other">Other</option>
-										<!-- V1 Copy -->
-					
-										<!-- V2 Copy -->
-													<option class="copy-v2" value="Launch a new career">Launch a new career</option>
-							<option class="copy-v2" value="Change my career path">Change my career path</option>
-							<option class="copy-v2" value="Further my career">Further my career</option>
-							<option class="copy-v2" value="Become an entrepreneur">Become an entrepreneur</option>
-							<option class="copy-v2" value="Recent graduate, First job">Recent graduate, First job</option>
-							<option class="copy-v2" value="Prefer not to say">Prefer not to say</option>
-							<option class="copy-v2" value="Other">Other</option>
-															</select>
-			</span>
-		</div>	
-		<div class="actions">
-			<button type="button" class="button" title="Continue">Next</button>
-			<a class="back" href="#"><span>Back</span></a>
-		</div>
-	</div>
-</div>
-		</div>
+		
 		<div hidden="" class="dynamic-options-for-consent-step for--gdpr">
 
 
-</div> <!-- .dynamic-options-for-consent-step.for--gdpr -->
+    </div> 
+<!-- .dynamic-options-for-consent-step.for--gdpr -->
 		</div>
 	</div>
 </div>

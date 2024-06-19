@@ -665,36 +665,7 @@ function field_interest_changed(e, clickedIndex, newValue, previousValue){
     popCohorts($f);
 }
 
-function cohortChanged(){
-    //console.log('Cohort Changed');
-    var $o = $('option:selected',this);
-    
-    $('.msx-form input.program_id').val( $o.data('program') );
-    $('.msx-form [name="program"]').trigger('change');
-    $('.msx-form input.program_type').val( $o.data('program_type') );
-    $('.msx-form input.campus_id').val( $o.data('campus') );
-    $('.msx-form input.program_category').val( $o.data('program_category') );
-    
-    $('.tcpa .bootcamp_name').html( function() { return $o.data('uni-program') ? $o.data('uni-program') : $(this).data('default'); } );
-    $('.consent_copy .set_are_is_copy').html( function() { return $o.data('uni-program') ? $(this).data('is') : $(this).data('are'); } );
 
-    var pcat = $o.data('program_category');
-    if(pcat){
-        var programs = CB_PROGRAMS.filter(function(c){ return c.program_category == pcat; });
-        var root_url = document.location.protocol +'//'+ document.location.hostname;
-        var thank_you_url = root_url+'/thank-you/?ft=msx';
-        if(programs.length > 0 && typeof programs[0].thank_you_url != 'undefined' && programs[0].thank_you_url.length){
-            thank_you_url = root_url + programs[0].thank_you_url+'?ft=msx';
-        }
-        else{
-            trilogyLog('Missing Thank You URL');
-        }
-        $('.msx-form input.return_url').val( thank_you_url );
-    }
-    else{
-        trilogyLog('cohortChanged no Program Category');
-    }
-}
 
 function formMoveQuestions(){
     console.info('Move Questions');
@@ -913,30 +884,6 @@ function popCohorts($form){
     $form.find('.cohort_col').toggle(showCohortCol);
 }
 
-function msxBeforeSubmit(){
-    trilogyLog('> In msxBeforeSubmit');
-    
-    var custom_thank_you = $('[name=custom_thank_you_url]').val();
-    if( custom_thank_you ){
-        console.log('Custom Thank You Page:'+custom_thank_you);
-        var thank_you_page = custom_thank_you;
-        var base_url = location.protocol+'//'+document.location.host;
-        if(thank_you_page.charAt(0) == '/'){
-            thank_you_page = base_url+thank_you_page;
-        }
-        $('form .return_url').val(thank_you_page).trigger('change');
-    }
-
-    //Custom params to be added to thank-you for Red Venture tracking (JTAFF)
-    if ( getUrlParameter('utm_source') === "mkt-partnership" 
-        && getUrlParameter('utm_campaign').includes("tes_aff_rvcplsite") 
-        && getUrlParameter('utm_content') !=='') { 	
-        thank_you_page = thank_you_page.trim() +"?utm_source="+ getUrlParameter('utm_source') + "&utm_campaign=" + getUrlParameter('utm_campaign') + "&utm_content=" + getUrlParameter('utm_content');
-        $('form .return_url').val(thank_you_page).trigger('change');
-    }	
-
-    return true;
-}
 
 function oneTrustGeoCheck(){
     if( typeof OneTrust == 'object' ){

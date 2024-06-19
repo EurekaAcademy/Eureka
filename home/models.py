@@ -165,77 +165,29 @@ class GetInfoFormPage(AbstractEmailForm):
         return self.form_builder(step.object_list).get_form_class()
 
     def serve(self, request, *args, **kwargs):
-        """
-        Implements a simple multi-step form.
-
-        Stores each step into a session.
-        When the last step is submitted correctly, saves the whole form into a DB.
-        """
-
-        session_key_data = 'form_data-%s' % self.pk
-        is_last_step = False
-        step_number = request.GET.get('p', 1)
-
-        paginator = Paginator(self.get_form_fields(), per_page=1)
-        try:
-            step = paginator.page(step_number)
-        except PageNotAnInteger:
-            step = paginator.page(1)
-        except EmptyPage:
-            step = paginator.page(paginator.num_pages)
-            is_last_step = True
-
         if request.method == 'POST':
-            # The first step will be submitted with step_number == 2,
-            # so we need to get a form from the previous step
-            # Edge case - submission of the last step
-            prev_step = step if is_last_step else paginator.page(step.previous_page_number())
+            form = self.get_form(request.POST, page=self, user=request.user)
 
-            # Create a form only for submitted step
-            prev_form_class = self.get_form_class_for_step(prev_step)
-            prev_form = prev_form_class(request.POST, page=self, user=request.user)
-            if prev_form.is_valid():
-                # If data for step is valid, update the session
-                form_data = request.session.get(session_key_data, {})
-                form_data.update(prev_form.cleaned_data)
-                request.session[session_key_data] = form_data
+            if form.is_valid():
+                self.process_form_submission(form)
+                
+                # Update the original landing page context with other data
+                landing_page_context = self.get_context(request)
+                landing_page_context['email'] = form.cleaned_data['email']
 
-                if prev_step.has_next():
-                    # Create a new form for a following step, if the following step is present
-                    form_class = self.get_form_class_for_step(step)
-                    form = form_class(page=self, user=request.user)
-                else:
-                    # If there is no next step, create form for all fields
-                    form = self.get_form(
-                        request.session[session_key_data],
-                        page=self, user=request.user
-                    )
-
-                    if form.is_valid():
-                        # Perform validation again for whole form.
-                        # After successful validation, save data into DB,
-                        # and remove from the session.
-                        form_submission = self.process_form_submission(form)
-                        del request.session[session_key_data]
-                        # render the landing page
-                        return self.render_landing_page(request, form_submission, *args, **kwargs)
-            else:
-                # If data for step is invalid
-                # we will need to display form again with errors,
-                # so restore previous state.
-                form = prev_form
-                step = prev_step
+                return render(
+                    request,
+                    self.get_landing_page_template(request),
+                    landing_page_context
+                )
         else:
-            # Create empty form for non-POST requests
-            form_class = self.get_form_class_for_step(step)
-            form = form_class(page=self, user=request.user)
+            form = self.get_form(page=self, user=request.user)
 
         context = self.get_context(request)
         context['form'] = form
-        context['fields_step'] = step
         return render(
             request,
-            self.template,
+            self.get_template(request),
             context
         )
 

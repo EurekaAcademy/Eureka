@@ -7,130 +7,7 @@
         <title>Eureka Data Academy Bootcamps</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
         <link rel="preconnect" href="https://eurekadataacademy.com" />
-        <!-- Head Tracking -->
-        <script>
-            function readCookie(n) {
-                var cookie_parts = document.cookie.split(';');
-                for (var i = 0; i < cookie_parts.length; i++) {
-                    var c = cookie_parts[i].split('=');
-                    if (c[0].trim() == n) {
-                        return c[1];
-                    }
-                }
-                return '';
-            }
-            var FB_LEAD_EVENT_ID = readCookie('FB_LEAD_EVENT_ID') || 'LEAD_' + Date.now();
-            var FB_EXTERNAL_ID = readCookie('Trilogy_UUID') || Math.random().toString(36).substring(1, 8) + Date.now();
-    
-            if (readCookie('t_top_bar_notification')) {
-                // add class to body to hide top bar notification
-                var root = document.getElementsByTagName('html')[0];
-                root.classList.add('hide-TBN');
-            }
-            LUX = window.LUX || {};
-            LUX.label = "Home GB";
-        </script>
-       
-        <!-- Bing Webmaster Tools Meta Tag -->
         
-        <script>
-            LUX = function() {
-                function n() {
-                    return Date.now ? Date.now() : +new Date
-                }
-                var r, e = n(),
-                    t = window.performance || {},
-                    a = t.timing || {
-                        navigationStart: (null === (r = window.LUX) || void 0 === r ? void 0 : r.ns) || e
-                    };
-    
-                function o() {
-                    return t.now ? (r = t.now(), Math.floor(r)) : n() - a.navigationStart;
-                    var r
-                }(LUX = window.LUX || {}).ac = [], LUX.addData = function(n, r) {
-                    return LUX.cmd(["addData", n, r])
-                }, LUX.cmd = function(n) {
-                    return LUX.ac.push(n)
-                }, LUX.getDebug = function() {
-                    return [
-                        [e, 0, []]
-                    ]
-                }, LUX.init = function() {
-                    return LUX.cmd(["init"])
-                }, LUX.mark = function() {
-                    for (var n = [], r = 0; r < arguments.length; r++) n[r] = arguments[r];
-                    if (t.mark) return t.mark.apply(t, n);
-                    var e = n[0],
-                        a = n[1] || {};
-                    void 0 === a.startTime && (a.startTime = o());
-                    LUX.cmd(["mark", e, a])
-                }, LUX.markLoadTime = function() {
-                    return LUX.cmd(["markLoadTime", o()])
-                }, LUX.measure = function() {
-                    for (var n = [], r = 0; r < arguments.length; r++) n[r] = arguments[r];
-                    if (t.measure) return t.measure.apply(t, n);
-                    var e, a = n[0],
-                        i = n[1],
-                        u = n[2];
-                    e = "object" == typeof i ? n[1] : {
-                        start: i,
-                        end: u
-                    };
-                    e.duration || e.end || (e.end = o());
-                    LUX.cmd(["measure", a, e])
-                }, LUX.send = function() {
-                    return LUX.cmd(["send"])
-                }, LUX.ns = e;
-                var i = LUX;
-                if (window.LUX_ae = [], window.addEventListener("error", (function(n) {
-                        window.LUX_ae.push(n)
-                    })), window.LUX_al = [], "function" == typeof PerformanceObserver && "function" == typeof PerformanceLongTaskTiming) {
-                    var u = new PerformanceObserver((function(n) {
-                        for (var r = n.getEntries(), e = 0; e < r.length; e++) window.LUX_al.push(r[e])
-                    }));
-                    try {
-                        u.observe({
-                            type: "longtask"
-                        })
-                    } catch (n) {}
-                }
-                return i
-            }();
-        </script>
-        <script src="https://cdn.speedcurve.com/js/lux.js" defer crossorigin="anonymous"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics ROLLUP-->
-        
-        <!-- END Global site tag (gtag.js) - Google Analytics ROLLUP-->
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "CollegeOrUniversity",
-                "name": "Eureka Data Academy Bootcamps",
-                "url": "https://eurekadataacademy.com/",
-                "logo": ""
-            }
-        </script>
-        <!--ITEM LIST SCHEMA FOR COURSES-->
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "ItemList",
-                "itemListElement": [{
-                        "@type": "ListItem",
-                        "position": 1,
-                        "url": "https://eurekadataacademy.com/coding/"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "url": "https://eurekadataacademy.com/data/"
-                    }
-                ]
-            }
-        </script>
-        <script>
-            var campus = ""
-        </script>
         <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
     
         <!-- OneTrust -->
@@ -155,616 +32,7 @@
             }
         </style>
     
-        <link rel="preconnect" href="https://cdn.cookielaw.org" />
-    
-        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="03b30f65-dfd0-482b-936a-b475760cfff7"></script>
-        <script type="text/javascript">
-            window.addEventListener('load', function() {
-                // check page has link to OneTrust in footer 
-                var footerLink = document.querySelector('a[data-linkusedin="footer"]');
-                if (!footerLink) {
-                    var linkNotFoundErrorMsg = "Error: PG has no link to show OneTrust settings in footer";
-                    console.error(linkNotFoundErrorMsg);
-                    if (typeof Rollbar != "undefined") {
-                        Rollbar.critical(linkNotFoundErrorMsg);
-                    }
-                }
-            });
-    
-            function open_onetrust_preference_center() {
-                event.preventDefault();
-                if (typeof OneTrust == "undefined") {
-                    console.error("Error: OneTrust is not defined");
-                    if (typeof Rollbar != "undefined") {
-                        Rollbar.critical("Error: OneTrust is not defined");
-                    }
-                    // todo: Language/UX for OneTrust not loading.  
-                    return;
-                }
-                OneTrust.ToggleInfoDisplay();
-            }
-            const doNotSellCookieName = 'TRILOGY_DO_NOT_SELL';
-            const doNotSellCookieValue = '1';
-            const doNotSellFormInputName = 'do_not_sell';
-            const dnsLDUGrpIds = [
-                "C0004", // Targeting Cookies
-                "SSPD_BG",
-                "C0005" // Social Media Cookies
-            ]; // ot group of ids that trigger DNS LDU
-    
-            function OptanonWrapper() {
-                setFormsDNSField();
-    
-                Optanon.OnConsentChanged(function(e) {
-                    console.info("OneTrust.OnConsentChanged", e.detail);
-                });
-    
-                // Get initial OnetrustActiveGroups ids
-                if (typeof OptanonWrapperCount == "undefined") {
-                    otGetInitialGrps();
-                }
-    
-                //Delete cookies
-                otDeleteCookie(otIniGrps);
-    
-                if (typeof oneTrustGeoCheck == 'function') {
-                    oneTrustGeoCheck();
-                }
-    
-                // Assign OnetrustActiveGroups to custom variable
-                function otGetInitialGrps() {
-                    OptanonWrapperCount = '';
-                    otIniGrps = OnetrustActiveGroups;
-                    // console.log("otGetInitialGrps", otIniGrps)
-                }
-    
-                function otDeleteCookie(iniOptGrpId) {
-                    var otActiveGrp = OnetrustActiveGroups;
-                    var otDomainDataGroups = Optanon.GetDomainData().Groups;
-                    var otDomainGrps = JSON.parse(JSON.stringify(otDomainDataGroups));
-                    var otDeletedGrpIds = otGetInactiveId(iniOptGrpId, otActiveGrp);
-                    trilogyLog("otDeletedGrpIds", otDeletedGrpIds);
-    
-                    if (otDeletedGrpIds.length != 0 && otDomainGrps.length != 0) {
-                        for (var i = 0; i < otDomainGrps.length; i++) {
-                            //Check if CustomGroupId matches
-                            if (otDomainGrps[i]['CustomGroupId'] != '' && otDeletedGrpIds.includes(otDomainGrps[i]['CustomGroupId'])) {
-                                for (var j = 0; j < otDomainGrps[i]['Cookies'].length; j++) {
-                                    trilogyLog("otDeleteCookie from CustomGroupID", otDomainGrps[i]['Cookies'][j]['Name'])
-                                    //Delete cookie
-                                    eraseCookie(otDomainGrps[i]['Cookies'][j]['Name']);
-                                }
-                            }
-    
-                            //Check if Hostid matches
-                            if (otDomainGrps[i]['Hosts'].length != 0) {
-                                for (var j = 0; j < otDomainGrps[i]['Hosts'].length; j++) {
-                                    //Check if HostId presents in the deleted list and cookie array is not blank
-                                    if (otDeletedGrpIds.includes(otDomainGrps[i]['Hosts'][j]['HostId']) && otDomainGrps[i]['Hosts'][j]['Cookies'].length != 0) {
-                                        for (var k = 0; k < otDomainGrps[i]['Hosts'][j]['Cookies'].length; k++) {
-                                            trilogyLog("otDeleteCookie from HostID", otDomainGrps[i]['Cookies'][j]['Name'])
-                                            //Delete cookie
-                                            eraseCookie(otDomainGrps[i]['Hosts'][j]['Cookies'][k]['Name']);
-                                        }
-                                    }
-                                }
-                            }
-    
-                        }
-                    }
-                    otGetInitialGrps(); //Reassign new group ids
-    
-                    dnsCookieSettings(otDeletedGrpIds, otActiveGrp, otDomainDataGroups);
-                }
-    
-                //Get inactive ids
-                function otGetInactiveId(customIniId, otActiveGrp) {
-                    //Initial OnetrustActiveGroups
-                    //console.log("otGetInactiveId",customIniId)
-                    customIniId = customIniId.split(",");
-                    customIniId = customIniId.filter(Boolean);
-    
-                    //After action OnetrustActiveGroups
-                    otActiveGrp = otActiveGrp.split(",");
-                    otActiveGrp = otActiveGrp.filter(Boolean);
-    
-                    var result = [];
-                    for (var i = 0; i < customIniId.length; i++) {
-                        if (otActiveGrp.indexOf(customIniId[i]) <= -1) {
-                            result.push(customIniId[i]);
-                        }
-                    }
-                    return result;
-                }
-    
-                //Delete cookie
-                function eraseCookie(name) {
-                    //Delete root path cookies
-                    domainName = window.location.hostname;
-                    document.cookie = name + '=; Max-Age=-99999999; Path=/;Domain=' + domainName;
-                    document.cookie = name + '=; Max-Age=-99999999; Path=/;';
-    
-                    //Delete LSO incase LSO being used, cna be commented out.
-                    localStorage.removeItem(name);
-    
-                    //Check for the current path of the page
-                    pathArray = window.location.pathname.split('/');
-                    //Loop through path hierarchy and delete potential cookies at each path.
-                    for (var i = 0; i < pathArray.length; i++) {
-                        if (pathArray[i]) {
-                            //Build the path string from the Path Array e.g /site/login
-                            var currentPath = pathArray.slice(0, i + 1).join('/');
-                            document.cookie = name + '=; Max-Age=-99999999; Path=' + currentPath + ';Domain=' + domainName;
-                            document.cookie = name + '=; Max-Age=-99999999; Path=' + currentPath + ';';
-                            //Maybe path has a trailing slash!
-                            document.cookie = name + '=; Max-Age=-99999999; Path=' + currentPath + '/;Domain=' + domainName;
-                            document.cookie = name + '=; Max-Age=-99999999; Path=' + currentPath + '/;';
-                        }
-                    }
-                }
-    
-                function getCookie(cname) {
-                    let name = cname + "=";
-                    let decodedCookie = decodeURIComponent(document.cookie);
-                    let ca = decodedCookie.split(';');
-                    for (let i = 0; i < ca.length; i++) {
-                        let c = ca[i];
-                        while (c.charAt(0) == ' ') {
-                            c = c.substring(1);
-                        }
-                        if (c.indexOf(name) == 0) {
-                            return c.substring(name.length, c.length);
-                        }
-                    }
-                    return "";
-                }
-    
-                function setCookie(cname, cvalue, exdays) {
-                    const d = new Date();
-                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                    let cookieStr = cname + "=" + cvalue + ";"
-                    cookieStr += "expires=" + d.toUTCString(); + ";"
-                    if (document.location.href.indexOf('https') === 0) {
-                        cookieStr += ";secure";
-                    }
-                    cookieStr += "path=/;"
-                    document.cookie = cookieStr;
-                }
-    
-                function dnsCookieSettings(otDeletedGrpIds, otActiveGrp, otDomainDataGroups) {
-                    trilogyLog("dnsCookieSettings", otDeletedGrpIds, otActiveGrp, otDomainDataGroups);
-                    var dnsCookie = getCookie(doNotSellCookieName);
-                    trilogyLog('doNotSellCookie', {
-                        typeof: typeof dnsCookie,
-                        value: dnsCookie,
-                        compareValue: dnsCookie === doNotSellCookieValue
-                    })
-    
-                    var otDomainDataGroupsHaveCookies = otDomainDataGroups.filter(function(n) {
-                        return n.Cookies.length > 0;
-                    });
-                    var iDnsLduGrps = otDomainDataGroupsHaveCookies.filter(function(n) {
-                        return dnsLDUGrpIds.indexOf(n.CustomGroupId) !== -1;
-                    });
-                    trilogyLog("dnsLDUGrpIds", iDnsLduGrps);
-    
-                    otActiveGrp = otActiveGrp.split(",").filter(Boolean);
-                    var iActiveGrpIds = otActiveGrp.filter(function(n) {
-                        return dnsLDUGrpIds.indexOf(n) !== -1;
-                    });
-    
-                    if (dnsCookie === doNotSellCookieValue && iActiveGrpIds.length > 0) {
-                        setDNSLDU({
-                            "action": "remove",
-                            otActiveGrp: otActiveGrp,
-                            otDomainDataGroups: otDomainDataGroups
-                        });
-                        return;
-                    }
-    
-                    otDeletedGrpIds = otDeletedGrpIds;
-                    var iDeletedGrpIds = otDeletedGrpIds.filter(function(n) {
-                        return dnsLDUGrpIds.indexOf(n) !== -1;
-                    });
-                    if (dnsCookie !== doNotSellCookieValue && iDeletedGrpIds.length > 0) {
-                        setDNSLDU({
-                            "action": "set",
-                            otDeletedGrpIds: otDeletedGrpIds,
-                            otActiveGrp: otActiveGrp,
-                            otDomainDataGroups: otDomainDataGroups
-                        });
-                        return;
-                    }
-    
-                    if (dnsCookie !== doNotSellCookieValue && !(otActiveGrp.includes("C0004"))) {
-                        setDNSLDU({
-                            "action": "set",
-                            otActiveGrp: otActiveGrp,
-                            otDomainDataGroups: otDomainDataGroups
-                        });
-                        return;
-                    }
-                }
-    
-                function setFormsDNSField() {
-                    var dnsCookie = getCookie(doNotSellCookieName);
-                    if (dnsCookie === doNotSellCookieValue) {
-                        //Set all forms DNS "do_not_sell" field to true
-                        var forms = document.querySelectorAll('form');
-                        for (var i = 0; i < forms.length; i++) {
-                            var form = forms[i];
-                            var input = form.querySelector('input[name="' + doNotSellFormInputName + '"]');
-                            if (input) {
-                                input.value = doNotSellCookieValue;
-                            } else {
-                                input = document.createElement('input');
-                                input.type = 'hidden';
-                                input.name = doNotSellFormInputName;
-                                input.value = doNotSellCookieValue;
-                                form.appendChild(input);
-                            }
-                        }
-                    }
-                }
-    
-                function setDNSLDU(postData) {
-                    console.log("setDNSLDU:postData", postData);
-                    if (typeof postData == "undefined") {
-                        postData = {};
-                    }
-                    if (typeof postData['action'] == "undefined") {
-                        return;
-                    }
-    
-                    var trackingAction;
-                    switch (postData['action']) {
-                        case "set":
-                            trackingAction = "Opt Out";
-                            setCookie(doNotSellCookieName, doNotSellCookieValue, 365);
-                            break;
-                        case "remove":
-                            trackingAction = "Opt In";
-                            eraseCookie(doNotSellCookieName);
-                            break;
-                    }
-    
-                    postData['tracking_action'] = trackingAction;
-                    console.info("DNS LDU cookie data:", postData, getCookie(doNotSellCookieName));
-                    trilogyTrackingEvent("Do Not Sell", "Save", trackingAction);
-    
-                    setFormsDNSField(); // set incase reload does not occur
-    
-                    // RELOAD page to ensure FB LDU flag is set
-                    document.location.reload();
-                }
-            }
-        </script>
-        <!-- OneTrust End -->
-        <script>
-            var _rollbarConfig = {
-                accessToken: "d365a011599b4884ad431f81002cfe2b",
-                captureUncaught: true,
-                captureUnhandledRejections: true,
-                checkIgnore: function(isUncaught, args, payload) {
-                    var ignored_agents = ['AdsBot', 'DuckDuckBot', 'PhantomJS', 'PetalBot', 'Windows NT 6.1'];
-                    if (window.location.hostname.indexOf('translate.goog') != -1) {
-                        return true;
-                    }
-                    if (window.navigator.userAgent) {
-                        for (var i = 0; i < ignored_agents.length; i++) {
-                            if (window.navigator.userAgent.indexOf(ignored_agents[i]) != -1) {
-                                return true;
-                            }
-                        }
-                    }
-                    return false;
-                },
-                payload: {
-                    environment: "production"
-                },
-                ignoredMessages: [
-                    'qp is not a function',
-                    "analytics.tiktok.com",
-                    "(unknown): Script error", //External Tracking Code
-                    "wistia",
-                    "_AutofillCallbackHandler", //Instagram non issue
-                    "safari-web-extension"
-                ]
-            };
-            // Rollbar Snippet
-            ! function(r) {
-                var e = {};
-    
-                function o(n) {
-                    if (e[n]) return e[n].exports;
-                    var t = e[n] = {
-                        i: n,
-                        l: !1,
-                        exports: {}
-                    };
-                    return r[n].call(t.exports, t, t.exports, o), t.l = !0, t.exports
-                }
-                o.m = r, o.c = e, o.d = function(r, e, n) {
-                    o.o(r, e) || Object.defineProperty(r, e, {
-                        enumerable: !0,
-                        get: n
-                    })
-                }, o.r = function(r) {
-                    "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(r, Symbol.toStringTag, {
-                        value: "Module"
-                    }), Object.defineProperty(r, "__esModule", {
-                        value: !0
-                    })
-                }, o.t = function(r, e) {
-                    if (1 & e && (r = o(r)), 8 & e) return r;
-                    if (4 & e && "object" == typeof r && r && r.__esModule) return r;
-                    var n = Object.create(null);
-                    if (o.r(n), Object.defineProperty(n, "default", {
-                            enumerable: !0,
-                            value: r
-                        }), 2 & e && "string" != typeof r)
-                        for (var t in r) o.d(n, t, function(e) {
-                            return r[e]
-                        }.bind(null, t));
-                    return n
-                }, o.n = function(r) {
-                    var e = r && r.__esModule ? function() {
-                        return r.default
-                    } : function() {
-                        return r
-                    };
-                    return o.d(e, "a", e), e
-                }, o.o = function(r, e) {
-                    return Object.prototype.hasOwnProperty.call(r, e)
-                }, o.p = "", o(o.s = 0)
-            }([function(r, e, o) {
-                "use strict";
-                var n = o(1),
-                    t = o(5);
-                _rollbarConfig = _rollbarConfig || {}, _rollbarConfig.rollbarJsUrl = _rollbarConfig.rollbarJsUrl || "https://cdn.rollbar.com/rollbarjs/refs/tags/v2.26.4/rollbar.min.js", _rollbarConfig.async = void 0 === _rollbarConfig.async || _rollbarConfig.async;
-                var a = n.setupShim(window, _rollbarConfig),
-                    l = t(_rollbarConfig);
-                window.rollbar = n.Rollbar, a.loadFull(window, document, !_rollbarConfig.async, _rollbarConfig, l)
-            }, function(r, e, o) {
-                "use strict";
-                var n = o(2),
-                    t = o(3);
-    
-                function a(r) {
-                    return function() {
-                        try {
-                            return r.apply(this, arguments)
-                        } catch (r) {
-                            try {
-                                console.error("[Rollbar]: Internal error", r)
-                            } catch (r) {}
-                        }
-                    }
-                }
-                var l = 0;
-    
-                function i(r, e) {
-                    this.options = r, this._rollbarOldOnError = null;
-                    var o = l++;
-                    this.shimId = function() {
-                        return o
-                    }, "undefined" != typeof window && window._rollbarShims && (window._rollbarShims[o] = {
-                        handler: e,
-                        messages: []
-                    })
-                }
-                var s = o(4),
-                    d = function(r, e) {
-                        return new i(r, e)
-                    },
-                    c = function(r) {
-                        return new s(d, r)
-                    };
-    
-                function u(r) {
-                    return a((function() {
-                        var e = this,
-                            o = Array.prototype.slice.call(arguments, 0),
-                            n = {
-                                shim: e,
-                                method: r,
-                                args: o,
-                                ts: new Date
-                            };
-                        window._rollbarShims[this.shimId()].messages.push(n)
-                    }))
-                }
-                i.prototype.loadFull = function(r, e, o, n, t) {
-                    var l = !1,
-                        i = e.createElement("script"),
-                        s = e.getElementsByTagName("script")[0],
-                        d = s.parentNode;
-                    i.crossOrigin = "", i.src = n.rollbarJsUrl, o || (i.async = !0), i.onload = i.onreadystatechange = a((function() {
-                        if (!(l || this.readyState && "loaded" !== this.readyState && "complete" !== this.readyState)) {
-                            i.onload = i.onreadystatechange = null;
-                            try {
-                                d.removeChild(i)
-                            } catch (r) {}
-                            l = !0,
-                                function() {
-                                    var e;
-                                    if (void 0 === r._rollbarDidLoad) {
-                                        e = new Error("rollbar.js did not load");
-                                        for (var o, n, a, l, i = 0; o = r._rollbarShims[i++];)
-                                            for (o = o.messages || []; n = o.shift();)
-                                                for (a = n.args || [], i = 0; i < a.length; ++i)
-                                                    if ("function" == typeof(l = a[i])) {
-                                                        l(e);
-                                                        break
-                                                    }
-                                    }
-                                    "function" == typeof t && t(e)
-                                }()
-                        }
-                    })), d.insertBefore(i, s)
-                }, i.prototype.wrap = function(r, e, o) {
-                    try {
-                        var n;
-                        if (n = "function" == typeof e ? e : function() {
-                                return e || {}
-                            }, "function" != typeof r) return r;
-                        if (r._isWrap) return r;
-                        if (!r._rollbar_wrapped && (r._rollbar_wrapped = function() {
-                                o && "function" == typeof o && o.apply(this, arguments);
-                                try {
-                                    return r.apply(this, arguments)
-                                } catch (o) {
-                                    var e = o;
-                                    throw e && ("string" == typeof e && (e = new String(e)), e._rollbarContext = n() || {}, e._rollbarContext._wrappedSource = r.toString(), window._rollbarWrappedError = e), e
-                                }
-                            }, r._rollbar_wrapped._isWrap = !0, r.hasOwnProperty))
-                            for (var t in r) r.hasOwnProperty(t) && (r._rollbar_wrapped[t] = r[t]);
-                        return r._rollbar_wrapped
-                    } catch (e) {
-                        return r
-                    }
-                };
-                for (var p = "log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","), f = 0; f < p.length; ++f) i.prototype[p[f]] = u(p[f]);
-                r.exports = {
-                    setupShim: function(r, e) {
-                        if (r) {
-                            var o = e.globalAlias || "Rollbar";
-                            if ("object" == typeof r[o]) return r[o];
-                            r._rollbarShims = {}, r._rollbarWrappedError = null;
-                            var l = new c(e);
-                            return a((function() {
-                                e.captureUncaught && (l._rollbarOldOnError = r.onerror, n.captureUncaughtExceptions(r, l, !0), e.wrapGlobalEventHandlers && t(r, l, !0)), e.captureUnhandledRejections && n.captureUnhandledRejections(r, l, !0);
-                                var a = e.autoInstrument;
-                                return !1 !== e.enabled && (void 0 === a || !0 === a || function(r) {
-                                    return !("object" != typeof r || void 0 !== r.page && !r.page)
-                                }(a)) && r.addEventListener && (r.addEventListener("load", l.captureLoad.bind(l)), r.addEventListener("DOMContentLoaded", l.captureDomContentLoaded.bind(l))), r[o] = l, l
-                            }))()
-                        }
-                    },
-                    Rollbar: c
-                }
-            }, function(r, e, o) {
-                "use strict";
-    
-                function n(r, e, o, n) {
-                    r._rollbarWrappedError && (n[4] || (n[4] = r._rollbarWrappedError), n[5] || (n[5] = r._rollbarWrappedError._rollbarContext), r._rollbarWrappedError = null);
-                    var t = e.handleUncaughtException.apply(e, n);
-                    o && o.apply(r, n), "anonymous" === t && (e.anonymousErrorsPending += 1)
-                }
-                r.exports = {
-                    captureUncaughtExceptions: function(r, e, o) {
-                        if (r) {
-                            var t;
-                            if ("function" == typeof e._rollbarOldOnError) t = e._rollbarOldOnError;
-                            else if (r.onerror) {
-                                for (t = r.onerror; t._rollbarOldOnError;) t = t._rollbarOldOnError;
-                                e._rollbarOldOnError = t
-                            }
-                            e.handleAnonymousErrors();
-                            var a = function() {
-                                var o = Array.prototype.slice.call(arguments, 0);
-                                n(r, e, t, o)
-                            };
-                            o && (a._rollbarOldOnError = t), r.onerror = a
-                        }
-                    },
-                    captureUnhandledRejections: function(r, e, o) {
-                        if (r) {
-                            "function" == typeof r._rollbarURH && r._rollbarURH.belongsToShim && r.removeEventListener("unhandledrejection", r._rollbarURH);
-                            var n = function(r) {
-                                var o, n, t;
-                                try {
-                                    o = r.reason
-                                } catch (r) {
-                                    o = void 0
-                                }
-                                try {
-                                    n = r.promise
-                                } catch (r) {
-                                    n = "[unhandledrejection] error getting `promise` from event"
-                                }
-                                try {
-                                    t = r.detail, !o && t && (o = t.reason, n = t.promise)
-                                } catch (r) {}
-                                o || (o = "[unhandledrejection] error getting `reason` from event"), e && e.handleUnhandledRejection && e.handleUnhandledRejection(o, n)
-                            };
-                            n.belongsToShim = o, r._rollbarURH = n, r.addEventListener("unhandledrejection", n)
-                        }
-                    }
-                }
-            }, function(r, e, o) {
-                "use strict";
-    
-                function n(r, e, o) {
-                    if (e.hasOwnProperty && e.hasOwnProperty("addEventListener")) {
-                        for (var n = e.addEventListener; n._rollbarOldAdd && n.belongsToShim;) n = n._rollbarOldAdd;
-                        var t = function(e, o, t) {
-                            n.call(this, e, r.wrap(o), t)
-                        };
-                        t._rollbarOldAdd = n, t.belongsToShim = o, e.addEventListener = t;
-                        for (var a = e.removeEventListener; a._rollbarOldRemove && a.belongsToShim;) a = a._rollbarOldRemove;
-                        var l = function(r, e, o) {
-                            a.call(this, r, e && e._rollbar_wrapped || e, o)
-                        };
-                        l._rollbarOldRemove = a, l.belongsToShim = o, e.removeEventListener = l
-                    }
-                }
-                r.exports = function(r, e, o) {
-                    if (r) {
-                        var t, a, l = "EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");
-                        for (t = 0; t < l.length; ++t) r[a = l[t]] && r[a].prototype && n(e, r[a].prototype, o)
-                    }
-                }
-            }, function(r, e, o) {
-                "use strict";
-    
-                function n(r, e) {
-                    this.impl = r(e, this), this.options = e,
-                        function(r) {
-                            for (var e = function(r) {
-                                    return function() {
-                                        var e = Array.prototype.slice.call(arguments, 0);
-                                        if (this.impl[r]) return this.impl[r].apply(this.impl, e)
-                                    }
-                                }, o = "log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","), n = 0; n < o.length; n++) r[o[n]] = e(o[n])
-                        }(n.prototype)
-                }
-                n.prototype._swapAndProcessMessages = function(r, e) {
-                    var o, n, t;
-                    for (this.impl = r(this.options); o = e.shift();) n = o.method, t = o.args, this[n] && "function" == typeof this[n] && ("captureDomContentLoaded" === n || "captureLoad" === n ? this[n].apply(this, [t[0], o.ts]) : this[n].apply(this, t));
-                    return this
-                }, r.exports = n
-            }, function(r, e, o) {
-                "use strict";
-                r.exports = function(r) {
-                    return function(e) {
-                        if (!e && !window._rollbarInitialized) {
-                            for (var o, n, t = (r = r || {}).globalAlias || "Rollbar", a = window.rollbar, l = function(r) {
-                                    return new a(r)
-                                }, i = 0; o = window._rollbarShims[i++];) n || (n = o.handler), o.handler._swapAndProcessMessages(l, o.messages);
-                            window[t] = n, window._rollbarInitialized = !0
-                        }
-                    }
-                }
-            }]);
-            // End Rollbar Snippet
-            document.addEventListener("DOMContentLoaded", function() {
-                var el = document.querySelector('#wp-admin-bar-user-info .display-name');
-                var user = el ? el.innerText : '';
-                var UUID = (typeof getUUID == 'function') ? getUUID() : '';
-                var human_id = '';
-                if (typeof getEdxLearner == 'function') {
-                    human_id = getEdxLearner().human_id || '';
-                }
-                Rollbar.configure({
-                    payload: {
-                        twou_uuid: UUID,
-                        human_id: human_id,
-                        wp_user: user
-                    }
-                });
-            });
-        </script>
+        
     
         <meta name="description" content="Explore your future in coding, data science, or fintech atEureka Data Academy Bootcamps. Classes are taught online in a collaboratively live format. Get started today." />
         <link rel="canonical" href="https://eurekadataacademy.com/" />
@@ -1143,12 +411,16 @@
         <!-- END SCSS -->
         
         <!-- Latest compiled and minified CSS -->
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css"> -->
+        
+        
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         
-        <link rel='stylesheet' id='bs-select-css' href="{% static 'css/themes/bootstrap-select.min.css' %}" type='text/css' media='all' />
         <link rel='stylesheet' id='trilogy-form-css' href="{% static 'css/themes/TrilogyForm.css' %}" type='text/css' media='all' />
         
         <!-- Deferred CSS : sweet-alert -->
@@ -1159,6 +431,9 @@
         <link rel='stylesheet' href="{% static 'css/themes/Revisions.css' %}" type='text/css' media='all' />
         <link rel='stylesheet' href="{% static 'css/themes/js_composer.min.css' %}" type='text/css' media='all' />
         <link rel='stylesheet' href="{% static 'js/plugins/js_composer_front.min.js' %}" type='text/css' media='all' />
+
+        
+
         <script>
             var CHOSEN_PROGRAM = 'a0V41000001QEwhEAG' //TODO: Change Name, This is really the Default Program
             var TRILOGY_PROGRAM_CATEGORIES = {
@@ -1271,7 +546,7 @@
                 "university_program_name_friendly": "Eureka Data Academy AI Bootcamp",
                 "program_category": "Artificial Intelligence",
                 "program_name": "Artificial Intelligence",
-                "thank_you_url": "\/artificial-intelligence\/thank-you\/",
+                // "thank_you_url": "\/artificial-intelligence\/thank-you\/",
                 "friendly_program_name": "Artificial Intelligence",
                 "default_url": "\/artificial-intelligence\/",
                 "phone": "(732) 361-4853"
@@ -1282,7 +557,7 @@
                 "university_program_name_friendly": "Eureka Data Academy Cybersecurity Bootcamp",
                 "program_category": "Cybersecurity",
                 "program_name": "Cybersecurity Live Online",
-                "thank_you_url": "\/cybersecurity\/thank-you\/",
+                // "thank_you_url": "\/cybersecurity\/thank-you\/",
                 "friendly_program_name": "Cybersecurity Live Online",
                 "default_url": "\/cybersecurity\/online\/",
                 "phone": "(732) 361-4853"
@@ -1293,7 +568,7 @@
                 "university_program_name_friendly": "Eureka Data Academy Data Science Bootcamp",
                 "program_category": "Data",
                 "program_name": "Data",
-                "thank_you_url": "\/data\/thank-you\/",
+                // "thank_you_url": "\/data\/thank-you\/",
                 "friendly_program_name": "Data Bootcamp",
                 "default_url": "\/data\/",
                 "phone": "(732) 361-4853"
@@ -1304,7 +579,7 @@
                 "university_program_name_friendly": "Eureka Data Academy Coding Bootcamp",
                 "program_category": "Coding",
                 "program_name": "Coding - Online",
-                "thank_you_url": "\/coding\/thank-you\/",
+                // "thank_you_url": "\/coding\/thank-you\/",
                 "friendly_program_name": "Online Coding Bootcamp",
                 "default_url": "\/coding\/online\/",
                 "phone": "(732) 361-4853"
@@ -1312,15 +587,16 @@
             var CB_DEFAULT_CAMPUS = 'a0K41000003A6O1EAK';
             var CB_DEFAULT_PROGRAM_TYPE = 'Part Time';
         </script>
-        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}" id="jquery-core-js"></script>
+
+        <link rel='stylesheet' id='bs-select-css' href="{% static 'css/themes/bootstrap-select.min.css' %}" type='text/css' media='all' />
         
+        <script type="text/javascript" src="{% static 'js/jquery/jquery.min.js' %}" id="jquery-core-js"></script>
         <script type="text/javascript" src="{% static 'js/jquery/jquery-migrate.min.js' %}" id="jquery-migrate-js"></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.min.3.3.7.js' %}" defer></script>
+        
         <script type="text/javascript" src="{% static 'js/plugins/js.cookie.3.0.1.min.js' %}" defer></script>
         <script type="text/javascript" src="{% static 'js/plugins/sha256.min.js' %}" defer></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap-select.js' %}" defer></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap-select.min.js' %}" defer></script>
         <script type="text/javascript" src="{% static 'js/CodingBootcamp.js' %}" defer></script>
+        
         <!-- <script type="text/javascript" src="https://usa.bootcampcdn.com/wp-content/themes/CodingBootcamp/media/js/TrilogyLiveChatBtnInit.js?ver=1.11" defer></script> -->
         <script type="text/javascript" src="{% static 'js/intlTelInput.min.js' %}" defer></script>
         <script type="text/javascript" src="{% static 'js/main.js' %}" id="main-v3-js"></script>
@@ -1843,6 +1119,7 @@
             }
         }
     </style>
+    
     <style id='wp-block-columns-inline-css' type='text/css'>
         .wp-block-columns {
             align-items: normal !important;
@@ -2352,6 +1629,7 @@
     <script type="text/javascript" src="{% static 'js/jquery/jquery.validate.min.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'js/sweet-alert/sweetalert.min.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'js/DynamicForm.js' %}" defer></script>
+    
     <!-- <script type="text/javascript" src="https://live-chat.ps.five9.com/Five9ChatPlugin.js?ver=1.0.0" defer></script>
     <script type="text/javascript" id="five9-livechat-init-js-extra">
         /* <![CDATA[ */
@@ -2365,7 +1643,7 @@
         /* ]]> */
     </script> -->
     <!-- <script type="text/javascript" src="https://usa.bootcampcdn.com/wp-content/themes/CodingBootcamp/media/js/Five9LiveChatInit.js?ver=1.0.0" defer></script> -->
-    <script type="text/javascript" src="{% static 'js/msx.js' %}" defer></script>
+    
     <script type="text/javascript" id="trilogy-param-show-msg-api-js-extra">
         /* <![CDATA[ */
         var TrilogyBanners_FCTA_options = {
@@ -2488,7 +1766,7 @@
         };
         /* ]]> */
     </script>
-    <script type="text/javascript" src="{% static 'js/TrilogyParamMSG.js' %}" defer></script>
+    
     <script type="text/javascript" src="{% static 'js/heroes-js/hero-mp-buttons.js' %}" id="hero-mp-buttons-defer-js"></script>
     <script></script>
 
@@ -2505,7 +1783,19 @@
         }
     </style>
     <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+   
+    <script>
+        $(document).ready(function() {
+            $(document).ready(function () {
+                $('.selectpicker').selectpicker();
+            });
+        });
+        
+    </script>
+    
     {% endblock %}
 
         {% block extra_js %}

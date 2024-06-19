@@ -1,0 +1,87 @@
+{% extends "dashboard/base.html" %}{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}
+<!DOCTYPE html>
+
+<body>
+  {% block content %}
+    <section class="main container">
+      <h2>Start Your Application and Reserve a Seat in an Upcoming Boot Camp</h2>
+
+      <div class="row">
+        <div class="col">
+          <form action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <input type="hidden" name="enrol_wizard-current_step" value="bio" id="id_enrol_wizard-current_step">
+                <div class="form-wrapper">
+                    <label for="id_bio-first_name" class="form-label">First Name <span>*</span></label>
+                    <input type="text" name="bio-first_name" class="form-control" id="id_bio-first_name" placeholder="First name">
+                </div>
+                <div class="form-wrapper">
+                    <label for="id_bio-last_name" class="form-label">Last Name <span>*</span></label>
+                    <input type="text" name="bio-last_name" class="form-control" id="id_bio-last_name" placeholder="Last name">
+                </div>
+                <div class="form-wrapper">
+                    <label for="id_bio-email" class="form-label">Email <span>*</span></label>
+                    <input type="email" name="bio-email" class="form-control" id="id_bio-email" placeholder="Email">
+                </div>
+                <div class="form-wrapper">
+                    <label for="id_bio-phone_number" class="form-label">Phone Number <span>*</span></label>
+                    <input type="text" name="bio-phone_number" class="form-control" id="id_bio-phone_number" placeholder="Phone number">
+                </div>
+            </fieldset>
+            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">By submitting this form, you agree that edX </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Boot Camps </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">, in partnership with </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rutgers University </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">, may contact you regarding this </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Boot Camp </font></font><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">. Your personal data will be used as described in our </font></font><a target="_blank" rel="noopener noreferrer" href="/privacy-policy/" class="tcpa-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Privacy Policy</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> . You may opt out of receiving communications at any time.</font></font></p>
+            <div class="beginBtnContainer">
+              <button class="ui primary button dashboardProgramSelectionBtn">Reserve my seat</button>
+            </div>
+          </form>
+        </div>
+        <div class="col beginIconsContainer">
+            <div id="testimonialRoot">
+                <div>
+                    <div class="testimonial">
+                        <div class="testimonial-tip"></div>
+                        <p>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">“[edX] offers extraordinary training and </font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Boot Camps </font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">in emerging technology.”</font>
+                            </font>
+                        </p>
+                        <h5 class="ui header">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">— Ryan Szala, National Director of Upskilling &amp; Corporate Training at SkillStorm</font>
+                            </font>
+                        </h5>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-tip"></div>
+                        <p>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">"We don't maintain this legacy idea that you have to have a certain number of years of school... A </font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Boot Camp </font>
+                            </font>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">shows you're the kind of person who can offer those qualities we value."</font>
+                            </font>
+                        </p>
+                        <h5 class="ui header">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">— Carraig Stanwyck, Director of Information Security, Wave, a brand of H&amp;R Block</font>
+                            </font>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  {% endblock %}
+    
+</body>
+</html>

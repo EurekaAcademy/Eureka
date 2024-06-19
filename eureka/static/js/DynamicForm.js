@@ -335,55 +335,7 @@ jQuery(function($){
 		}
 	}
 	
-	function before_form_submit(){
-		console.log('> In before_form_submit');
-		var email 		= encodeURIComponent( $(this).find('.email').val() );		
-		var program_id = $(this).find('[name=program]').val();
-		
-		var thank_you_page = window.location.protocol+'//'+window.location.hostname+'/thank-you/';		
-		var base_url = location.protocol+'//'+document.location.host;
-		
-		Cookies.set('last_cohort', $(this).find('[name=cohort_id]').val());
-
-		var custom_thank_you = $('[name=custom_thank_you_url]', this).val();			
-		if( custom_thank_you ){
-			thank_you_page = custom_thank_you;
-			if(thank_you_page.charAt(0) == '/'){
-				thank_you_page = base_url+thank_you_page;
-			}
-		}
-		else if( $(this).hasClass('multi-program') ){
-			//todo: delete this, check contact us comment text
-			//if( $(this).find('[name=lead_source_notes]').length ){
-				//thank_you_page = base_url+'/thank-you/';
-			//}
-			//else {
-				for (var i = 0; i < CB_PROGRAMS.length; i++) {
-					var p = CB_PROGRAMS[i];
-					if(p.program_id == program_id) {
-						thank_you_page = base_url + p.thank_you_url;
-					}
-				}
-			//}
-		}
-
-		$('form .return_url').val(thank_you_page).trigger('change');
-		populate_cohort_id.call(this);
-
 	
-		//Custom params to be added to thank-you for Red Venture tracking 
-		//Example : https://bootcamp.uncc.edu/cybersecurity/landing-full/?utm_source=mkt-partnership&utm_campaign=tes_aff_rvcplsite&utm_content=test
-		if ( getUrlParameter('utm_source') === "mkt-partnership" 
-			&& getUrlParameter('utm_campaign').includes("tes_aff_rvcplsite") 
-			&& getUrlParameter('utm_content') !=='') { 	
-			thank_you_page = thank_you_page.trim() +"?utm_source="+ getUrlParameter('utm_source') + "&utm_campaign=" + getUrlParameter('utm_campaign') + "&utm_content=" + getUrlParameter('utm_content');
-			$('form .return_url').val(thank_you_page).trigger('change');
-		}	
-
-
-
-		return true;
-	}
 	
 	function populate_program_categories(){
 		var html = '';		
@@ -1315,236 +1267,67 @@ function setProgress($form){
 	}
 }
 
-function submit_lead_form() {
-    console.log('> In submit_lead_form');
-	var $step = jQuery(this).closest('.step');
-    var $form = jQuery(this).closest('form');
+// function submit_lead_form() {
+//     console.log('> In submit_lead_form');
+// 	var $step = jQuery(this).closest('.step');
+//     var $form = jQuery(this).closest('form');
     
-    var current_step = $step.data('step');
-	var currentForm = this.form;
-    //If we are on step 3, then submit the form.
-    trilogyLog('Current Step: '+current_step);
+//     var current_step = $step.data('step');
+// 	var currentForm = this.form;
+//     //If we are on step 3, then submit the form.
+//     trilogyLog('Current Step: '+current_step);
 	
-    if (current_step == 1) {
-        //Check if first name and last name are valid
-        var fname_valid = $('[name=name_first],[name=first_name]', $form).valid();
-        var lname_valid = $('[name=name_last],[name=last_name]', $form).valid();
-        if (!fname_valid || !lname_valid) {
-            scroll_to_form_error_container(currentForm);
-			return false;
-        }
-    } else if (current_step == 2) {
-        //Check if email valid
-        if (!$('.email', $form).valid()) {
-            scroll_to_form_error_container(currentForm);
-			return false;
-        }
+//     if (current_step == 1) {
+//         //Check if first name and last name are valid
+//         var fname_valid = $('[name=name_first],[name=first_name]', $form).valid();
+//         var lname_valid = $('[name=name_last],[name=last_name]', $form).valid();
+//         if (!fname_valid || !lname_valid) {
+//             scroll_to_form_error_container(currentForm);
+// 			return false;
+//         }
+//     } else if (current_step == 2) {
+//         //Check if email valid
+//         if (!$('.email', $form).valid()) {
+//             scroll_to_form_error_container(currentForm);
+// 			return false;
+//         }
 
-    } else if (current_step == 3 && $form.valid()) {
-        trilogyLog('Step 3: Submitting Form');
+//     } else if (current_step == 3 && $form.valid()) {
+//         trilogyLog('Step 3: Submitting Form');
 		
-		$form.trigger('trilogy_form_submit');
+// 		$form.trigger('trilogy_form_submit');
 		
-        //Add US/Canada Country code if phone input has class
-        $tel = $('input[type=tel]', $form);
-        if ($form.hasClass('addDefaultCountryCode')) {
-            trilogyLog('Adding Country Code');
-            var phone = $tel.val();
-            $tel.val('+1 ' + phone);
-            //Add Mexico country code
-        }
+//         //Add US/Canada Country code if phone input has class
+//         $tel = $('input[type=tel]', $form);
+//         if ($form.hasClass('addDefaultCountryCode')) {
+//             trilogyLog('Adding Country Code');
+//             var phone = $tel.val();
+//             $tel.val('+1 ' + phone);
+//             //Add Mexico country code
+//         }
 
-        return true;
-    } else {
-        trilogyLog('Form Invalid');
-        scroll_to_form_error_container(currentForm);
-        return false;
-    }
+//         return true;
+//     } else {
+//         trilogyLog('Form Invalid');
+//         scroll_to_form_error_container(currentForm);
+//         return false;
+//     }
 
-	$('.steps',$form).html('Step '+(current_step+1)+' of 3');
+// 	$('.steps',$form).html('Step '+(current_step+1)+' of 3');
 	
-    //If we are here, then we are on step 1 or 2, and the data is valid
-    var $next = $step.next('.step');
-    $next.addClass('active');
-    $step.removeClass('active');
+//     //If we are here, then we are on step 1 or 2, and the data is valid
+//     var $next = $step.next('.step');
+//     $next.addClass('active');
+//     $step.removeClass('active');
     
-	//Step focus on the first element, unless IE
-	if( -1 == navigator.userAgent.indexOf('Trident') ){		
-		$next.find('input').first().focus();
-	}
+// 	//Step focus on the first element, unless IE
+// 	if( -1 == navigator.userAgent.indexOf('Trident') ){		
+// 		$next.find('input').first().focus();
+// 	}
 	
-    return true;
-}
+//     return true;
+// }
 
-function formSubmitCookieName(email) {
-    var name = 'last_form_submit_';
-    try {
-        var salt = 'vzPck3unPWtLEJ8'; //Adds some additional security, reused but better than nothing.
-        var inStr = email.toLowerCase().replace(/[^a-z0-9]/ig, '_');//Lowercase and remove non-alphanumeric
-        name += sha256( salt + inStr );
-    } catch (err) {
-
-    }
-    return name;
-}
-
-function submit_trilogy_record(event){
-	console.log('> In submit_trilogy_record');
-	var $form = $(event.target);
-	var eCat = $form.find('.form_type').val();
-
-	trilogyTrackingEvent(eCat, 'submit', document.location.pathname);
-  
-	//Add class indicating form is being submit
-	var thank_you_page = $('.return_url', $form).val();
-	var ok_to_send = true;
-	if( $form.find('button:visible').hasClass('submitting') ){
-		console.log('Form Already Submitting');
-		return false;
-	}
-	else{ //Make sure not already submitting, prevent dup submits
-		
-		if( !preventDuplicateSubmit($form) ){
-			return false;
-		}
-
-		form_submit_datalayer_event($form);
-
-		var FB_COOKIE_OPTIONS = { path: '/', expires: 365 };
-		if(typeof COOKIE_OPTIONS != 'undefined'){
-			FB_COOKIE_OPTIONS = COOKIE_OPTIONS;
-		}
-
-		var $ft = $form.find('input[name="form_type"]');
-		if( $ft.val() && $ft.val().indexOf('IMQ') == -1 ){
-			$ft.val( $ft.val() + ' IMQ' );
-		}
-
-		var $phone = $form.find('input[name="phone"]');
-		var $phone_visible = $form.find('input[name="phone_visible"]');
-		if( $phone.val() != $phone_visible.val() ){
-			console.warn('Phone Number actual', $phone.val(), 'does not match visible', $phone_visible.val());
-			if($phone.val().length == 0){
-				console.warn('Phone Number actual is empty, use phone visible value.');
-				$phone.val( $phone_visible.val() );
-			}
-		}
-
-		Cookies.set('FB_LEAD_EVENT_ID', $('input.fb_lead_event_id').val(), FB_COOKIE_OPTIONS);
-		$form.find('button:visible').addClass('submitting').attr('disabled',true);
-
-		var  lead_form_url = '/wp-json/trilogy/v1/lead_form';
-
-		if( getUrlParameter('sandbox') == 'uat' ){
-			$form.append('<input type="hidden" name="sandbox" value="uat">'); // as form is serialized 
-			if(lead_form_url.indexOf('?') > -1){
-				lead_form_url = lead_form_url + '&';
-			} else {
-				lead_form_url = lead_form_url + '?';
-			}
-			lead_form_url = lead_form_url + 'sandbox=uat'; // or append to url
-		}
-		
-
-		$.ajax({
-	        url		: lead_form_url,
-	        async	: false,
-	        method	: 'POST',
-	        dataType : "json",
-	        data	: $form.serialize(),
-	        success: function(resp) {
-				//check server response
-	            if(typeof resp.data != "undefined" && typeof resp.data.lead_status != "undefined" && resp.data.lead_status != LEAD_STATUS_SENT){
-					ok_to_send = false;
-	                trilogyLog('Block Sending');
-					return false;
-	            }else {
-					setDupCheckCookie($form);
-					if(resp.data.app_link){
-						console.log('PEP Apply Now - Change Thank You Page');
-						thank_you_page = resp.data.app_link; 
-						if(thank_you_page.indexOf('http') == -1){
-							if (thank_you_page.indexOf('/') !== 0) {
-								thank_you_page = '/' + thank_you_page;
-							}
-							thank_you_page = window.location.origin + thank_you_page;
-						}
-						$form.find('input[name=return_URL]').val(thank_you_page);
-					}
-					return true;
-	            }
-	        },
-	        error: function(error) {
-				$form.find('button:visible').removeClass('submitting').attr('disabled',false);
-	            console.warn('Error occurred:', error);
-	            if(typeof Rollbar != "undefined"){
-	            	Rollbar.error("HIGH: submit trilogy record failed.", error);
-	        	}
-	        }
-		});
-		
-		var thank_you_url = new URL('/thank-you/?fallback=1', window.location.origin);
-		try{
-			thank_you_url = new URL(thank_you_page);
-		}
-		catch(err){
-			console.log('Invalid Thank You Page, using fallback');
-			if(typeof Rollbar != "undefined"){
-				Rollbar.error("Invalid Thank You Page, Used Fallback", err);
-			}
-		}
-
-		if( !ok_to_send ){
-			event.stopPropagation();
-			event.preventDefault();
-			thank_you_url.searchParams.append('status', 11); //Indicate we skipped
-			window.location.href = thank_you_url;//Go Directly to thank you page
-			return false;
-		}
-		else{ //Submit Via IMQ path
-			submitIMQ( $form.get(0) );
-			event.stopPropagation();
-			event.preventDefault();
-			return false;
-		}
-	}
-}
-
-function form_submit_datalayer_event($form){
-	var eCat = $form.find('.form_type').val();
-	var form_name = $form.find('.form_name').val();
-	var program_type = $form.find('[name=program_type]').val();
-	var program = $form.find('select.program_category').val();
-	var form_submit_text = $form.find('button[type="submit"]').html();
-	
-	if (window.location.pathname.includes("enroll")) {
-		//Quick overide on submission to check if this form is being submitted through PEP
-		eCat = "WP_BC_PEP_Form_Submit";
-	} 
-	
-	formSubmitDataLayerObject = {
-		event: 'form_submit', //trigger event
-		form_type: eCat, // 1a / 2a / iframe / contact 
-		form_location: form_name,  //widget" / "header" / "footer" / "content-body"
-		geo_restriction: GEO_RESTRICTION, //"gdpr" or "nongdpr"
-		form_submit_text: form_submit_text  //GA Native Param
-	};
-	pushToDataLayer(formSubmitDataLayerObject);
-
-	//GA4_requestinfo_form_submit Event
-	var GA4_formSubmitDataLayerObject = Object.assign({}, formSubmitDataLayerObject);
-		GA4_formSubmitDataLayerObject.event = 'GA4_requestinfo_form_submit';
-		GA4_formSubmitDataLayerObject.program_type = program_type;
-		GA4_formSubmitDataLayerObject.program = program;
-	pushToDataLayer(GA4_formSubmitDataLayerObject);
-}
-
-function scroll_to_form_error_container(currentForm){
-    //scroll to current forms error container
-    $('html, body').animate({
-        scrollTop: ($(currentForm.parentElement.parentElement).offset().top)
-   }, 250);
-}
 
 function setDupCheckCookie($form){
 	var email = $form.find('.email').val();
@@ -1770,104 +1553,61 @@ function populateHighSchoolProgramsQuestions(){
 	}
 }
 
-async function submitIMQ(form){
-	console.log('> In submitIMQ');
-    var host 	 = 'https://imq.2u.com'; 
-	var host_stg = 'https://imq.stg.2u.com';
-    var path = '/v2/interest-create'; 
-    var url  = host+path;
+// async function submitIMQ(form){
+// 	console.log('> In submitIMQ');
+//     var host 	 = 'https://imq.2u.com'; 
+// 	var host_stg = 'https://imq.stg.2u.com';
+//     var path = '/v2/interest-create'; 
+//     var url  = host+path;
 
-    var formData        = new FormData( form );
-    let formDataObject  = Object.fromEntries(formData.entries());
+//     var formData        = new FormData( form );
+//     let formDataObject  = Object.fromEntries(formData.entries());
     
-    //Perform Remapping
-    formDataObject.first_name  = formDataObject.name_first;
-    formDataObject.last_name   = formDataObject.name_last;
+//     //Perform Remapping
+//     formDataObject.first_name  = formDataObject.name_first;
+//     formDataObject.last_name   = formDataObject.name_last;
 
-	if( getUrlParameter('sandbox') == 'imq-stg' || getUrlParameter('sandbox') == 'uat'){
-		console.log('IMQ Staging Endpoint');
-		formDataObject.sandbox = "uat";
-		url = host_stg+path;
-	}
+// 	if( getUrlParameter('sandbox') == 'imq-stg' || getUrlParameter('sandbox') == 'uat'){
+// 		console.log('IMQ Staging Endpoint');
+// 		formDataObject.sandbox = "uat";
+// 		url = host_stg+path;
+// 	}
 
-	var params = {};
-	if( formDataObject.cohort_id ){ //Make sure there is a cohort
-		let payload      = JSON.stringify(formDataObject);
-    	let fetchOptions = {
-    	    method: "POST",
-    	    headers: {"Content-Type": "application/json",Accept: "application/json"},
-    	    body: payload
-    	};
+// 	var params = {};
+// 	if( formDataObject.cohort_id ){ //Make sure there is a cohort
+// 		let payload      = JSON.stringify(formDataObject);
+//     	let fetchOptions = {
+//     	    method: "POST",
+//     	    headers: {"Content-Type": "application/json",Accept: "application/json"},
+//     	    body: payload
+//     	};
 	
-    	let result 	= await fetch(url, fetchOptions);
-		let text 	= await result.text();
+//     	let result 	= await fetch(url, fetchOptions);
+// 		let text 	= await result.text();
 
-		formDataObject.imq_status_code 	= result.status;
-		formDataObject.imq_text			= text;
+// 		formDataObject.imq_status_code 	= result.status;
+// 		formDataObject.imq_text			= text;
 		
-		params.status 		= result.status;
+// 		params.status 		= result.status;
 
-		if( result.status == 200 ){
-			console.log('IMQ Success');
-    	}
-    	else{
-			console.error('IMQ Submit Error Code:'+result.status);
-    	}	
-	}
-	else{
-		//NoCohort, Held
-		console.log('No Cohort');
-		params.held = 10;
-	}
+// 		if( result.status == 200 ){
+// 			console.log('IMQ Success');
+//     	}
+//     	else{
+// 			console.error('IMQ Submit Error Code:'+result.status);
+//     	}	
+// 	}
+// 	else{
+// 		//NoCohort, Held
+// 		console.log('No Cohort');
+// 		params.held = 10;
+// 	}
 	
-	$('body').removeClass('form-submitting');
-	return thankYouPost(formDataObject, params);
-}
+// 	$('body').removeClass('form-submitting');
+// 	return thankYouPost(formDataObject, params);
+// }
 
-function thankYouPost(formData, params){
-	var tyForm = document.createElement("form");
-	
-	var base = document.location.protocol+'//'+document.location.host;
-	var thank_you_url = new URL('/thank-you/?status=tyfb', base);
-    try{
-		var thank_you = formData.return_URL;
-		thank_you_url = new URL(thank_you, base);
-		var is_enroll_magic = thank_you.indexOf('/enroll') != -1;
-		if(is_enroll_magic){
-			document.location.href = thank_you_url;
-			return;
-		}
-		if(params){
-			for (const [key, value] of Object.entries(params)){
-				thank_you_url.searchParams.set(key,value);
-			}
-		}
-		if(formData.coding_skill_level_python && formData.coding_skill_level_python == 'None'){
-			if(formData.program_category == 'AI MicroBootCamp'){
-				thank_you_url.searchParams.set('coding_skill_level_python','none');
-			}
-		}
-    }catch(err){
-        console.log('Error Constructing Thank You URL');
-    }
 
-	tyForm.action = thank_you_url ? thank_you_url : formData.return_URL;
-	tyForm.method = is_enroll_magic ? "GET" : "POST";
-	tyForm.enctype = "multipart/form-data";
-	tyForm.target  = '_top'; //If used in Iframe
-
-	for(var key in formData){
-		if( formData.hasOwnProperty(key) ){
-            var hiddenField = document.createElement('input');
-            hiddenField.setAttribute('type', 'hidden');
-            hiddenField.setAttribute('name', key);
-            hiddenField.setAttribute('value', formData[key]);
-            tyForm.appendChild(hiddenField);
-        }
-	}
-	document.body.appendChild(tyForm);
-    tyForm.submit();
-}
 
 var DYNAMIC_CONSENT_GDPR_SWAPPED = false;
 function dynamicConsentSetGDPR(){	
