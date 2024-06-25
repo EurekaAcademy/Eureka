@@ -27,7 +27,7 @@ urlpatterns = [
         view=views.UserLoginView.as_view(),
         name='login'
     ),
-    path('logout', auth_views.LogoutView.as_view(), name='logout'),
+    path('signout', auth_views.LogoutView.as_view(), name='logout'),
     path(
         route='reset-password',
         view=views.PasswordResetView.as_view(),

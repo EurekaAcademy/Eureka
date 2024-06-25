@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 
 <body>
+  {% block manage_profile %}
+  {% endblock manage_profile %}
   {% block content %}
     <section class="main container">
       <h2>Start Your Application and Reserve a Seat in an Upcoming Boot Camp</h2>
@@ -20,10 +22,10 @@
                 {% else %}
                 <div class="form-wrapper">
                   <label for="id_program-program" class="form-label">Select program <span>*</span></label>
-                  <select class="form-select" name="program-program" aria-label="Default select example" id="id_program-program">
-                      <option selected>Select your bootcamp</option>
-                      {% for program in program_categories %}
-                      <option value="{{program.id}}">{{program.program_category}}</option>
+                  <select class="form-select" name="program-program" aria-label="Default select example" id="id_program-program" onclick="clickProgType()" onchange="changeProgType()">
+                      <option selected>Select your program schedule</option>
+                      {% for program in schedules %}
+                      <option value="{{program.id}}">{{program}}</option>
                       {% endfor %}
                   </select>
                   </div>
@@ -59,103 +61,7 @@
   {% endblock %}
     
   {% block extra_script %}
-  <script type="text/javascript">
-      let selectElement = document.querySelector('#id_program-program');
-      let courseForm = document.querySelector('#course-form');
-      let TypeContainer = document.querySelector('.date-schedule-container');
-      
-      function getOption() {
-          output = selectElement.options[selectElement.selectedIndex].value;
-          let temp_category;
-          {% for course in all_courses %}
-          temp_category = "{{ course.program_category.id }}";
-          if (temp_category === output){
-          courseForm.innerHTML += `
-              <div class="form-wrapper">
-                <label for="id_program-program_type" class="form-label">Program type <span>*</span></label>
-                <select class="form-select" name="program-program_type" aria-label="Default select example" id="id_program-program_type" onClick="clickProgType(this)" onChange="changeProgType(this)">
-                  <option selected>Select program type</option>
-                  {% for type in program_types %}
-                  {% for schedule in schedules %}
-                  {% if schedule.course.program_category == course.program_category %}
-                  {% if type == schedule.program_type %}
-                  <option value="{{type.id}}">{{schedule.program_type}}</option>
-                  {% endif %}
-                  {% endif %}
-                  {% endfor %}
-                  {% endfor %}
-                </select>
-              </div>
-              `
-          }
-          else{
-            courseForm.innerHTML = ""
-          }
-          {% endfor %}
-      }
-      function appendToProgType(ele) {
-          let f_type = ele.options[ele.selectedIndex].value;
-          let f_course = selectElement.options[selectElement.selectedIndex].value;
-          let temp_category;
-          let temp_type;
-          let temp_schedule;
-          
-          {% for schedule in schedules %}
-          
-          temp_type = "{{ schedule.program_type.id }}";
-          temp_schedule = "{{ schedule.course.program_category.id }}";
-          // f_type = f_type;
-          // f_course = f_course;
-          if (temp_schedule == f_course && temp_type == f_type){
-            TypeContainer.innerHTML = `
-              <div class="form-wrapper">
-                <label for="id_program-start_date" class="form-label">Select a start date <span>*</span></label>
-                <select class="form-select" name="program-start_date" aria-label="Default select example" id="id_program-start_date">
-                  <option value="{{schedule.start_date}}">{{schedule.start_date}}</option>
-                </select>
-              </div>
-              <div class="form-wrapper">
-                <label for="id_program-schedule" class="form-label">Select a schedule <span>*</span></label>
-                <select class="form-select" name="program-schedule" aria-label="Default select example" id="id_program-schedulee">
-                  <option value="{{schedule.id}}">{{schedule}}</option>
-                </select>
-              </div>
-              <p>Our next Boot Camp runs between <strong>{{schedule.start_date}}</strong> and <strong>{{schedule.end_date}}</strong>. Classes will be held on {{schedule}}</p>
-              `
-          }
-          {% endfor %}
   
-          
-      }
-      selectElement.addEventListener("click", function() {
-          var options = selectElement.querySelectorAll("option");
-          var count = options.length;
-          if(typeof(count) === "undefined" || count < 2)
-          {
-            getOption()
-          }
-      });
-
-      selectElement.addEventListener("change", function() {
-        getOption()
-      });
-
-      function clickProgType(ele) {
-        var options = ele.querySelectorAll("option");
-        var count = options.length;
-        if(typeof(count) === "undefined" || count < 2)
-        {
-          appendToProgType(ele)
-        }
-      }
-      
-      function changeProgType(ele) {
-          appendToProgType(ele)
-      }
-
-
-      
-  </script>
   {% endblock %}
 </body>
 </html>

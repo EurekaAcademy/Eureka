@@ -1,6 +1,23 @@
 .nav-header{
     padding: 20px 20px 0px 20px;
-    background-color: black;
+    background-color: black !important;
+}
+.nav-header .container{
+    background-color: black !important;
+}
+.first-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black !important;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    z-index: 1000;
+}
+.second-header{
+    padding-top: 80px;
+    background-color: black !important;
 }
 .hamburger{
     background: none !important;
@@ -25,6 +42,7 @@
 }
 .main{
     padding-bottom: 100px;
+    z-index: 100;
 }
 .main h2{
     font-size: 1.4rem;
@@ -75,15 +93,7 @@ label{
     padding: .78571429em 1.5em .78571429em;
     border-radius: .28571429rem;
 }
-.first-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-.second-header{
-    padding-top: 20px;
-}
+
 
 .testimonial {
     position: relative;
@@ -133,19 +143,17 @@ form {
     font-size: 1rem;
 }
 
-.dimmed.dimmable>.ui.animating.dimmer, .dimmed.dimmable>.ui.visible.dimmer, .ui.active.dimmer {
+.dimmed.dimmable>.animating.dimmer, .dimmed.dimmable>.visible.dimmer,.active.dimmer {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     opacity: 1;
 }
-.ui.page.dimmer {
+
+.dimmer {
     position: fixed;
     perspective: 2000px;
     transform-origin: center center;
-}
-
-.ui.dimmer {
     display: none;
     position: absolute;
     top: 0 !important;
@@ -179,61 +187,58 @@ form {
     -ms-user-select: none;
     user-select: none;
     will-change: opacity;
-    z-index: 1000;
+    z-index: 2000;
 }
 
-.ui.bottom.right.popup:before {
-    top: -.30714286em;
-    right: 1em;
-    bottom: auto;
-    left: auto;
-    margin-left: 0;
-    -webkit-box-shadow: -1px -1px 0 0 #bababc;
-    box-shadow: -1px -1px 0 0 #bababc;
-}
 
-.ui.bottom.popup:before {
-    background: #fff;
-}
-.ui.popup:before {
+.popup:before {
     position: absolute;
     content: '';
-    width: .71428571em;
-    height: .71428571em;
+    width: 0.71428571em;
+    height: 0.71428571em;
     background: #fff;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
     z-index: 2;
     -webkit-box-shadow: 1px 1px 0 0 #bababc;
     box-shadow: 1px 1px 0 0 #bababc;
+    top: 0.30714286em;
+    right: 1em;
+    bottom: auto;
+    left: auto;
+    margin-left: 0;
 }
-.ui.popup {
+.popup {
     font-size: 1rem;
     line-height: 1.4285em;
     font-weight: 400;
     font-style: normal;
     color: rgba(0, 0, 0, .87);
+    z-index: 3000;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
 }
 .firstLoginUserIcon {
     width: 50px;
     height: 50px;
 }
-.ui.primary.button, .ui.primary.buttons .button {
+.primary.button, .primary.buttons .button {
     background-color: #cc0033;
     color: #ffffff;
     border: #cc0033;
     box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
 }
-.ui.button {
+.button {
     cursor: pointer;
     display: inline-block;
     min-height: 1em;
     outline: 0;
     border: none;
     vertical-align: baseline;
-    background: #e0e1e2 none;
-    margin: 0 .25em 0 0;
-    padding: .78571429em 1.5em .78571429em;
+    background: #e0e1e2;
+    margin: 0 0.25em 0 0;
+    padding: 0.78571429em 1.5em 0.78571429em;
     text-transform: none;
     text-shadow: none;
     font-weight: 700;
@@ -241,5 +246,5 @@ form {
     font-style: normal;
     text-align: center;
     text-decoration: none;
-    border-radius: .28571429rem;
+    border-radius: 0.28571429rem;
 }

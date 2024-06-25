@@ -25,25 +25,25 @@ class ProgramCategory(models.Model):
     class Meta:
         verbose_name_plural = "Program Categories"
     
-@register_snippet
-class DeliveryMode(models.Model):
-    delivery_mode = models.CharField(max_length=500, null=True, help_text='e.g Online, In-person, etc')
+# @register_snippet
+# class DeliveryMode(models.Model):
+#     delivery_mode = models.CharField(max_length=500, null=True, help_text='e.g Online, In-person, etc')
 
-    panels = [
-        FieldPanel('delivery_mode'),
-    ]
-    def __str__(self):
-        return self.delivery_mode
+#     panels = [
+#         FieldPanel('delivery_mode'),
+#     ]
+#     def __str__(self):
+#         return self.delivery_mode
     
-@register_snippet
-class ProgramType(models.Model):
-    program_type = models.CharField(max_length=500, null=True, help_text='e.g Full-time, Part-time, etc')
+# @register_snippet
+# class ProgramType(models.Model):
+#     program_type = models.CharField(max_length=500, null=True, help_text='e.g Full-time, Part-time, etc')
 
-    panels = [
-        FieldPanel('program_type'),
-    ]
-    def __str__(self):
-        return self.program_type
+#     panels = [
+#         FieldPanel('program_type'),
+#     ]
+#     def __str__(self):
+#         return self.program_type
     
 @register_snippet
 class Job(models.Model):
@@ -75,11 +75,11 @@ class Course(Page):
     template = 'courses/course.html'
     course_title = models.CharField(max_length=500, null=True, blank=True)
     banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
+    hero_carousel_description = RichTextField(null=True, blank=True, help_text='Please make this very short')
+    # end_date = models.DateField(null=True, blank=True)
     program_category = models.ForeignKey('ProgramCategory', on_delete=models.SET_NULL, null=True, blank=True, related_name='course_category')
-    delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True)
-    program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True)
+    # delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True)
+    # program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True)
     introduction = RichTextField(null=True, blank=True)
     course_metric = StreamField([
         ('image', ImageChooserBlock(required=False)),
@@ -173,11 +173,11 @@ class Course(Page):
     content_panels = Page.content_panels + [
         FieldPanel('course_title'),
         FieldPanel('banner'),
-        FieldPanel('start_date'),
-        FieldPanel('end_date'),
+        FieldPanel('hero_carousel_description'),
+        # FieldPanel('end_date'),
         FieldPanel('program_category'),
-        FieldPanel('delivery_mode'),
-        FieldPanel('program_type'),
+        # FieldPanel('delivery_mode'),
+        # FieldPanel('program_type'),
         FieldPanel('introduction'),
         FieldPanel('course_metric'),
         FieldPanel('course_metric1'),
@@ -210,8 +210,8 @@ class CourseSchedule(models.Model):
     course = models.ForeignKey('Course', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_course')
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
-    delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_mode')
-    program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_program_type')
+    # delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_mode')
+    # program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_program_type')
     days = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. Monday, Tuesday, Wednesday')
     time = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. 6:30 PM Eastern Standard Time')
 
@@ -219,13 +219,13 @@ class CourseSchedule(models.Model):
         FieldPanel('course'),
         FieldPanel('start_date'),
         FieldPanel('end_date'),
-        FieldPanel('delivery_mode'),
-        FieldPanel('program_type'),
+        # FieldPanel('delivery_mode'),
+        # FieldPanel('program_type'),
         FieldPanel('days'),
         FieldPanel('time'),
     ]
     def __str__(self):
-        return f'{self.days} at {self.time}'
+        return f'{self.course.program_category}: {self.start_date} for {self.days} at {self.time}'
     
 class Curriculum(Page):
     template = 'courses/curriculum.html'

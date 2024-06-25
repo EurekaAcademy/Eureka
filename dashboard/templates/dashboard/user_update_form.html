@@ -1,0 +1,50 @@
+{% extends "dashboard/base.html" %}{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}
+
+{% block dynamic_svg %}
+<canvas id="progress" width="70" height="70"></canvas>
+{% endblock dynamic_svg %}
+{% block content %}
+<div class="pusher dashFlowContent">
+    <div class="ui one column grid">
+        <div class="column dashboardPaddingBottomContainer">
+            <div class="ui basic segment">
+                <div class="ui centered padded grid">
+                    <div class="center aligned sixteen wide column" style="padding-top: 2rem;">
+                        <h3 class="ui header">Update User Information</h3>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input class="ui primary button" type="submit" value="Update">
+                        <a class="ui secondary right floated button" role="button" href="/portal">GO BACK</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('progress');
+    const data = {
+        datasets: [{
+            data: [{{profile_filled_fields}}, {{profile_empty_fields}}],
+            backgroundColor: [
+            '#1F51FF',
+            '#696969'
+            ],
+            hoverOffset: 4,
+            cutout: 25,
+            borderWidth: 0,
+            borderColor: 'none'
+        }]
+    };
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+    });
+</script>
+{% endblock %}

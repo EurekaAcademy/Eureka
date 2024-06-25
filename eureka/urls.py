@@ -15,6 +15,7 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("program/", include('dashboard.urls', namespace = 'dashboard')),
+    path("user/", include('authentication.urls', namespace = 'authentication')),
 ]
 
 

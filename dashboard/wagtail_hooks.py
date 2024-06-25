@@ -4,25 +4,25 @@ from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 from wagtail.admin.panels import TabbedInterface, TitleFieldPanel, ObjectList
 
-from dashboard.models import RegisterProgramSelection, UserEnrolInfo #, OrderFilterSet
+from dashboard.models import RegisterProgramSelection, UserEnrolInfo, Profile
 
-class EnrolProgramSelectionViewSet(SnippetViewSet):
-    model = RegisterProgramSelection
-    icon = "tasks"
-    list_display = ["program", "start_date", "program_type", "schedule", UpdatedAtColumn()]
-    list_export = ["program", "start_date", "program_type", "schedule"]
-    list_per_page = 50
-    inspect_view_enabled = True
-    admin_url_namespace = "enrol_program_selection_views"
-    base_url_path = "internal/enrol_program_selection"
-    # filterset_class = OrderFilterSet
+# class EnrolProgramSelectionViewSet(SnippetViewSet):
+#     model = RegisterProgramSelection
+#     icon = "tasks"
+#     list_display = ["schedule", UpdatedAtColumn()]
+#     list_export = ["schedule"]
+#     list_per_page = 50
+#     inspect_view_enabled = True
+#     admin_url_namespace = "enrol_program_selection_views"
+#     base_url_path = "internal/enrol_program_selection"
+#     # filterset_class = OrderFilterSet
 
-    edit_handler = TabbedInterface([
-        ObjectList([FieldPanel("program")], heading="Details"),
-        ObjectList([FieldPanel("program_type")], heading="Preferences"),
-    ])
+#     edit_handler = TabbedInterface([
+#         ObjectList([FieldPanel("program")], heading="Details"),
+#         ObjectList([FieldPanel("program_type")], heading="Preferences"),
+#     ])
 
-register_snippet(EnrolProgramSelectionViewSet)
+# register_snippet(EnrolProgramSelectionViewSet)
 
 class UserEnrolInfoViewSet(SnippetViewSet):
     model = UserEnrolInfo
@@ -41,3 +41,16 @@ class UserEnrolInfoViewSet(SnippetViewSet):
     ])
 
 register_snippet(UserEnrolInfoViewSet)
+
+class ProfileViewSet(SnippetViewSet):
+    model = Profile
+    icon = "user"
+    list_display = ["user", "schedule", UpdatedAtColumn()]
+    list_export = ["user", "schedule"]
+    list_per_page = 50
+    inspect_view_enabled = True
+    admin_url_namespace = "profile_views"
+    base_url_path = "internal/profile"
+    # filterset_class = OrderFilterSet
+
+register_snippet(ProfileViewSet)

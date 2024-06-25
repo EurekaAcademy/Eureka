@@ -51,119 +51,45 @@ Delete the line below if you're just getting started and want to remove the welc
                                     <h1 class="hero-title"></h1>
                                     <div class="hero-sub-title">
                                         <div class="desc">
-                                            <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/img/content_hero_code_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/img/content_hero_code.jpg" class="col-sm-3 program-box line">
-                                                <a title="Learn about the Coding Boot Camp" target="_top" href="/coding/" class="atop-link">
-                                                    <h2>Coding<span class="arrows"></span></h2>
+                                            {% for course in all_courses %}
+                                            <div data-bgmobile="{{course.banner.url}}" data-bgdesktop="{{course.banner.url}}" class="col-sm-4 program-box line">
+                                                <a title="Learn about the {{course.course_title|title}} Boot Camp" target="_top" href="{% pageurl course %}" class="atop-link">
+                                                    <h2>{{course.program_category}}<span class="arrows"></span></h2>
                                                 </a>
                                                 <div class="content">
-                                                    <div class="desc">Rutgers Coding Bootcamp equips learners with the programming skills needed for a career in web development and technology through live classes.</div>
+                                                    <div class="desc">{{course.hero_carousel_description|richtext}}</div>
                                                     <div class="button-container">
-                                                        <a title="Learn more about the Coding Boot Camp" href="/coding/">Learn More <span class="right-caret"></span></a>
+                                                        <a title="Learn more about the {{course.course_title}} Boot Camp" href="{% pageurl course %}">Learn More <span class="right-caret"></span></a>
                                                     </div>
                                                 </div>
                                                 <div class="title">
-                                                    Learn Coding </div>
+                                                    Learn {{course.program_category}} </div>
                                             </div>
-                                            <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/img/content_hero_data_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/img/content_hero_data.jpg" class="col-sm-3 program-box line">
-                                                <a title="Learn about the Data Science Boot Camp" target="_top" href="/data/" class="atop-link">
-                                                    <h2>Data Science<span class="arrows"></span></h2>
-                                                </a>
-                                                <div class="content">
-                                                    <div class="desc">Rutgers Data Science Bootcamp prepares professionals with the fundamental and specialized skills necessary to land a job in the booming field of data analytics.</div>
-                                                    <div class="button-container">
-                                                        <a title="Learn more about the Data Science Boot Camp" href="/data/">Learn More <span class="right-caret"></span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="title">
-                                                    Learn Data Science </div>
-                                            </div>
-                                            <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber2.jpg" class="col-sm-3 program-box line">
-                                                <a title="Learn about the Cybersecurity Boot Camp" target="_top" href="/cybersecurity/" class="atop-link">
-                                                    <h2>Cybersecurity<span class="arrows"></span></h2>
-                                                </a>
-                                                <div class="content">
-                                                    <div class="desc">Rutgers Cybersecurity Bootcamp gives students hands-on training in networking, systems, web technologies, and defensive and offensive Cybersecurity.</div>
-                                                    <div class="button-container">
-                                                        <a title="Learn more about the Cybersecurity Boot Camp" href="/cybersecurity/">Learn More <span class="right-caret"></span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="title">
-                                                    Learn Cybersecurity </div>
-                                            </div>
-                                            <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber2.jpg" class="col-sm-3 program-box line">
-                                                <a title="Learn about the Artificial Intelligence Boot Camp" target="_top" href="/artificial-intelligence/" class="atop-link">
-                                                    <h2>Artificial Intelligence<span class="arrows"></span></h2>
-                                                </a>
-                                                <div class="content">
-                                                    <div class="desc">Rutgers Artificial Intelligence Bootcamp prepares you to leverage AI and machine learning to solve business problems and to discuss the latest innovations in AI with key stakeholders.</div>
-                                                    <div class="button-container">
-                                                        <a title="Learn more about the Artificial Intelligence Boot Camp" href="/artificial-intelligence/">Learn More <span class="right-caret"></span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="title">
-                                                    Learn Artificial Intelligence </div>
-                                            </div>
+                                            {% endfor %}
+                                            
                                         </div>
-                                        <div class="button-container">
-                                            <a href="/coding/">
-                            Learn More <span class="right-caret"></span>                            </a>
-                                        </div>
+                                        <!-- <div class="button-container">
+                                            <a href="/coding/">Learn More <span class="right-caret"></span>                            </a>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="row second-row">
-                                <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/img/content_hero_code_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/img/content_hero_code.jpg" class="col-sm-3 program-box line">
-                                    <a title="Learn about the Coding Boot Camp" target="_top" href="/coding/" class="atop-link">
-                                        <h2>Coding<span class="arrows"></span></h2>
+                                {% for course in all_courses %}
+                                <div data-bgmobile="{{course.banner.url}}" data-bgdesktop="{{course.banner.url}}" class="col-sm-4 program-box line">
+                                    <a title="Learn about the {{course.program_category}} Boot Camp" target="_top" href="{% pageurl course %}" class="atop-link">
+                                        <h2>{{course.program_category}}<span class="arrows"></span></h2>
                                     </a>
                                     <div class="content">
-                                        <div class="desc">Rutgers Coding Bootcamp equips learners with the programming skills needed for a career in web development and technology through live classes.</div>
+                                        <div class="desc">{{course.hero_carousel_description|richtext}}</div>
                                         <div class="button-container">
-                                            <a title="Learn more about the Coding Boot Camp" href="/coding/">Learn More <span class="right-caret"></span></a>
+                                            <a title="Learn more about the {{course.program_category}} Boot Camp" href="{% pageurl course %}">Learn More <span class="right-caret"></span></a>
                                         </div>
                                     </div>
                                     <div class="title">
-                                        Learn Coding </div>
+                                        Learn {{course.program_category}} </div>
                                 </div>
-                                <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/img/content_hero_data_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/img/content_hero_data.jpg" class="col-sm-3 program-box line">
-                                    <a title="Learn about the Data Science Boot Camp" target="_top" href="/data/" class="atop-link">
-                                        <h2>Data Science<span class="arrows"></span></h2>
-                                    </a>
-                                    <div class="content">
-                                        <div class="desc">Rutgers Data Science Bootcamp prepares professionals with the fundamental and specialized skills necessary to land a job in the booming field of data analytics.</div>
-                                        <div class="button-container">
-                                            <a title="Learn more about the Data Science Boot Camp" href="/data/">Learn More <span class="right-caret"></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="title">
-                                        Learn Data Science </div>
-                                </div>
-                                <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber2.jpg" class="col-sm-3 program-box line">
-                                    <a title="Learn about the Cybersecurity Boot Camp" target="_top" href="/cybersecurity/" class="atop-link">
-                                        <h2>Cybersecurity<span class="arrows"></span></h2>
-                                    </a>
-                                    <div class="content">
-                                        <div class="desc">Rutgers Cybersecurity Bootcamp gives students hands-on training in networking, systems, web technologies, and defensive and offensive Cybersecurity.</div>
-                                        <div class="button-container">
-                                            <a title="Learn more about the Cybersecurity Boot Camp" href="/cybersecurity/">Learn More <span class="right-caret"></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="title">
-                                        Learn Cybersecurity </div>
-                                </div>
-                                <div data-bgmobile="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber_m.jpg" data-bgdesktop="https://media.bootcampcdn.com/Rutgers/content-site/homepage_hero_cyber2.jpg" class="col-sm-3 program-box line">
-                                    <a title="Learn about the Artificial Intelligence Boot Camp" target="_top" href="/artificial-intelligence/" class="atop-link">
-                                        <h2>Artificial Intelligence<span class="arrows"></span></h2>
-                                    </a>
-                                    <div class="content">
-                                        <div class="desc">Rutgers Artificial Intelligence Bootcamp prepares you to leverage AI and machine learning to solve business problems and to discuss the latest innovations in AI with key stakeholders.</div>
-                                        <div class="button-container">
-                                            <a title="Learn more about the Artificial Intelligence Boot Camp" href="/artificial-intelligence/">Learn More <span class="right-caret"></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="title">
-                                        Learn Artificial Intelligence </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

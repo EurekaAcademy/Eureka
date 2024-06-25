@@ -1,3 +1,4 @@
+{% load static wagtailcore_tags %} {% load static %}{% load wagtailimages_tags %}{% load static menus_tags %}
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:25%">
     <style>
         aside.bc-sidebar hr:last-of-type {
@@ -20,16 +21,15 @@
         <aside id="text-2" class="widget widget_text">
             <div class="textwidget">
                 <div class="widget admissions">
-                    <h3 style="color: #007fac;"><big><a href="/contact-us/" target="_blank" rel="noopener">Enrolling Now</a></big></h3>
-                    <p><a style="color: #000000;" href="/coding/" target="blank" rel="noopener"><strong><u>Coding</u></strong></a></p>
-                    <p><small>• <strong><span class=cohort_date data-s-format="n/j/y" data-s-program="coding-online" data-s-campus="Virtual" data-s-program-type="Full Time" data-cohort="RUT-VIRT-FSF-FT-06-2024-U-LOLC" >6/10/24</span>: Full-Time</strong> (12 weeks)</small></p>
-                    <p>• <small><strong><span class=cohort_date data-s-format="n/j/y" data-s-program="coding-online" data-s-campus="Virtual" data-s-program-type="Part Time" data-cohort="RUT-VIRT-FSF-PT-06-2024-U-LOLC" >6/17/24</span></strong><strong>: Part-Time</strong> (24 weeks)</small></p>
-                    <p><a style="color: #000000;" href="/data" target="blank" rel="noopener"><strong><u>Data Science</u></strong></a></p>
-                    <p><small>• <strong><span class=cohort_date data-s-format="n/j/y" data-s-program="data" data-s-campus="Virtual" data-s-program-type="Part Time" data-cohort="RUT-VIRT-DATA-PT-06-2024-U-LOLC" >6/17/24</span>: Part-Time</strong> (24 weeks)</small></p>
-                    <p><a style="color: #000000;" href="" target="blank" rel="noopener"><strong><u>Cybersecurity</u></strong></a></p>
-                    <p><small>• <strong><span class=cohort_date data-s-format="n/j/y" data-s-program="cyber-lol" data-s-campus="Virtual" data-s-program-type="Part Time" data-cohort="RUT-VIRT-CYBER-PT-08-2024-U-LOLC" >8/26/24</span>: Part-Time</strong> (24 weeks)</small></p>
-                    <p><a style="color: #000000;" href="/artificial-intelligence/" target="blank" rel="noopener"><strong><u>Artificial Intelligence</u></strong></a></p>
-                    <p><small>• <strong><span class=cohort_date data-s-format="n/j/y" data-s-program="ai" data-s-campus="Virtual" data-s-program-type="Part Time" data-cohort="RUT-VIRT-AI-PT-09-2024-U-LOLC" >9/9/24</span>: Part-Time</strong> (24 weeks)</small></p>
+                    <h3 style="color: #007fac;"><big><a href="{% url 'dashboard:enrol' %}" target="_blank" rel="noopener">Enrolling Now</a></big></h3>
+                    {% for course in all_courses %}
+                    <p><a style="color: #000000;" href="{% pageurl course %}" target="blank" rel="noopener"><strong><u>{{course.program_category}}</u></strong></a></p>
+                    {% for schedule in schedules %}
+                    {% if schedule.course == course %}
+                    <p><small>• <strong><span class=cohort_date>{{schedule.start_date}}</span></strong></small></p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
                     <hr />
                     <h3 style="color: #007fac;"><big>Contact Admissions</big></h3>
                     <p><strong><a data-phone-type="code" class=phone href="tel:7323614853" aria-label="code telephone number">(732) 361-4853</a></strong></p>

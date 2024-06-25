@@ -69,7 +69,7 @@ class UserLoginView(View):
             messages.success(request, f"Login Successful ! "
                                 f"Welcome {user.email}.")
             
-            return redirect('')
+            return redirect('/portal')
 
         else:
             messages.error(request,

@@ -1,0 +1,157 @@
+{% extends "dashboard/base.html" %}{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}
+{% load i18n %}
+{% block content %}
+    <div class="pusher dashFlowContent">
+        <div class="ui one column grid">
+            <div class="column" style="min-height: calc(-225px + 100vh);">
+                <div class="ui padded grid" style="height: 100%;">
+                    <div class="column" style="padding-top: 0px;">
+                        <div style="" class="dashboardPaddingBottomContainer">
+                            <div>
+                                <div></div>
+                                <div class="ui basic vertical segment">
+                                    <div class="ui one column grid">
+                                        <div class="column" style="padding-left: 20px; padding-right: 20px;">
+                                            <div style="text-align: right;">
+                                                <div class="closeBtnContainer">
+                                                    <button class="ui button closeBtn clickable">
+                                                        <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 27px; height: 27px;"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216zm94.8-285.3L281.5 256l69.3 69.3c4.7 4.7 4.7 12.3 0 17l-8.5 8.5c-4.7 4.7-12.3 4.7-17 0L256 281.5l-69.3 69.3c-4.7 4.7-12.3 4.7-17 0l-8.5-8.5c-4.7-4.7-4.7-12.3 0-17l69.3-69.3-69.3-69.3c-4.7-4.7-4.7-12.3 0-17l8.5-8.5c4.7-4.7 12.3-4.7 17 0l69.3 69.3 69.3-69.3c4.7-4.7 12.3-4.7 17 0l8.5 8.5c4.6 4.7 4.6 12.3 0 17z"></path></svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <h2 class="ui header" style="text-align: center;">Application: <span style="font-weight: normal;">About You</span></h2>
+                                            <div class="ui hidden divider"></div>
+                                            <form id="createAccountForm" class="ui form" action="", method="post">
+                                                {% csrf_token %}
+                                                
+                                                <p style="text-align: center;">Let's start by getting to know you better and by understanding what's driving your interest in this  course. There are no right or wrong answers here. We strive to provide educational solutions for people of all backgrounds.</p>
+                                                <p><span style="font-weight: bold; color: rgb(219, 40, 40);">*</span> Indicates field is required.</p>
+                                                {{ wizard.management_form }}
+                                                {% if wizard.form.forms %}
+                                                    {{ wizard.form.management_form }}
+                                                    {% for form in wizard.form.forms %}
+                                                        {{ form.as_table }}
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <div class="equal width fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-education_level">What is your highest level of education completed?</label>
+                                                            <select class="ui dropdown" name="about-education_level" id="id_about-education_level">
+                                                                <option value="">Select your highest level of education completed</option>
+                                                                {% for level in education_level %}
+                                                                <option value="{{level.id}}">{{level.level}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grouped fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-degree_focus">What was your degree focus?</label>
+                                                            <select class="ui dropdown" name="about-degree_focus", id="id_about-degree_focus">
+                                                                <option value="">Select your degree focus</option>
+                                                                {% for degree in degree_focus %}
+                                                                <option value="{{degree.id}}">{{degree.degree}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grouped fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-years_of_experience">Years of work experience</label>
+                                                            <select class="ui dropdown" name="about-years_of_experience" id="id="id_about-years_of_experience"">
+                                                                <option value="">Select years of work experience</option>
+                                                                {% for year in years_of_experience %}
+                                                                <option value="{{year.id}}">{{year.year}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grouped fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-employment_status">Are you currently employed?</label>
+                                                            <select class="ui dropdown" name="about-employment_status" id="id_about-employment_status">
+                                                                <option value="Yes" selected="">Yes</option>                                              
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="grouped fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-annual_income">What is your annual income?</label>
+                                                            <select class="ui dropdown" name="about-annual_income" id="id_about-annual_income">
+                                                                <option value="">What is your annual income?</option>
+                                                                {% for income in annual_income %}
+                                                                <option value="{{income.id}}">{{income.income}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="equal width fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-occupation">Current occupation - please list your title</label>
+                                                            <div class="ui input">
+                                                                <input name="about-occupation" id="id_about-occupation" aria-invalid="true" placeholder="Current occupation - please list your title" maxlength="255" required="" type="text" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grouped fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-computer_skill_level">How would you rate your computer skills?</label>
+                                                            <select class="ui dropdown" name="about-computer_skill_level" id="id_about-computer_skill_level">
+                                                                <option value="">What is your annual income?</option>
+                                                                {% for level in computer_skill_level %}
+                                                                <option value="{{level.id}}">{{level.level}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="equal width fields">
+                                                        <div class="required field">
+                                                            <label>How many hours per week do you have to commit to studying for the Boot Camp outside of class time?</label>
+                                                            <select class="ui dropdown">
+                                                                <option value="">Select how many hours per week do you commit to studying for the Boot Camp outside of class time</option>
+                                                                {% for hour in study_hours_per_week %}
+                                                                <option value="{{hour.id}}">{{hour.hour}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="grouped fields">
+                                                        <div class="required field">
+                                                            <label for="id_about-have_a_laptop">Will you be able to provide your own laptop for class?</label>
+                                                            <select class="ui dropdown" name="about-have_a_laptop" id="id_about-have_a_laptop">
+                                                                <option value="Yes" selected="">Yes</option>                                              
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <div class="ui hidden divider"></div>
+                                                {% if wizard.steps.prev %}
+                                                <button class="ui secondary button" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">
+                                                    <svg viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px; max-height: 0.8rem; max-width: 1rem; width: 1rem;"><path fill="currentColor" d="M6.96485 12.8321C7.19443 13.0896 7.17427 13.484 6.91845 13.7157C6.66212 13.9464 6.2665 13.9256 6.03603 13.6693L0.410164 7.418C0.196531 7.17874 0.196531 6.81995 0.410164 6.58049L6.03517 0.365644C6.26587 0.109316 6.66134 0.0885342 6.91759 0.319238C7.18782 0.564199 7.18255 0.959473 6.964 1.20283L1.71602 7.00003L6.96485 12.8321Z"></path>
+                                                    </svg> 
+                                                    Previous
+                                                </button>
+                                                {% endif %}
+                                                
+                                                <button class="ui primary button" tabindex="-1" style="float: left;" type="submit">
+                                                    <span>
+                                                        Next 
+                                                        <svg viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px; max-height: 0.8rem; max-width: 1rem; width: 1rem;"><path fill="currentColor" d="M7.58986 7.41795L1.96446 13.6679C1.73376 13.9243 1.33829 13.945 1.08204 13.7143C0.811803 13.4694 0.817077 13.0741 1.03563 12.8308L6.28517 6.99998L1.03555 1.16796C0.805866 0.910145 0.826178 0.517177 1.08165 0.285146C1.33829 0.0546775 1.7336 0.0753807 1.96446 0.33163L7.58947 6.54646C7.80471 6.82029 7.80471 7.17967 7.58986 7.41795Z"></path></svg>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

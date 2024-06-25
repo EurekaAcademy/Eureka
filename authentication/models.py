@@ -61,7 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     def get_absolute_url(self):
-        return reverse('')
+        return reverse('dashboard:enrol')
     
     @property
     def full_name(self):
