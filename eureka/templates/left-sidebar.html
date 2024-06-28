@@ -11,8 +11,7 @@
     </style>
     <aside class="bc-sidebar hide-mobile">
         <aside class='trilogy-form-widget'>
-            <div class=consent>
-            </div>
+            <div class="consent"></div>
             <!-- Pardot Form : Sidebar -->
             {% include 'home/get_info.html' %}
             <!-- End Form -->
@@ -21,32 +20,128 @@
         <aside id="text-2" class="widget widget_text">
             <div class="textwidget">
                 <div class="widget admissions">
-                    <h3 style="color: #007fac;"><big><a href="{% url 'dashboard:enrol' %}" target="_blank" rel="noopener">Enrolling Now</a></big></h3>
+                    <h3 style="color: #007fac;">
+                        <big>
+                            <a href="{% url 'dashboard:enrol' %}" target="_blank" rel="noopener">Enrolling Now</a>
+                        </big>
+                    </h3>
                     {% for course in all_courses %}
-                    <p><a style="color: #000000;" href="{% pageurl course %}" target="blank" rel="noopener"><strong><u>{{course.program_category}}</u></strong></a></p>
+                    <p>
+                        <a style="color: #000000;" href="{% pageurl course %}" target="blank" rel="noopener">
+                            <strong>
+                                <u>{{course.program_category}}</u>
+                            </strong>
+                        </a>
+                    </p>
                     {% for schedule in schedules %}
                     {% if schedule.course == course %}
-                    <p><small>• <strong><span class=cohort_date>{{schedule.start_date}}</span></strong></small></p>
+                    <p>
+                        <small>• <strong><span class=cohort_date>{{schedule.start_date}}</span></strong></small>
+                    </p>
                     {% endif %}
                     {% endfor %}
                     {% endfor %}
-                    <hr />
+                    <hr/>
                     <h3 style="color: #007fac;"><big>Contact Admissions</big></h3>
-                    <p><strong><a data-phone-type="code" class=phone href="tel:7323614853" aria-label="code telephone number">(732) 361-4853</a></strong></p>
+                    
+                        
+                            {% if settings.home.SiteContact.phone1 %}
+                            <p>
+                                <strong>
+                                    <a data-phone-type="code" class=phone href="tel:{{ settings.home.SiteContact.phone1 }}" aria-label="code telephone number">{{ settings.home.SiteContact.phone1 }}</a>
+                                </strong>
+                            </p>
+                            {% endif %}
+
+                            {% if settings.home.SiteContact.phone2 %}
+                            <p>
+                                <strong>
+                                    <a data-phone-type="code" class=phone href="tel:{{ settings.home.SiteContact.phone2 }}" aria-label="code telephone number">{{ settings.home.SiteContact.phone2 }}</a>
+                                </strong>
+                            </p>
+                                {% endif %}
+                            {% if settings.home.SiteContact.phone3 %}
+                            <p>
+                                <strong>
+                                    <a data-phone-type="code" class=phone href="tel:{{ settings.home.SiteContact.phone3 }}" aria-label="code telephone number">{{ settings.home.SiteContact.phone3 }}</a>
+                                </strong>
+                            </p>
+                            {% endif %}
                     <a title="Open Live Chat" aria-label="click to chat" class="livechatBtnClicker " onclick="trilogyTrackingEvent('live-person','click-reactive-shortcode','content-widget');" style="display: none; margin-left: 10px; margin-top: 0; margin-bottom: 0; margin-right: 0; padding: 0;  margin:0 auto; line-height: 40px ; font-weight: 700; color: #000;"
-                        data-LP-event="click" href="#"><svg class="livechat-bubble-svg" style="height: 24px; width: auto; vertical-align: middle; fill: #cf2e2e;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.33 59.22" ><defs><style>.livechat-bubble-path{stroke-miterlimit:10;}</style></defs><title>Live Chat Icon</title><path d="M57.54 37.19c.38 2.68 2.1 8.61 8.5 15.49a1.63 1.63 0 0 1 .38 1.63 1.11 1.11 0 0 1-1 1 18.37 18.37 0 0 1-2.87.19c-3.91 0-11-.77-19.87-4.88a33.9 33.9 0 0 1-12.24 2.2c-16.15 0-29.25-11.18-29.25-25.14S14.24 2.5 30.39 2.5 59.64 13.78 59.64 27.73A22.55 22.55 0 0 1 57.54 37.19Z"/></svg> Live Chat</a>
-                    <hr />
-                    <p style="text-align: left;"><a href="" target="_blank" rel="noopener"><img decoding="async" class="alignnone wp-image-206" src="https://usa.bootcampcdn.com/wp-content/uploads/sites/28/2017/02/FB-FindUsOnFacebook-printpackaging-2.png" alt="Find us on Facebook" width="112" height="70" /></a></p>
+                        data-LP-event="click" href="#">
+                        <svg class="livechat-bubble-svg" style="height: 24px; width: auto; vertical-align: middle; fill: #cf2e2e;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.33 59.22" ><defs><style>.livechat-bubble-path{stroke-miterlimit:10;}</style></defs><title>Live Chat Icon</title><path d="M57.54 37.19c.38 2.68 2.1 8.61 8.5 15.49a1.63 1.63 0 0 1 .38 1.63 1.11 1.11 0 0 1-1 1 18.37 18.37 0 0 1-2.87.19c-3.91 0-11-.77-19.87-4.88a33.9 33.9 0 0 1-12.24 2.2c-16.15 0-29.25-11.18-29.25-25.14S14.24 2.5 30.39 2.5 59.64 13.78 59.64 27.73A22.55 22.55 0 0 1 57.54 37.19Z"/></svg> Live Chat</a>
+                    <hr/>
+                    <p style="text-align: left;">
+                        <p>Find us on</p>
+                        {% if settings.home.SiteSocial.facebook %}
+                        <a href="{{settings.home.SiteSocial.facebook}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M512,256c0,-141.385 -114.615,-256 -256,-256c-141.385,0 -256,114.615 -256,256c0,127.777 93.616,233.685 216,252.89l0,-178.89l-65,0l0,-74l65,0l0,-56.4c0,-64.16 38.219,-99.6 96.695,-99.6c28.009,0 57.305,5 57.305,5l0,63l-32.281,0c-31.801,0 -41.719,19.733 -41.719,39.978l0,48.022l71,0l-11.35,74l-59.65,0l0,178.89c122.385,-19.205 216,-125.113 216,-252.89Z" style="fill:#1877f2;fill-rule:nonzero;"/><path d="M355.65,330l11.35,-74l-71,0l0,-48.022c0,-20.245 9.917,-39.978 41.719,-39.978l32.281,0l0,-63c0,0 -29.297,-5 -57.305,-5c-58.476,0 -96.695,35.44 -96.695,99.6l0,56.4l-65,0l0,74l65,0l0,178.89c13.033,2.045 26.392,3.11 40,3.11c13.608,0 26.966,-1.065 40,-3.11l0,-178.89l59.65,0Z" style="fill:#fff;fill-rule:nonzero;"/></g></svg>
+                        </a>
+                        {% endif %}
+                        {% if settings.home.SiteSocial.linkedin %}
+                        <a href="{{settings.home.SiteSocial.linkedin}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="g5891"><path d="M512,64c0,-35.323 -28.677,-64 -64,-64l-384,0c-35.323,0 -64,28.677 -64,64l0,384c0,35.323 28.677,64 64,64l384,0c35.323,0 64,-28.677 64,-64l0,-384Z" id="background" style="fill:#2867b2;"/><g id="shapes"><rect height="257.962" id="rect11" style="fill:#fff;" width="85.76" x="61.053" y="178.667"/><path d="M104.512,54.28c-29.341,0 -48.512,19.29 -48.512,44.573c0,24.752 18.588,44.574 47.377,44.574l0.554,0c29.903,0 48.516,-19.822 48.516,-44.574c-0.555,-25.283 -18.611,-44.573 -47.935,-44.573Z" id="path13-0" style="fill:#fff;fill-rule:nonzero;"/><path d="M357.278,172.601c-45.49,0 -65.866,25.017 -77.276,42.589l0,-36.523l-85.738,0c1.137,24.197 0,257.961 0,257.961l85.737,0l0,-144.064c0,-7.711 0.554,-15.42 2.827,-20.931c6.188,-15.4 20.305,-31.352 43.993,-31.352c31.012,0 43.436,23.664 43.436,58.327l0,138.02l85.741,0l0,-147.93c0,-79.237 -42.305,-116.097 -98.72,-116.097Z" id="path15" style="fill:#fff;fill-rule:nonzero;"/></g></g></svg>
+                        </a>
+                        {% endif %}
+                        {% if settings.home.SiteSocial.instagram %}
+                        <a href="{{settings.home.SiteSocial.instagram}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 128 128" id="Social_Icons" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Instagram_1_"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><radialGradient cx="19.1111" cy="128.4444" gradientUnits="userSpaceOnUse" id="Instagram_2_" r="163.5519"><stop offset="0" style="stop-color:#FFB140"/><stop offset="0.2559" style="stop-color:#FF5445"/><stop offset="0.599" style="stop-color:#FC2B82"/><stop offset="1" style="stop-color:#8E40B7"/></radialGradient><path clip-rule="evenodd" d="M105.843,29.837    c0,4.242-3.439,7.68-7.68,7.68c-4.241,0-7.68-3.438-7.68-7.68c0-4.242,3.439-7.68,7.68-7.68    C102.405,22.157,105.843,25.595,105.843,29.837z M64,85.333c-11.782,0-21.333-9.551-21.333-21.333    c0-11.782,9.551-21.333,21.333-21.333c11.782,0,21.333,9.551,21.333,21.333C85.333,75.782,75.782,85.333,64,85.333z M64,31.135    c-18.151,0-32.865,14.714-32.865,32.865c0,18.151,14.714,32.865,32.865,32.865c18.151,0,32.865-14.714,32.865-32.865    C96.865,45.849,82.151,31.135,64,31.135z M64,11.532c17.089,0,19.113,0.065,25.861,0.373c6.24,0.285,9.629,1.327,11.884,2.204    c2.987,1.161,5.119,2.548,7.359,4.788c2.24,2.239,3.627,4.371,4.788,7.359c0.876,2.255,1.919,5.644,2.204,11.884    c0.308,6.749,0.373,8.773,0.373,25.862c0,17.089-0.065,19.113-0.373,25.861c-0.285,6.24-1.327,9.629-2.204,11.884    c-1.161,2.987-2.548,5.119-4.788,7.359c-2.239,2.24-4.371,3.627-7.359,4.788c-2.255,0.876-5.644,1.919-11.884,2.204    c-6.748,0.308-8.772,0.373-25.861,0.373c-17.09,0-19.114-0.065-25.862-0.373c-6.24-0.285-9.629-1.327-11.884-2.204    c-2.987-1.161-5.119-2.548-7.359-4.788c-2.239-2.239-3.627-4.371-4.788-7.359c-0.876-2.255-1.919-5.644-2.204-11.884    c-0.308-6.749-0.373-8.773-0.373-25.861c0-17.089,0.065-19.113,0.373-25.862c0.285-6.24,1.327-9.629,2.204-11.884    c1.161-2.987,2.548-5.119,4.788-7.359c2.239-2.24,4.371-3.627,7.359-4.788c2.255-0.876,5.644-1.919,11.884-2.204    C44.887,11.597,46.911,11.532,64,11.532z M64,0C46.619,0,44.439,0.074,37.613,0.385C30.801,0.696,26.148,1.778,22.078,3.36    c-4.209,1.635-7.778,3.824-11.336,7.382C7.184,14.3,4.995,17.869,3.36,22.078c-1.582,4.071-2.664,8.723-2.975,15.535    C0.074,44.439,0,46.619,0,64c0,17.381,0.074,19.561,0.385,26.387c0.311,6.812,1.393,11.464,2.975,15.535    c1.635,4.209,3.824,7.778,7.382,11.336c3.558,3.558,7.127,5.746,11.336,7.382c4.071,1.582,8.723,2.664,15.535,2.975    C44.439,127.926,46.619,128,64,128c17.381,0,19.561-0.074,26.387-0.385c6.812-0.311,11.464-1.393,15.535-2.975    c4.209-1.636,7.778-3.824,11.336-7.382c3.558-3.558,5.746-7.127,7.382-11.336c1.582-4.071,2.664-8.723,2.975-15.535    C127.926,83.561,128,81.381,128,64c0-17.381-0.074-19.561-0.385-26.387c-0.311-6.812-1.393-11.464-2.975-15.535    c-1.636-4.209-3.824-7.778-7.382-11.336c-3.558-3.558-7.127-5.746-11.336-7.382c-4.071-1.582-8.723-2.664-15.535-2.975    C83.561,0.074,81.381,0,64,0z" fill="url(#Instagram_2_)" fill-rule="evenodd" id="Instagram"/></g></g></svg>
+                        </a>
+                        {% endif %}
+                        {% if settings.home.SiteSocial.twitter %}
+                        <a href="{{settings.home.SiteSocial.twitter}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1227" viewBox="0 0 1200 1227" fill="none"><g clip-path="url(#clip0_1_2)"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" fill="black"/></g><defs><clipPath id="clip0_1_2"><rect width="1200" height="1227" fill="white"/></clipPath></defs></svg>
+                        </a>
+                        {% endif %}
+                        {% if settings.home.SiteSocial.threads %}
+                        <a href="{{settings.home.SiteSocial.threads}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Слой_1" width="100px" height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><style type="text/css">
+                                .st0{fill:#444B54;}
+                            </style><g><path class="st0" d="M48.7934,51.38299c-2.20473,0.29799-3.99773,1.23521-5.03513,2.64377   c-0.85042,1.14848-1.1457,2.54625-0.88026,4.139c0.24923,1.48438,0.70964,4.25273,7.99005,4.25273   c6.97164,0,8.89465-7.0103,9.42552-10.85673c-1.85255-0.36838-3.86773-0.55799-6.0182-0.55799   C52.52563,51.00376,50.69472,51.12833,48.7934,51.38299z"/><path class="st0" d="M97.43239,20.54097c-1.66843-9.29382-8.73216-16.35288-17.9952-17.98354   C59.93605-0.87186,39.87434-0.83395,20.54925,2.56015C11.29171,4.22329,4.23333,11.28235,2.56761,20.55447   C0.86399,30.2573,0,40.19036,0,50.07738c0,9.77864,0.86399,19.66024,2.56761,29.35764   c1.63052,9.26398,8.68883,16.32846,17.99791,18.00245C30.27276,99.13859,40.20203,100,50.0826,100   c9.77221,0,19.64735-0.86141,29.35459-2.56253c9.4418-1.66314,16.33755-8.5597,18.00056-18.00245   C99.13873,69.72677,100,59.8506,100,50.07738C100,40.19579,99.13873,30.26543,97.43239,20.54097z M79.85426,40.40704   c-1.77131,0.59055-3.67812-0.43877-4.23062-2.22385c-3.98689-12.83149-11.4352-18.06478-25.70353-18.06478   c-17.32347,0-25.39205,10.01974-25.39205,31.53002c0,18.15958,8.91093,27.92203,25.77121,28.22537   c7.15041,0.24922,13.56954-2.04237,17.63224-6.01888c2.77351-2.71416,4.24147-6.04594,4.24147-9.62694   c0-3.77604-1.28378-6.81525-3.8189-9.03646c-0.49297-0.43342-1.02926-0.82886-1.60889-1.19724   c-1.77131,9.44275-7.69206,15.18534-15.87714,15.18534c-10.74999,0-13.90537-5.38506-14.65834-9.89787   c-0.57149-3.42387,0.15984-6.63106,2.1072-9.26941c2.13433-2.89293,5.53616-4.78909,9.58266-5.33088   c4.38232-0.58506,8.47758-0.5742,12.15569-0.03791c-0.60669-2.61122-1.81471-4.74576-3.5102-6.01617   c-3.79734-2.79276-10.69851-2.52726-14.485,2.35392c-1.14299,1.47902-3.26376,1.74988-4.74257,0.60133   c-1.4761-1.14305-1.74696-3.26674-0.60398-4.74304c6.25658-8.07211,17.37766-8.39986,23.86176-3.64326   c3.8244,2.8713,6.1537,7.6983,6.59784,13.41376c2.12891,0.91017,4.01943,2.07492,5.6391,3.49433   c4.00317,3.51061,6.12115,8.39179,6.12115,14.12354c0,5.36336-2.22636,10.4992-6.27286,14.45943   c-5.18941,5.07623-13.04403,7.95838-21.65704,7.95838c-0.28164,0-0.55793-0.00543-0.83422-0.01086   c-20.58716-0.36838-32.4016-13.12127-32.4016-34.9865c0-25.40826,10.81767-38.29115,32.15244-38.29115   c17.33432,0,27.25274,7.03742,32.16058,22.82138C82.63319,37.96102,81.63649,39.85446,79.85426,40.40704z"/></g></svg>
+                        </a>
+                        {% endif %}
+                        {% if settings.home.SiteSocial.youtube %}
+                        <a href="{{settings.home.SiteSocial.youtube}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.0//EN'  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'><svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M31.67,9.179c0,0-0.312-2.353-1.271-3.389c-1.217-1.358-2.58-1.366-3.205-1.443C22.717,4,16.002,4,16.002,4   h-0.015c0,0-6.715,0-11.191,0.347C4.171,4.424,2.809,4.432,1.591,5.79C0.633,6.826,0.32,9.179,0.32,9.179S0,11.94,0,14.701v2.588   c0,2.763,0.32,5.523,0.32,5.523s0.312,2.352,1.271,3.386c1.218,1.358,2.815,1.317,3.527,1.459C7.677,27.919,15.995,28,15.995,28   s6.722-0.012,11.199-0.355c0.625-0.08,1.988-0.088,3.205-1.446c0.958-1.034,1.271-3.386,1.271-3.386s0.32-2.761,0.32-5.523v-2.588   C31.99,11.94,31.67,9.179,31.67,9.179z" fill="#E02F2F"/><polygon fill="#FFFFFF" points="12,10 12,22 22,16  "/></g><g/><g/><g/><g/><g/><g/></svg>
+                        </a>
+                        {% endif %}
+                        {% if settings.home.SiteSocial.tiktok %}
+                        <a href="{{settings.home.SiteSocial.tiktok}}" target="_blank" rel="noopener">
+                            <?xml version="1.0" ?><svg style="enable-background:new 0 0 64 64;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+                                .st0{fill:#4267B2;}
+                                .st1{fill:url(#SVGID_1_);}
+                                .st2{fill:#FFFFFF;}
+                                .st3{fill:#C2191E;}
+                                .st4{fill:#1DA1F3;}
+                                .st5{fill:#FEFE00;}
+                                .st6{fill:#25D366;stroke:#FFFFFF;stroke-width:5;stroke-miterlimit:10;}
+                                .st7{fill:#CB2027;}
+                                .st8{fill:#0077B5;}
+                                .st9{fill:url(#SVGID_2_);}
+                                .st10{fill:url(#SVGID_3_);}
+                                .st11{fill:#FF004F;}
+                                .st12{fill:#00F7EF;}
+                                .st13{fill:#5181B8;}
+                                .st14{fill:#395976;}
+                                .st15{fill:#F58220;}
+                                .st16{fill:#E6162D;}
+                                .st17{fill:#FF9933;}
+                            </style><g id="guidlines"/><g id="FB"/><g id="ig"/><g id="yt"/><g id="twitter"/><g id="snapchat"/><g id="WA"/><g id="Pinterrest"/><g id="Layer_9"/><g id="Layer_10"/><g id="Layer_11"><g><g><path class="st11" d="M58,19.4v9.3c-0.5,0-1.1,0.1-1.7,0.1c-4.5,0-8.7-1.7-11.9-4.4v19.8c0,4-1.3,7.8-3.6,10.8     c-3.2,4.3-8.4,7.2-14.3,7.2c-6.4,0-12-3.4-15.1-8.4c3.2,3,7.5,4.9,12.2,4.9c5.8,0,11-2.8,14.2-7.2c2.2-3,3.6-6.7,3.6-10.8V20.8     c3.2,2.8,7.3,4.4,11.9,4.4c0.6,0,1.1,0,1.7-0.1v-6c0.9,0.2,1.7,0.3,2.6,0.3H58z"/><path class="st11" d="M29,26.3v10.3c-0.7-0.2-1.5-0.3-2.2-0.3c-4.4,0-8,3.7-8,8.2c0,1,0.2,1.9,0.5,2.8c-2-1.5-3.4-3.9-3.4-6.6     c0-4.5,3.6-8.2,8-8.2c0.8,0,1.5,0.1,2.2,0.3l0-6.6c0.2,0,0.4,0,0.6,0C27.5,26.2,28.3,26.2,29,26.3z"/><path class="st11" d="M45.9,12c-1.8-1.6-3.1-3.8-3.8-6.1h2.4c0,0.5,0,0.9,0,1.4C44.7,8.9,45.2,10.5,45.9,12z"/></g></g><path d="M55.1,19.2v6c-0.5,0.1-1.1,0.1-1.7,0.1c-4.5,0-8.7-1.7-11.9-4.4v19.8c0,4-1.3,7.8-3.6,10.8c-3.3,4.4-8.4,7.2-14.2,7.2   c-4.7,0-9-1.9-12.2-4.9c-1.7-2.8-2.7-6-2.7-9.5c0-9.7,7.7-17.6,17.3-17.9l0,6.6c-0.7-0.2-1.5-0.3-2.2-0.3c-4.4,0-8,3.7-8,8.2   c0,2.7,1.3,5.2,3.4,6.6c1.1,3.1,4.1,5.4,7.5,5.4c4.4,0,8-3.7,8-8.2V5.9h7.3c0.7,2.4,2,4.5,3.8,6.1C47.7,15.6,51.1,18.3,55.1,19.2z"/><g><g><g><path class="st12" d="M26.1,22.8l0,3.4c-9.6,0.3-17.3,8.2-17.3,17.9c0,3.5,1,6.7,2.7,9.5C8.1,50.3,6,45.7,6,40.5      c0-9.9,8-17.9,17.8-17.9C24.6,22.6,25.4,22.7,26.1,22.8z"/><path class="st12" d="M42.1,5.9h-7.3v38.6c0,4.5-3.6,8.2-8,8.2c-3.5,0-6.4-2.2-7.5-5.4c1.3,0.9,2.9,1.5,4.6,1.5      c4.4,0,8-3.6,8-8.1V2h9.7v0.2c0,0.4,0,0.8,0.1,1.2C41.7,4.2,41.9,5.1,42.1,5.9z"/></g></g><path class="st12" d="M55.1,15.5C55.1,15.5,55.1,15.5,55.1,15.5v3.6c-4-0.8-7.4-3.5-9.3-7.1C48.3,14.3,51.5,15.6,55.1,15.5z"/></g></g><g id="Layer_12"/><g id="Layer_13"/><g id="Layer_14"/><g id="Layer_15"/><g id="Layer_16"/><g id="Layer_17"/></svg>
+                        </a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </aside>
         <hr/>
         <aside id="text-3" class="widget widget_text">
             <h2 class="widgettitle">About Eureka Data Academy</h2>
-            <div class="textwidget">Eureka Data Academy, is a leading national research university and the state of New Jersey’s preeminent, comprehensive public institution of higher education. Established in 1766 and celebrating
-                a milestone 250th anniversary in 2016, the university is the eighth oldest higher education institution in the United States. More than 66,000 students and 22,000 faculty and staff learn, work, and serve the public
-                at Eureka Data Academy locations across New Jersey and around the world.
-                <hr />
+            <div class="textwidget">
+                {% if settings.home.ImportantExtraContent.sidebar_about %}
+                {{settings.home.ImportantExtraContent.sidebar_about|richtext}}
+                {% endif %}
+                
+                <hr/>
             </div>
         </aside>
         <hr/>

@@ -259,3 +259,32 @@ class SubscribeFormSettings(BaseSiteSetting):
         # note the page type declared within the pagechooserpanel
         PageChooserPanel('subscribe_form_page', ['home.SubscribeFormPage']),
     ]
+
+
+@register_setting
+class SiteSocial(BaseSiteSetting):
+    facebook = models.URLField(max_length=500, null=True, blank=True)
+    twitter = models.URLField(max_length=500, null=True, blank=True)
+    instagram = models.URLField(max_length=500, null=True, blank=True)
+    threads = models.URLField(max_length=500, null=True, blank=True)
+    linkedin = models.URLField(max_length=500, null=True, blank=True)
+    youtube = models.URLField(max_length=500, null=True, blank=True)
+    tiktok = models.URLField(max_length=500, null=True, blank=True)
+
+@register_setting
+class SiteContact(BaseSiteSetting):
+    email1 = models.EmailField(help_text='Your Email address', null=True, blank=True)
+    email2 = models.EmailField(help_text='Your Email address', null=True, blank=True)
+    email3 = models.EmailField(help_text='Your Email address', null=True, blank=True)
+    phone1 = models.CharField(max_length=250, null=True, blank=True)
+    phone2 = models.CharField(max_length=250, null=True, blank=True)
+    phone3 = models.CharField(max_length=250, null=True, blank=True)
+
+@register_setting
+class SiteLogo(BaseSiteSetting):
+    logo = CloudinaryField("image", null=True)
+    favicon = CloudinaryField("image", null=True)
+
+@register_setting
+class ImportantExtraContent(BaseSiteSetting):
+    sidebar_about = RichTextField(blank=True)

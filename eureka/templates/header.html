@@ -50,21 +50,20 @@
 <div id="header" class=navbar-v2>
     <div class="inner">
         <div class="container">
+            {% if settings.home.SiteLogo.logo %}
             <a href="/" target=_blank rel=nofollow>
-                <img src="{% static 'images/shiningtutor.png' %}" alt="Eureka Data Academy coding, data and cybersecurity bootcamps" class="logo">
+                <img src="{{settings.home.SiteLogo.logo.url}}" alt="Eureka Data Academy bootcamps" class="logo">
             </a>
-
-            <a title="Open Live Chat" class="chatBtnClicker hidden-xs pull-right" data-LP-event="click" href="#">
-                <img src="https://usa.bootcampcdn.com/wp-content/themes/RutgersV3/media/img/livechat.svg" height="35px" width="35px"
-                alt="Live Chat icon" class="chat-icon"> 
-                Live Chat
+            {% else %}
+            <a href="/" target=_blank rel=nofollow>
+                <img src="{% static 'images/shiningtutor.png' %}" alt="Eureka Data Academy bootcamps" class="logo">
             </a>
+            {% endif %}
         </div>
     </div>
     <div class="header-bottom">
         <div class="container-fluid wrapper">
-            <a class="mobile-apply text-center" data-linkid="2681" href="{% url 'dashboard:enrol' %}" title="Apply">Apply</a> <a title="Menu Open Live Chat" data-LP-event="click" class="mobile-menu chatBtnClicker hidden-sm hidden-md hidden-lg  pull-left"
-                href="#"><span class="menu-text">Live Chat</span> <img src="https://usa.bootcampcdn.com/wp-content/themes/CodingBootcamp/media/img/livechat_blk.svg" width="20px" alt="Live Chat icon" class="chat-icon"></a>
+            <a class="mobile-apply text-center" data-linkid="2681" href="{% url 'dashboard:enrol' %}" title="Apply">Apply</a>
             <div class=mobile-menu>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="menu-text">Menu</span>
@@ -91,8 +90,8 @@
                         </ul>
                     </li>
                     {% endfor %}
-                    <li id="menu-item-2670" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2670 faq"><a title="FAQ" href="">FAQ</a></li>
-                    <li id="menu-item-2669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669 "><a title="Blog" href="">Blog</a></li>
+                    <!-- <li id="menu-item-2670" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2670 faq"><a title="FAQ" href="">FAQ</a></li>
+                    <li id="menu-item-2669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669 "><a title="Blog" href="">Blog</a></li> -->
                     <li id="menu-item-2681" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2681 apply"><a title="Apply" href="{% url 'dashboard:enrol' %}">Apply</a></li>
                 </ul>
             </div>
@@ -103,8 +102,8 @@
     <div class="container">
 
         <a title="Open Live Chat" aria-label="click to chat" class="livechatBtnClicker " onclick="trilogyTrackingEvent('Mobile Sticky Bar','click','Open-LiveChat-Button-v3-chat');" style="display: none; margin-left: 10px; margin-top: 0; margin-bottom: 0; margin-right: 0; padding: 0;  margin:0 auto; line-height: 40px;"
-            data-LP-event="click" href="#"><svg version="1.1" class="livechat-bubble-svg" style="height: 24px; width: auto; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.4 18" style="enable-background:new 0 0 19.4 18;" xml:space="preserve"><path  fill-rule="evenodd" clip-rule="evenodd" d="M9.7,0.2c5.4,0,9.7,3.4,9.7,7.7c-0.1,2.6-1.6,5-3.9,6.2c0.3,1.4,1,2.8,2,3.8c-2.3,0-4.5-0.9-6.2-2.4c-0.5,0.1-1.1,0.1-1.6,0.1C4.3,15.5,0,12.1,0,7.9S4.3,0.2,9.7,0.2z M14.3,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5c-0.8,0-1.5,0.7-1.5,1.5l0,0C12.8,8.7,13.4,9.4,14.3,9.4C14.3,9.4,14.3,9.4,14.3,9.4z M9.7,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5C8.9,6.3,8.2,7,8.2,7.8l0,0C8.2,8.7,8.9,9.4,9.7,9.4C9.7,9.4,9.7,9.4,9.7,9.4z M5.2,9.4c0.8,0,1.5-0.7,1.5-1.5C6.7,7,6,6.3,5.2,6.3S3.7,7,3.7,7.9C3.6,8.7,4.3,9.4,5.2,9.4C5.2,9.4,5.2,9.4,5.2,9.4z"/></svg>Chat</a>
+            data-LP-event="click" href="/about/"><svg version="1.1" class="livechat-bubble-svg" style="height: 24px; width: auto; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.4 18" style="enable-background:new 0 0 19.4 18;" xml:space="preserve"><path  fill-rule="evenodd" clip-rule="evenodd" d="M9.7,0.2c5.4,0,9.7,3.4,9.7,7.7c-0.1,2.6-1.6,5-3.9,6.2c0.3,1.4,1,2.8,2,3.8c-2.3,0-4.5-0.9-6.2-2.4c-0.5,0.1-1.1,0.1-1.6,0.1C4.3,15.5,0,12.1,0,7.9S4.3,0.2,9.7,0.2z M14.3,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5c-0.8,0-1.5,0.7-1.5,1.5l0,0C12.8,8.7,13.4,9.4,14.3,9.4C14.3,9.4,14.3,9.4,14.3,9.4z M9.7,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5C8.9,6.3,8.2,7,8.2,7.8l0,0C8.2,8.7,8.9,9.4,9.7,9.4C9.7,9.4,9.7,9.4,9.7,9.4z M5.2,9.4c0.8,0,1.5-0.7,1.5-1.5C6.7,7,6,6.3,5.2,6.3S3.7,7,3.7,7.9C3.6,8.7,4.3,9.4,5.2,9.4C5.2,9.4,5.2,9.4,5.2,9.4z"/></svg>Chat</a>
 
-        <a href="#" onclick="trilogyTrackingEvent('Mobile Sticky Bar', 'click', 'GoToForm-Button-v2-Learn-More');" class="btn btn-block go-to-closest-form-btn">Learn More</a>
+        <a href="/about/" onclick="trilogyTrackingEvent('Mobile Sticky Bar', 'click', 'GoToForm-Button-v2-Learn-More');" class="btn btn-block go-to-closest-form-btn">Learn More</a>
     </div>
 </div>

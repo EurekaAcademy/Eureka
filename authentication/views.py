@@ -112,7 +112,7 @@ class UserRegisterView(View):
                 'protocol': 'https',
             }
             )
-            from_email = 'tabitha.market@gmail.com'
+            from_email = 'admin@shineintutoring.com'
             to_email = register_form.cleaned_data.get('email')
             email = EmailMessage(
                 mail_subject, message, from_email, to=[to_email]

@@ -25,7 +25,7 @@
                             <input aria-invalid="true" placeholder="Password" name="password" id="id_password" type="password">
                         </div>
                     </div>
-                    <a class="smaller dashboardForgotPassword" href="/enroll/ui/forgotPassword">Forgot password</a>
+                    <a class="smaller dashboardForgotPassword" href="{% url 'authentication:password_reset' %}">Forgot password</a>
                     <div class="ui hidden divider"></div>
                     <button class="ui primary button dashboardSignInBtn">Sign In &amp; Continue</button>
                 </form>

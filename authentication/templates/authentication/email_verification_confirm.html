@@ -1,4 +1,4 @@
-{% load wagtailcore_tags %}{% load static %}{% load wagtailimages_tags %} {% load i18n %}
+{% extends "dashboard/base.html" %}{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %}
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +43,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">You can now proceed to login.</h5>
-                        <p class="card-text"><span>Start shopping in one of the premiere online stores</p>
+                        <p class="card-text"><span>Continue with updating your profile and completing your application</p>
                         <a href="{% url 'authentication:login' %}" class="btn btn-primary successful-home">Login</a>
                     </div>
                     <div class="card-footer text-muted">

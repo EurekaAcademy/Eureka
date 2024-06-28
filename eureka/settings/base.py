@@ -151,6 +151,8 @@ DATABASES = {
 }
 
 
+
+
 AUTH_USER_MODEL = 'authentication.User'
 WAGTAIL_USER_EDIT_FORM = 'authentication.forms.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'authentication.forms.CustomUserCreationForm'

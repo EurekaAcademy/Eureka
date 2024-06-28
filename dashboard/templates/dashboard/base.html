@@ -6,8 +6,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
-    <title>Document</title>
+    <title>Eureka Data Academy Portal</title>
     {% endblock %}
+
+    <meta name="description" content="Explore your future in coding, data science, or fintech at Eureka Data Academy Bootcamps. Classes are taught online in a collaboratively live format. Get started today." />
+    <link rel="canonical" href="https://eurekadataacademy.com/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Eureka Data Academy Portal" />
+    <meta property="og:description" content="Explore your future in coding, data science, or fintech at Eureka Data Academy Bootcamps. Classes are taught online in a collaboratively live format. Get started today." />
+    <meta property="og:url" content="https://eurekadataacademy.com/" />
+    <meta property="og:site_name" content="Eureka Data Academy Bootcamps" />
+    <meta property="og:image" content="{% static 'images/shiningtutor.png' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
     
     {% block styles %}
     <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
@@ -28,7 +39,11 @@
           <div class="container">
             <div class="row justify-content-around first-header">
               <div class="col-auto">
+                {% if settings.home.SiteLogo.logo %}
+                <div class="logo"><img src="{{settings.home.SiteLogo.logo.url}}" alt=""></div>
+                {% else %}
                 <div class="logo"><img src="{% static 'images/shiningtutor.png' %}" alt=""></div>
+                {% endif %}
               </div>
               <div class="col-auto">
                 <div class="dropdown">
@@ -48,7 +63,7 @@
                             {% if user.is_authenticated %}
                             <li><a class="dropdown-item" href="{% url 'dashboard:profile_update' user.candidate.id %}">Manage Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'dashboard:user_update' user.id %}">Manage User Info</a></li>
-                            <li><a class="dropdown-item" href="#">Change Password</a></li>
+                            <li><a class="dropdown-item" href="{% url 'authentication:password_reset' %}">Change Password</a></li>
                             {% endif %}
                             {% endblock manage_profile %}
                             <li><a class="dropdown-item" href="{% if user.is_authenticated %}{% url 'authentication:logout' %}{% else %}{% url 'authentication:login' %}{% endif %}">{% if user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
@@ -56,8 +71,8 @@
                         </div>
                       </div>
                     </div>
-                    <li><a class="dropdown-item" href="#">Need assistance?</a></li>
-                    <li><a class="dropdown-item" href="#">Chat with admission</a></li>
+                    <li><a class="dropdown-item" href="tel:{{ settings.home.SiteContact.phone1 }}">Need assistance?</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Chat with admission</a></li> -->
                   </ul>
                 </div>
               </div>
