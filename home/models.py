@@ -161,8 +161,6 @@ class GetInfoFormPage(AbstractEmailForm):
         ], "Email"),
     ]
 
-    def get_form_class_for_step(self, step):
-        return self.form_builder(step.object_list).get_form_class()
 
     def serve(self, request, *args, **kwargs):
         if request.method == 'POST':
@@ -173,7 +171,7 @@ class GetInfoFormPage(AbstractEmailForm):
                 
                 # Update the original landing page context with other data
                 landing_page_context = self.get_context(request)
-                landing_page_context['email'] = form.cleaned_data['email']
+                landing_page_context['email'] = form.cleaned_data['email_address']
 
                 return render(
                     request,
