@@ -232,7 +232,255 @@ class Curriculum(Page):
     heading_title = models.CharField(max_length=500, null=True, blank=True)
     banner = CloudinaryField(null=True, blank=True, help_text='upload image banner to display.')
     intro = RichTextField(null=True, blank=True)
-    modules = StreamField([
+    beginner_modules = StreamField([
+        ('introduction', blocks.RichTextBlock(required=False)),
+        ('module1', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module2', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module3', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module4', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module5', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module6', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module7', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module8', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module9', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module10', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module11', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module12', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module13', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module14', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module15', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module16', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module17', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module18', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module19', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module20', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('more_text', blocks.RichTextBlock(required=False)),
+    ], null=True, blank=True, use_json_field=True)
+    intermediate_modules = StreamField([
+        ('introduction', blocks.RichTextBlock(required=False)),
+        ('module1', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module2', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module3', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module4', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module5', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module6', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module7', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module8', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module9', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module10', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module11', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module12', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module13', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module14', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module15', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module16', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module17', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module18', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module19', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('module20', blocks.StructBlock([
+            ('title', blocks.CharBlock(required=False)),
+            ('duration', blocks.CharBlock(required=False)),
+            ('description', blocks.RichTextBlock(required=False)),
+            ('what_you_will_learn', blocks.RichTextBlock(required=False)),
+        ])),
+        ('more_text', blocks.RichTextBlock(required=False)),
+    ], null=True, blank=True, use_json_field=True)
+    advanced_modules = StreamField([
         ('introduction', blocks.RichTextBlock(required=False)),
         ('module1', blocks.StructBlock([
             ('title', blocks.CharBlock(required=False)),
@@ -364,7 +612,9 @@ class Curriculum(Page):
         FieldPanel('heading_title'),
         FieldPanel('banner'),
         FieldPanel('intro'),
-        FieldPanel('modules'),
+        FieldPanel('beginner_modules'),
+        FieldPanel('intermediate_modules'),
+        FieldPanel('advanced_modules'),
         FieldPanel('course_tip_1'),
         FieldPanel('course_tip_2'),
     ]
