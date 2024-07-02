@@ -20,8 +20,15 @@
                 <hr class="visible-xs hr">
                 <div class="col">
                     <img src="{% static 'images/shiningtutor.png' %}" alt="Eureka Data Academy coding, data and cybersecurity bootcamps" class="logo">
-                    <p>Copyright © 2024, Shine Tutoring & Consulting Services<br /></p>
+                    <p>Copyright © <strong id="copyright-year"></strong>, Shine Tutoring & Consulting Services<br /></p>
                     <p><span>Contact Eureka Data Academy at <a data-phone-type="coding" class=phone href="tel:{{ settings.home.SiteContact.phone1 }}" aria-label="coding telephone number">{{ settings.home.SiteContact.phone1 }}</a></span></p>
+                    <script>
+                        const d = new Date();
+                        let currentYear = d.getFullYear();
+                        let cyear = document.querySelector('#copyright-year');
+                        cyear.innnerText = currentYear;
+                    </script>
+                    
                     <!-- <p>
                         <p class="privacy-links-wrapper" data-tsc="addPrivacy"><a target=_blank aria-label="privacy policy opens in a new tab" href="/privacy-policy/">Privacy/Your Privacy Rights</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target=_blank aria-label="opens in a new tab" href="/terms/">Terms &amp; Conditions</a>
                             <br

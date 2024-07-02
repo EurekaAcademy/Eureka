@@ -81,8 +81,8 @@
             <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                 <ul id="menu-navigation" class="nav navbar-nav navbar-right">
                     {% for item in site_root.get_children.live.in_menu %}
-                    <li id="menu-item-268{{item.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2682 coding dropdown"><a title="{{item.title}}" href="{% pageurl item %}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{item.title}} <span class="caret"></span></a>
-                        <ul role="menu" class=" dropdown-menu">
+                    <li id="menu-item-268{{item.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-268{{item.id}} dropdown"><a title="{{item.title}}" href="{% pageurl item %}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{item.title}} <span class="caret"></span></a>
+                        <ul role="menu" class="dropdown-menu">
                             <li id="menu-item-269{{item.id}}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2690 overview"><a title="Overview" href="{% pageurl item %}">Overview</a></li>
                             {% for cpage in item.get_children.live.in_menu %}
                                 <li id="menu-item-268{{cpage.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2689 curriculum"><a title="{{cpage.title|title}}" href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
@@ -104,6 +104,6 @@
         <a title="Open Live Chat" aria-label="click to chat" class="livechatBtnClicker " onclick="trilogyTrackingEvent('Mobile Sticky Bar','click','Open-LiveChat-Button-v3-chat');" style="display: none; margin-left: 10px; margin-top: 0; margin-bottom: 0; margin-right: 0; padding: 0;  margin:0 auto; line-height: 40px;"
             data-LP-event="click" href="/about/"><svg version="1.1" class="livechat-bubble-svg" style="height: 24px; width: auto; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 19.4 18" style="enable-background:new 0 0 19.4 18;" xml:space="preserve"><path  fill-rule="evenodd" clip-rule="evenodd" d="M9.7,0.2c5.4,0,9.7,3.4,9.7,7.7c-0.1,2.6-1.6,5-3.9,6.2c0.3,1.4,1,2.8,2,3.8c-2.3,0-4.5-0.9-6.2-2.4c-0.5,0.1-1.1,0.1-1.6,0.1C4.3,15.5,0,12.1,0,7.9S4.3,0.2,9.7,0.2z M14.3,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5c-0.8,0-1.5,0.7-1.5,1.5l0,0C12.8,8.7,13.4,9.4,14.3,9.4C14.3,9.4,14.3,9.4,14.3,9.4z M9.7,9.4c0.8,0,1.5-0.7,1.5-1.5c0-0.8-0.7-1.5-1.5-1.5C8.9,6.3,8.2,7,8.2,7.8l0,0C8.2,8.7,8.9,9.4,9.7,9.4C9.7,9.4,9.7,9.4,9.7,9.4z M5.2,9.4c0.8,0,1.5-0.7,1.5-1.5C6.7,7,6,6.3,5.2,6.3S3.7,7,3.7,7.9C3.6,8.7,4.3,9.4,5.2,9.4C5.2,9.4,5.2,9.4,5.2,9.4z"/></svg>Chat</a>
 
-        <a href="/about/" onclick="trilogyTrackingEvent('Mobile Sticky Bar', 'click', 'GoToForm-Button-v2-Learn-More');" class="btn btn-block go-to-closest-form-btn">Learn More</a>
+        <a href="/about/" class="btn btn-block go-to-closest-form-btn">Learn More</a>
     </div>
 </div>

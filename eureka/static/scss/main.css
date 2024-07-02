@@ -1950,7 +1950,8 @@ form.contact .tcpa {
         top: -2px;
         display: inline-block;
         font-size: 16px;
-        font-family: "Titillium Web", Helvetica, Arial, sans-serif
+        font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+        margin-right: 10px;
     }
     #header.navbar-v2 .navbar-default .dropdown-menu li a:before {
         content: none
@@ -5897,4 +5898,12 @@ html.gutenberg body.organic ul.iti__country-list li::before {
         font-size: 24px;
         line-height: 30px
     }
+}
+.panel-section .title{
+    color: #cc0033 !important;
+    padding-left: 20px;
+    position: relative;
+    font-weight: bold;
+    line-height: 1.3em;
+    font-size: 18px;
 }

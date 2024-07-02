@@ -2,7 +2,11 @@
 <head>
     <style>
 
-        
+        .get-info-container{
+          max-width: 520px;
+          margin-left: auto;
+          margin-right: auto;
+        }
         #regForm {
           background-color: #c03;
           /* margin: 100px auto; */
@@ -10,7 +14,7 @@
           padding: 40px;
           /* width: 70%; */
           /* min-width: 300px; */
-          margin-top: -30px;
+          margin-top: -20px;
         }
         
         h1 {
@@ -212,7 +216,8 @@
     function showTab(n) {
         // This function will display the specified tab of the form...
         
-        x[n].style.display = "block";
+        // x[n].style.display = "block";
+        x[n].setAttribute( 'style', 'display: block !important' );
         //... and fix the Previous/Next buttons:
         if (n == 0) {
           document.getElementById("prevBtn").style.display = "none";

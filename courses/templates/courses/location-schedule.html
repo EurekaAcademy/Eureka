@@ -34,7 +34,7 @@
                     <hr/>			
                 </div>
                 <main class="col-md-9 main">						
-                    <h1 class="wp-block-heading"><h1 style="box-sizing: border-box; margin-bottom: 0px; line-height: 1.1; white-space-collapse: collapse;">{{page.heading_title|title}}</h1></h1>
+                    <h1 class="wp-block-heading"><h1 style="box-sizing: border-box; margin-bottom: 0px; line-height: 1.1; white-space-collapse: collapse;">{{page.heading_title}}</h1></h1>
                     <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
                         <div class="wp-block-group__inner-container">
                             {{page.intro|richtext}}
@@ -80,10 +80,7 @@
                             <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
                             <p class="has-text-align-center" style="padding-right:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">If you’re ready to learn more about&nbsp;<strong>Rutgers&nbsp;Data</strong>&nbsp;<strong>Science&nbsp;Bootcamp</strong>,&nbsp;contact an admissions advisor&nbsp;at <a data-phone-type="data" class=phone href="tel:7323614853" aria-label="data telephone number">(732) 361-4853</a>.</p>
                             <hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
-                            <div class="bc-drip-form" id="bc_form_1">
-                                <div class=consent></div>
-                                {% include 'home/get_info.html' %}
-                            </div>
+                            
                         </div>
                     </section>
                     <div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -93,10 +90,4 @@
     </section>
     {% endblock %}
 </body>
-</html><!--
-Performance optimized by Redis Object Cache. Learn more: https://wprediscache.com
-
-Retrieved 5363 objects (3 MB) from Redis using PhpRedis (v6.0.2).
--->
-
-<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1716586692 -->
+</html>

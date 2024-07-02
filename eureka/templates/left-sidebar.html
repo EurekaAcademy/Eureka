@@ -9,15 +9,16 @@
             margin-block-start: 0
         }
     </style>
-    <aside class="bc-sidebar hide-mobile">
-        <aside class='trilogy-form-widget'>
+    <aside class="bc-sidebar">
+        <aside class='trilogy-form-widget aside-get-info-form'>
             <div class="consent"></div>
             <!-- Pardot Form : Sidebar -->
             {% include 'home/get_info.html' %}
             <!-- End Form -->
+            <hr/>
         </aside>
-        <hr/>
-        <aside id="text-2" class="widget widget_text">
+        
+        <aside id="text-2" class="widget widget_text hide-mobile">
             <div class="textwidget">
                 <div class="widget admissions">
                     <h3 style="color: #007fac;">
@@ -132,18 +133,18 @@
                     </p>
                 </div>
             </div>
+            <hr/>
         </aside>
-        <hr/>
-        <aside id="text-3" class="widget widget_text">
+        
+        <aside id="text-3" class="widget widget_text hide-mobile">
             <h2 class="widgettitle">About Eureka Data Academy</h2>
             <div class="textwidget">
                 {% if settings.home.ImportantExtraContent.sidebar_about %}
                 {{settings.home.ImportantExtraContent.sidebar_about|richtext}}
                 {% endif %}
-                
-                <hr/>
             </div>
+            <hr/>
         </aside>
-        <hr/>
+        
     </aside>
 </div>
