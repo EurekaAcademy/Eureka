@@ -1,9 +1,7 @@
 from .base import *
 import environ
 
-DEBUG = False
 
-ALLOWED_HOSTS = ["eurekadataacademy.com", "eureka-production-6efb.up.railway.app"]
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -11,6 +9,7 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 DEBUG = env('DEBUG')
 
+ALLOWED_HOSTS = ["eurekadataacademy.com", "eureka-production-6efb.up.railway.app"]
 
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_USE_TLS = True
