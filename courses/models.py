@@ -92,11 +92,11 @@ class Course(Page):
     program_benefit = RichTextField(null=True, blank=True)
     become_a_professional = RichTextField(null=True, blank=True)
     # skills = RichTextField(null=True, blank=True)
-    # skills = StreamField([
-    #     ('introduction', blocks.RichTextBlock(required=False, default='Add your content here')),
-    #     ('skill_column1', blocks.RichTextBlock(required=False, default='Add your content here')),
-    #     ('skill_column2', blocks.RichTextBlock(required=False, default='Add your content here')),
-    # ], null=True, blank=True)
+    skills = StreamField([
+        ('introduction', blocks.RichTextBlock(required=False, default='Add your content here')),
+        ('skill_column1', blocks.RichTextBlock(required=False, default='Add your content here')),
+        ('skill_column2', blocks.RichTextBlock(required=False, default='Add your content here')),
+    ], null=True, blank=True)
     projects = RichTextField(null=True, blank=True)
     course_model = RichTextField(null=True, blank=True)
     student_support = RichTextField(null=True, blank=True)
@@ -185,7 +185,7 @@ class Course(Page):
         FieldPanel('course_metric3'),
         FieldPanel('program_benefit'),
         FieldPanel('become_a_professional'),
-        # FieldPanel('skills'),
+        FieldPanel('skills'),
         FieldPanel('projects'),
         FieldPanel('course_model'),
         FieldPanel('student_support'),
