@@ -68,6 +68,9 @@ INSTALLED_APPS = [
     # 'wagtailcloudinary',
     'multiselectfield',
     'formtools',
+    'wagtail_modeladmin',          # if Wagtail >=5.1; Don't repeat if it's there already
+    # 'wagtail.contrib.modeladmin',  # if Wagtail <5.1;  Don't repeat if it's there already
+    'wagtailmenus',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +143,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 'wagtail.contrib.settings.context_processors.settings',
                 'home.context_processors.base_data',
+                'wagtailmenus.context_processors.wagtailmenus',
             ],
         },
     },
