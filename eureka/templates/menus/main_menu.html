@@ -1,0 +1,31 @@
+<style>
+    .menu-item li{
+        list-style: none;
+        margin-left: 0px;
+        float: left;
+        width: 100%;
+    }
+    .menu-item ul{
+        list-style: none;
+        margin-left: 0px;
+        float: left;
+    }
+    .menu-item a{
+        text-decoration: none;
+        margin-left: 0px;
+        float: left;
+        width: 100%;
+    }
+</style>
+{% load menu_tags %}
+{% for item in menu_items %}
+<li id="menu-item-268{{item.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-268{{item.id}} dropdown"><a title="{{ item.text }}" href="{{ item.href }}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{ item.text }} <span class="caret"></span></a>
+    {% if item.has_children_in_menu %}
+    <ul role="menu" class="dropdown-menu">
+        <li id="menu-item-269{{item.id}}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2690 overview"><a title="Overview" href="{{ item.href }}">Overview</a></li>
+        {% sub_menu item %}
+        
+    </ul>
+    {% endif %}
+</li>
+{% endfor %}
