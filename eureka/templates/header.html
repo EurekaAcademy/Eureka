@@ -1,6 +1,8 @@
 {% load static wagtailcore_tags %} {% load static %}{% load wagtailimages_tags %}{% load static menus_tags %}
 {% load wagtailcore_tags navigation_tags %}
 {% get_site_root as site_root %}
+{% load menu_tags %}
+
 <style>
     .hide-TBN .TrilogyTBN {
         display: none !important;
@@ -80,16 +82,7 @@
         <div class="container">
             <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                 <ul id="menu-navigation" class="nav navbar-nav navbar-right">
-                    {% for item in site_root.get_children.live.in_menu %}
-                    <li id="menu-item-268{{item.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-268{{item.id}} dropdown"><a title="{{item.title}}" href="{% pageurl item %}" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">{{item.title}} <span class="caret"></span></a>
-                        <ul role="menu" class="dropdown-menu">
-                            <li id="menu-item-269{{item.id}}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2690 overview"><a title="Overview" href="{% pageurl item %}">Overview</a></li>
-                            {% for cpage in item.get_children.live.in_menu %}
-                                <li id="menu-item-268{{cpage.id}}" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2689 curriculum"><a title="{{cpage.title|title}}" href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    {% endfor %}
+                    {% main_menu max_levels=2 template="menus/main_menu.html" %}
                     <!-- <li id="menu-item-2670" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2670 faq"><a title="FAQ" href="">FAQ</a></li>
                     <li id="menu-item-2669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669 "><a title="Blog" href="">Blog</a></li> -->
                     <li id="menu-item-2681" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2681 apply"><a title="Apply" href="{% url 'dashboard:enrol' %}">Apply</a></li>
