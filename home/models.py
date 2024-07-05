@@ -39,6 +39,11 @@ class HomePage(Page):
         FieldPanel('image2'),
     ]
 
+class ContactPage(Page):
+    template = 'home/get_info_landing.html'
+    max_count = 1
+
+
 class About(Page):
     template = 'home/about.html'
     heading_title = models.CharField(max_length=500, null=True, blank=True)
