@@ -15,14 +15,15 @@ class Portal(Page):
     # @method_decorator(login_required)
     def get_context(self, request, *args, **kwargs):
         context = super(Portal, self).get_context(request, *args, **kwargs)
-        profile = Profile.objects.get(user=request.user)
-        profile_total_fields = 13
-        profile_empty_fields = profile.empty_fields_count
-        profile_filled_fields = profile_total_fields - profile_empty_fields
-        profile_percentage_progress = (profile_filled_fields)*100/profile_total_fields
-        context['profile_percentage_progress'] = profile_percentage_progress
-        context['profile_empty_fields'] = profile_empty_fields
-        context['profile_filled_fields'] = profile_filled_fields
+        if request.user:
+            profile = Profile.objects.get(user=request.user)
+            profile_total_fields = 13
+            profile_empty_fields = profile.empty_fields_count
+            profile_filled_fields = profile_total_fields - profile_empty_fields
+            profile_percentage_progress = (profile_filled_fields)*100/profile_total_fields
+            context['profile_percentage_progress'] = profile_percentage_progress
+            context['profile_empty_fields'] = profile_empty_fields
+            context['profile_filled_fields'] = profile_filled_fields
         return context
 
 
@@ -183,7 +184,7 @@ class CandidateBackground(models.Model):
         return f'{self.gender} {self.ethnicity}'
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="candidate")
     schedule = models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL, null=True, blank=True, related_name='program_schedule')
     education_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True, blank=True)
@@ -219,7 +220,7 @@ class Profile(models.Model):
     ]
 
     def __str__(self):
-        return f'{self.user.first_name}'
+        return f'{self.user.email}'
     
     @property
     def empty_fields_count(self):

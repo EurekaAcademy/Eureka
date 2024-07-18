@@ -88,6 +88,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "eureka.urls"
 
+SILENCED_SYSTEM_CHECKS = ["wagtailadmin.W002"]
+
+WAGTAIL_PASSWORD_REQUIRED_TEMPLATE = 'authentication/login.html'
+WAGTAIL_FRONTEND_LOGIN_URL = 'authentication:login'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

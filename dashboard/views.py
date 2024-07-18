@@ -12,6 +12,13 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import EmailMessage
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib import messages
 
 
 FORMS = [("program", ApplicantDetailsForm),
@@ -33,14 +40,40 @@ class EnrolWizard(NamedUrlSessionWizardView):
         form_dict={}
         for x in form_list:
             form_dict.update(dict(x.cleaned_data.items()))
-        user = User(first_name=form_dict['first_name'], last_name=form_dict['last_name'], email=form_dict['email'], phone_number=form_dict['phone_number'], password=form_dict['password1'])
-        user.save()
-        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
-        
-        profile = Profile(user=user, schedule=form_dict['schedule'])
-        profile.save()
-        # auth_user = authenticate(email=form_dict['email'], password=form_dict['password1'])
-        
+
+        exist_user = User.objects.filter(email=form_dict['email']).exists()
+        if exist_user:
+            messages.error(self.request,
+                           f"This user already exist"
+                           )
+        else:
+            user = User(first_name=form_dict['first_name'], last_name=form_dict['last_name'], email=form_dict['email'], phone_number=form_dict['phone_number'], password=form_dict['password1'])
+            user.save()
+            
+            current_site = get_current_site(self.request)
+            mail_subject = 'Activate your account.'
+            message = render_to_string('authentication/activate_email.html'
+                                        , {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+                'protocol': 'https',
+            }
+            )
+            from_email = 'admin@shineintutoring.com'
+            to_email = form_dict['email']
+            email = EmailMessage(
+                mail_subject, message, from_email, to=[to_email]
+            )
+            email.send()
+
+            login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
+            
+            profile = Profile(user=user, schedule=form_dict['schedule'])
+            profile.save()
+            # auth_user = authenticate(email=form_dict['email'], password=form_dict['password1'])
+            
         return render(self.request, 'dashboard/done.html', {
             'form_data': [form.cleaned_data for form in form_list],
         })
