@@ -17,7 +17,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.contrib.auth.views import (PasswordResetDoneView, PasswordResetConfirmView,
                                         PasswordResetCompleteView, PasswordChangeView,
-                                       PasswordChangeDoneView, PasswordResetView, LogoutView)
+                                       PasswordChangeDoneView, PasswordResetView)
 from .models import User as Member
 from django.http.response import HttpResponseRedirect
 from django.core.mail import EmailMessage
@@ -29,7 +29,6 @@ from .forms import UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.forms import UserSignInForm
 from wagtail.admin.forms.auth import LoginForm
-
 # Create your views here.
 
 class SignUpSuccessful(TemplateView):
@@ -64,13 +63,11 @@ class UserLoginView(View):
             email = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
             user = authenticate(request, email=email, password=password)
+
+            
             login(request, user)
-            # if user:
-            #     login(request, user)
-            #     messages.success(request, f"Login Successful ! "
-            #                         f"Welcome {user.email}.")
-            # else:
-            #     messages.error(request, f"Incorrect login information, please use the correct email and password")
+            messages.success(request, f"Login Successful ! "
+                                f"Welcome {user.email}.")
             
             return redirect('/portal')
 
@@ -140,11 +137,8 @@ class PasswordResetView(PasswordResetView):
     subject_template_name = "authentication/email_text/password_reset_subject.txt"
     success_url = reverse_lazy("authentication:password_reset_done")
 
-class LogoutView(LogoutView):
-    template_name = 'registration/logged_out.html'
-
 class PasswordResetDoneView(PasswordResetDoneView):
-    template_name = 'authentication/email_text/password_reset_done.html'
+    template_name = 'authentication/email_text/password_reset_done.html' 
 
 class PasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'authentication/email_text/password_reset_confirm.html'

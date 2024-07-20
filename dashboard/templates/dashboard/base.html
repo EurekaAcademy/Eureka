@@ -38,12 +38,11 @@
           <div class="container">
             <div class="row justify-content-around first-header">
               <div class="col-auto">
-                <a href="/">
                 {% if settings.home.SiteLogo.logo %}
                 <div class="logo"><img src="{{settings.home.SiteLogo.logo.url}}" alt=""></div>
                 {% else %}
                 <div class="logo"><img src="{% static 'images/shiningtutor.png' %}" alt=""></div>
-                {% endif %}</a>
+                {% endif %}
               </div>
               <div class="col-auto">
                 <div class="dropdown">

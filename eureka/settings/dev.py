@@ -10,7 +10,7 @@ ALLOWED_HOSTS = ["*"]
 
 
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # EMAIL_HOST = 'smtp.elasticemail.com'
 # EMAIL_USE_TLS = True
