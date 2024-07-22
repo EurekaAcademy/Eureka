@@ -11,7 +11,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ["eurekadataacademy.com", "eureka-production-6efb.up.railway.app"]
 
-EMAIL_HOST = 'smtp.elasticemail.com'
+EMAIL_HOST = 'mail.smtp2go.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 2525
 EMAIL_HOST_USER = env('DEFAULT_FROM_EMAIL')
