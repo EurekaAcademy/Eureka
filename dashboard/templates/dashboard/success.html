@@ -1,4 +1,4 @@
-{% extends "home/base.html" %}{% load wagtailcore_tags %}{% load static %}{% load wagtailimages_tags %}
+{% extends "dashboard/base.html" %}{% load wagtailcore_tags %}{% load static %}{% load wagtailimages_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +10,12 @@
     {% block sidebar %} 
     {% endblock %}
     {% block content %}
-    <section>
+    <section class="card" style="max-width: 400px; margin-top: 30px; margin-left: auto; margin-right: auto; padding: 20px;">
     <p>
-        Thank you for joining the Eureka Data Academy Bootcamp! If you have any questions, please email
-        <a href="mailto:{{ settings.home.SiteContact.email1 }}">{{ settings.home.SiteContact.email1 }}</a>.
-
-        <a href="/" class="ui primary button">Home</a>
+        Thank you for joining the Eureka Data Academy Bootcamp! If you have any questions, please contact
+        <a href="tel:{{ settings.home.SiteContact.phone1 }}">{{ settings.home.SiteContact.phone1 }}</a>.
     </p>
+    <a href="/portal" class="ui primary button">Back to My Portal</a>
     </section>
     {% endblock %}
 </body>

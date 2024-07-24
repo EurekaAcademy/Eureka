@@ -249,8 +249,8 @@ class CheckoutView(View):
         return redirect(checkout_session.url, code=303)
     
 class SuccessView(TemplateView):
-    template_name = 'shop/success.html'
+    template_name = 'dashboard/success.html'
 
 
 class CancelledView(TemplateView):
-    template_name = 'shop/cancel.html'
+    template_name = 'dashboard/cancel.html'

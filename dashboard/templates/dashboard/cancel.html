@@ -1,4 +1,4 @@
-{% extends "home/base.html" %}{% load wagtailcore_tags %}{% load static %}{% load wagtailimages_tags %}
+{% extends "dashboard/base.html" %}{% load wagtailcore_tags %}{% load static %}{% load wagtailimages_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,9 @@
     {% block sidebar %} 
     {% endblock %}
     {% block content %}
-  <section>
-    <p>Oopps, Forgot something? Go back to your portal and continue, then come back to pay!</p>
+  <section class="card" style="max-width: 400px; margin-top: 30px; margin-left: auto; margin-right: auto; padding: 20px;">
+    <p>Oopps, Forgot something? Go back to your portal and continue, then come back to complete your payment!</p>
+    <a class="ui primary button" href="/portal">Back to My Portal</a>
   </section>
   {% endblock %}
 </body>
