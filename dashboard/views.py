@@ -3,10 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from formtools.wizard.views import SessionWizardView, NamedUrlSessionWizardView, NamedUrlWizardView
-from dashboard.forms import ApplicantDetailsForm, UserEnrolInfoForm, AboutCandidateForm, UserLocationForm, CandidateBackgroundForm
+from dashboard.forms import ApplicantDetailsForm, UserEnrolInfoForm, AboutCandidateForm, UserLocationForm, CandidateBackgroundForm, PaymentPlanForm
 from courses.models import ProgramCategory
 from django.urls import reverse, reverse_lazy
-from dashboard.models import Profile, EducationLevel, AnnualIncome, YearsOfExperience, DegreeFocus, ComputerSkillLevel, StudyHoursPerWeek, Gender, Ethnicity, CitizenshipStatus, CourseSchedule
+from dashboard.models import Profile, EducationLevel, AnnualIncome, YearsOfExperience, DegreeFocus, ComputerSkillLevel, StudyHoursPerWeek, Gender, Ethnicity, CitizenshipStatus, CourseSchedule, PaymentPlan
 from authentication.models import User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404
@@ -54,6 +54,7 @@ class EnrolWizard(NamedUrlSessionWizardView):
         print(form_dict['schedule'])
         profile = Profile(user=user)
         profile.schedule = form_dict['schedule']
+        profile.payment_balance = form_dict['schedule'].course.price
         profile.save()
 
         # current_site = get_current_site(self.request)
@@ -146,7 +147,45 @@ class ApplicationWizard(NamedUrlSessionWizardView):
         context["ethnicities"] = ethnicities
         context["citizenship_status"] = citizenship_status
         return context
+
+
+PAY_FORMS = [("paymentplan", PaymentPlanForm),
+        ]
+
+PAY_TEMPLATES = {"paymentplan": "dashboard/payment_plan.html",
+            }
+
+class PaymentPlanWizard(NamedUrlSessionWizardView):
+    def get_template_names(self):
+        return [PAY_TEMPLATES[self.steps.current]]
     
+    def get_step_url(self, step):
+        return reverse('dashboard:payment_plan_step', kwargs={'step':step})
+    
+    def done(self, form_list, form_dict, **kwargs):
+        form_dict={}
+        for x in form_list:
+            form_dict.update(dict(x.cleaned_data.items()))
+        payment_plan_value =  form_dict['payment_plan'].value
+        old_payment_balance = Profile.objects.get(user=self.request.user).payment_balance
+        new_payment_balance = old_payment_balance*(1 - payment_plan_value/100)
+        amount_to_pay = old_payment_balance*(payment_plan_value/100)
+        Profile.objects.filter(user=self.request.user).update(
+            payment_balance=new_payment_balance,
+            amount_to_pay=amount_to_pay,
+            payment_plan_selection_completed=True
+        )
+        return render(self.request, 'dashboard/finish.html', {
+            'form_data': [form.cleaned_data for form in form_list],
+        })
+    
+    def get_context_data(self, form, **kwargs):
+        context = super().get_context_data(form=form, **kwargs)
+        payment_plans = PaymentPlan.objects.all()
+        context['payment_plans'] = payment_plans
+        return context
+
+
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['date_of_birth','gender','ethnicity','citizenship_status', 'schedule', 'education_level', 'degree_focus', 'occupation', 'years_of_experience' , 'annual_income','computer_skill_level', 'study_hours_per_week', 'employment_status', 'have_a_laptop']
@@ -192,11 +231,10 @@ class CheckoutView(View):
                         'quantity': 1,
                         'price_data': {
                         'currency': 'usd',
-                        'unit_amount': int(profile.schedule.course.price*100),
+                        'unit_amount': int(profile.amount_to_pay*100),
                         'product_data': {
                             'name': str(profile.schedule.course.course),
                             'description': str(profile.schedule.course.course_level),
-                            # 'images': ['https://example.com/t-shirt.png'],
                         },
                         },
                     }

@@ -193,6 +193,7 @@ class CitizenshipStatus(models.Model):
     ]
     def __str__(self):
         return f'{self.type}'
+
     
 YES_NO = (
     ('Yes', 'Yes'),
@@ -238,6 +239,28 @@ class CandidateBackground(models.Model):
 
     def __str__(self):
         return f'{self.gender} {self.ethnicity}'
+    
+@register_snippet
+class PaymentPlan(models.Model):
+    type = models.CharField(max_length=500, null=True, blank=True)
+    value = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, help_text='Enter the percentage of the payment to make')
+    duration_in_days = models.IntegerField(null=True, blank=True, help_text='Enter the payment duration')
+    panels = [
+        FieldPanel('type'),
+        FieldPanel('value'),
+        FieldPanel('duration_in_days'),
+    ]
+    def __str__(self):
+        return f'{self.type}'
+
+
+class PaymentPlanWidget(models.Model):
+    payment_plan = models.ForeignKey(PaymentPlan, on_delete=models.SET_NULL, null=True, blank=True, related_name='payment_plan_schedule')
+    panels = [
+        FieldPanel('payment_plan'),
+    ]
+    def __str__(self):
+        return f'{self.payment_plan}'
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True,
         on_delete=models.CASCADE,
@@ -259,7 +282,10 @@ class Profile(models.Model):
     ethnicity = models.ForeignKey(Ethnicity, on_delete=models.SET_NULL, null=True, blank=True)
     citizenship_status = models.ForeignKey(CitizenshipStatus, on_delete=models.SET_NULL, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
+    payment_plan_selection_completed = models.BooleanField(default=False)
     payment_completed = models.BooleanField(default=False)
+    payment_balance = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount_to_pay = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     panels = [
         FieldPanel('user'),
         FieldPanel('date_of_birth'),
@@ -275,6 +301,9 @@ class Profile(models.Model):
         FieldPanel('employment_status'),
         FieldPanel('have_a_laptop'),
         FieldPanel('payment_completed'),
+        FieldPanel('payment_plan_selection_completed'),
+        FieldPanel('payment_balance'),
+        FieldPanel('amount_to_pay'),
     ]
 
     def __str__(self):

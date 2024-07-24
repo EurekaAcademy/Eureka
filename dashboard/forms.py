@@ -1,5 +1,5 @@
 from django import forms
-from dashboard.models import RegisterProgramSelection, UserEnrolInfo, AboutCandidate, CandidateBackground
+from dashboard.models import RegisterProgramSelection, UserEnrolInfo, AboutCandidate, CandidateBackground, PaymentPlanWidget
 from django.forms.models import BaseInlineFormSet, inlineformset_factory
 from django.forms import modelformset_factory
 from authentication.models import User
@@ -36,3 +36,9 @@ class UserLocationForm(forms.ModelForm):
     class Meta:
         model = User
         fields =('country','region','city','residential_address')
+
+
+class PaymentPlanForm(forms.ModelForm):
+    class Meta:
+        model = PaymentPlanWidget
+        fields = ('payment_plan',)
