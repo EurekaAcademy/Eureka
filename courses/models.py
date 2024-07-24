@@ -205,27 +205,6 @@ WEEKDAYS = (('Monday', 'Monday'),
               ('Saturday', 'Saturday'),
               ('Sunday', 'Sunday'),
               )
-@register_snippet
-class CourseSchedule(models.Model):
-    course = models.ForeignKey('Course', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_course')
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    # delivery_mode = models.ForeignKey('DeliveryMode', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_mode')
-    # program_type = models.ForeignKey('ProgramType', on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_program_type')
-    days = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. Monday, Tuesday, Wednesday')
-    time = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. 6:30 PM Eastern Standard Time')
-
-    panels = [
-        FieldPanel('course'),
-        FieldPanel('start_date'),
-        FieldPanel('end_date'),
-        # FieldPanel('delivery_mode'),
-        # FieldPanel('program_type'),
-        FieldPanel('days'),
-        FieldPanel('time'),
-    ]
-    def __str__(self):
-        return f'{self.course.program_category}: {self.start_date} for {self.days} at {self.time}'
     
 class Curriculum(Page):
     template = 'courses/curriculum.html'

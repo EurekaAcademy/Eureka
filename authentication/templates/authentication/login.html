@@ -16,13 +16,13 @@
                     <div class="field">
                         <label for="id_username">Email</label>
                         <div class="ui fluid input">
-                            <input aria-invalid="true" placeholder="Email address" name="username" id="id_username" type="email">
+                            <input placeholder="Email address" name="username" id="id_username" type="text">
                         </div>
                     </div>
                     <div class="field">
                         <label for="id_password">Password</label>
                         <div class="ui fluid input">
-                            <input aria-invalid="true" placeholder="Password" name="password" id="id_password" type="password">
+                            <input placeholder="Password" name="password" id="id_password" type="password">
                         </div>
                     </div>
                     <a class="smaller dashboardForgotPassword" href="{% url 'authentication:password_reset' %}">Forgot password</a>

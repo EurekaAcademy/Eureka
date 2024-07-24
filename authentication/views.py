@@ -58,13 +58,11 @@ class UserLoginView(View):
     def post(self, request, *args, **kwargs):
 
         login_form = LoginForm(data = request.POST)
-
+        
         if login_form.is_valid():
             email = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
             user = authenticate(request, email=email, password=password)
-
-            
             login(request, user)
             messages.success(request, f"Login Successful ! "
                                 f"Welcome {user.email}.")

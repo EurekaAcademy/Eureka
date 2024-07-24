@@ -11,7 +11,7 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password=None, *args, **kwargs):
         """
         Creates and saves a User with the given email and password.
         """

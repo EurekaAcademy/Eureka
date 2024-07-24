@@ -2,11 +2,18 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.fields import StreamField
+from wagtail import blocks
 from authentication.models import User
 # Create your models here.
-from courses.models import ProgramCategory, CourseSchedule
+from courses.models import ProgramCategory
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from courses.models import Course
+from django.conf import settings
+from django.http.response import JsonResponse
+import stripe
+from django.shortcuts import redirect
 
 
 class Portal(Page):
@@ -23,19 +30,110 @@ class Portal(Page):
         context['profile_percentage_progress'] = profile_percentage_progress
         context['profile_empty_fields'] = profile_empty_fields
         context['profile_filled_fields'] = profile_filled_fields
+        context['profile'] = profile
         return context
 
+    def checkout_url(self):
+        domain_url = settings.WAGTAILADMIN_BASE_URL
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        profile = Profile.objects.get(user=self.request.user)
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer] - if you have an existing Stripe Customer ID
+            # [payment_intent_data] - capture the payment later
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + '/success/',
+                cancel_url=domain_url + '/cancel/',
+                payment_method_types=['card'],
+                mode='payment',
+                currency= "usd",
+                customer_email = profile.user.email.replace(" ", ""),
+                line_items=[
+                    {
+                        'quantity': 1,
+                        'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': profile.schedule.course.price,
+                        'product_data': {
+                            'name': str(profile.schedule.course.course),
+                            'description': str(profile.schedule.course.course_level),
+                            # 'images': ['https://example.com/t-shirt.png'],
+                        },
+                        },
+                    }
+                ]
+            )
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+        return redirect(checkout_session.url, code=303)
+    
+    
+
+@register_snippet
+class CourseLevel(models.Model):
+    level = models.CharField(max_length=500, null=True, blank=True)
+    panels = [
+        FieldPanel('level'),
+    ]
+    def __str__(self):
+        return f'{self.level}'
+    
+@register_snippet
+class Pricing(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True, related_name='pricing_course')
+    course_level = models.ForeignKey(CourseLevel, on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_course')
+    content = StreamField([
+        ('content1', blocks.CharBlock(required=False)),
+        ('content2', blocks.CharBlock(required=False)),
+        ('content3', blocks.CharBlock(required=False)),
+        ('content4', blocks.CharBlock(required=False)),
+        ('content5', blocks.CharBlock(required=False)),
+        ('content6', blocks.CharBlock(required=False)),
+        ('content7', blocks.CharBlock(required=False)),
+        ('content8', blocks.CharBlock(required=False)),
+        ('content9', blocks.CharBlock(required=False)),
+        ('content10', blocks.CharBlock(required=False)),
+        ('content11', blocks.CharBlock(required=False)),
+        ('content12', blocks.CharBlock(required=False)),
+    ], null=True, blank=True, use_json_field=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    panels = [
+        FieldPanel('course'),
+        FieldPanel('course_level'),
+        FieldPanel('price'),
+        FieldPanel('content'),
+    ]
+    def __str__(self):
+        return f'{self.price} {self.course} {self.course_level}'
+
+@register_snippet
+class CourseSchedule(models.Model):
+    course = models.ForeignKey(Pricing, on_delete=models.SET_NULL, null=True, blank=True, related_name='schedule_course')
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    days = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. Monday, Tuesday, Wednesday')
+    time = models.CharField(max_length=500, null=True, blank=True, help_text='e.g. 6:30 PM Eastern Standard Time')
+
+    panels = [
+        FieldPanel('course'),
+        FieldPanel('start_date'),
+        FieldPanel('end_date'),
+        FieldPanel('days'),
+        FieldPanel('time'),
+    ]
+    def __str__(self):
+        return f'{self.course.course.program_category}-{self.course.course_level}: {self.start_date} for {self.days} at {self.time}'
 
 class RegisterProgramSelection(models.Model):
-    # program = models.ForeignKey(ProgramCategory, on_delete=models.SET_NULL, null=True, blank=True, related_name='enrol_program_name')
-    # start_date = models.CharField(max_length=500, null=True, blank=True)
-    # program_type = models.ForeignKey(ProgramType, on_delete=models.SET_NULL, null=True, blank=True, related_name='enrol_program_type')
     schedule = models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL, null=True, blank=True, related_name='enrol_schedule')
 
     panels = [
-        # FieldPanel('program'),
-        # FieldPanel('start_date'),
-        # FieldPanel('program_type'),
         FieldPanel('schedule'),
     ]
     def __str__(self):
@@ -128,6 +226,7 @@ class Ethnicity(models.Model):
     def __str__(self):
         return f'{self.name}'
     
+    
 @register_snippet
 class CitizenshipStatus(models.Model):
     type = models.CharField(max_length=500, null=True, blank=True)
@@ -183,9 +282,10 @@ class CandidateBackground(models.Model):
         return f'{self.gender} {self.ethnicity}'
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="candidate")
     schedule = models.ForeignKey(CourseSchedule, on_delete=models.SET_NULL, null=True, blank=True, related_name='program_schedule')
+
     education_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True, blank=True)
     degree_focus = models.ForeignKey(DegreeFocus, on_delete=models.SET_NULL, null=True, blank=True)
     annual_income = models.ForeignKey(AnnualIncome, on_delete=models.SET_NULL, null=True, blank=True)
@@ -201,7 +301,7 @@ class Profile(models.Model):
     ethnicity = models.ForeignKey(Ethnicity, on_delete=models.SET_NULL, null=True, blank=True)
     citizenship_status = models.ForeignKey(CitizenshipStatus, on_delete=models.SET_NULL, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-
+    # payment = models.ForeignKey(Pricing, on_delete=models.SET_NULL, null=True, blank=True, related_name='profile_payment')
     panels = [
         FieldPanel('user'),
         FieldPanel('date_of_birth'),
