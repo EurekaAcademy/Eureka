@@ -209,6 +209,10 @@ class CheckoutView(View):
         domain_url = settings.WAGTAILADMIN_BASE_URL
         stripe.api_key = settings.STRIPE_SECRET_KEY
         profile = Profile.objects.get(user=request.user)
+        if profile.amount_to_pay:
+            checkout_price = profile.amount_to_pay
+        else:
+            checkout_price = profile.payment_balance
         try:
             # Create new Checkout Session for the order
             # Other optional params include:
@@ -231,7 +235,7 @@ class CheckoutView(View):
                         'quantity': 1,
                         'price_data': {
                         'currency': 'usd',
-                        'unit_amount': int(profile.amount_to_pay*100),
+                        'unit_amount': int(checkout_price*100),
                         'product_data': {
                             'name': str(profile.schedule.course.course),
                             'description': str(profile.schedule.course.course_level),

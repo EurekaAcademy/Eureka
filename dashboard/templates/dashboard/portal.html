@@ -130,7 +130,7 @@
                                         <h3>Course Info:</h3>
                                         <p><b>Course:</b> <span>{{profile.schedule.course.course}}</span></p>
                                         <p><b>Level:</b> <span>{{profile.schedule.course.course_level}}</span></p>
-                                        <p><b>Amount to pay:</b> <span>${{profile.amount_to_pay}}</span></p>
+                                        <p><b>Amount to pay:</b> <span>${% if profile.amount_to_pay %}{{profile.amount_to_pay}}{% else %}{{profile.payment_balance}}{% endif %}</span></p>
                                         <h3>Billing Info:</h3>
                                         <p><b>Email:</b> <span>{{profile.user.email}}</span></p>
                                         <p><b>Name:</b> <span>{{profile.user.first_name}} {{profile.user.last_name}}</span></p>
