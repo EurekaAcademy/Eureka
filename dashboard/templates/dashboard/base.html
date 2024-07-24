@@ -39,9 +39,13 @@
             <div class="row justify-content-around first-header">
               <div class="col-auto">
                 {% if settings.home.SiteLogo.logo %}
-                <div class="logo"><img src="{{settings.home.SiteLogo.logo.url}}" alt=""></div>
+                <div class="logo">
+                  <a href="/"><img src="{{settings.home.SiteLogo.logo.url}}" alt=""></a>
+                </div>
                 {% else %}
-                <div class="logo"><img src="{% static 'images/shiningtutor.png' %}" alt=""></div>
+                <div class="logo">
+                  <a href="/"><img src="{% static 'images/shiningtutor.png' %}" alt=""></a>
+                </div>
                 {% endif %}
               </div>
               <div class="col-auto">
@@ -67,6 +71,7 @@
                             <li><a class="dropdown-item" href="{% url 'authentication:password_reset' %}">Change Password</a></li>
                             {% endif %}
                             {% endblock manage_profile %}
+                            <li><a class="dropdown-item" href="{% if user.is_authenticated %}/portal{% else %}{% endif %}">{% if user.is_authenticated %}My Portal{% else %}{% endif %}</a></li>
                             <li><a class="dropdown-item" href="{% if user.is_authenticated %}{% url 'authentication:logout' %}{% else %}{% url 'authentication:login' %}{% endif %}">{% if user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
                             <li><a class="dropdown-item" href="{% url 'dashboard:enrol' %}">Enrol</a></li>
                         </div>

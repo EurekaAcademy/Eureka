@@ -29,6 +29,7 @@ from .forms import UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.forms import UserSignInForm
 from wagtail.admin.forms.auth import LoginForm
+from django.contrib.auth.views import LogoutView
 # Create your views here.
 
 class SignUpSuccessful(TemplateView):
@@ -175,3 +176,6 @@ class EmailVerificationConfirm(TemplateView):
 
 class EmailVerificationInvalid(TemplateView):
     template_name = 'authentication/email_verification_invalid.html'
+
+class LogoutView(LogoutView):
+    template_name = 'authentication/logged_out.html'

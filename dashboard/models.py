@@ -259,7 +259,7 @@ class Profile(models.Model):
     ethnicity = models.ForeignKey(Ethnicity, on_delete=models.SET_NULL, null=True, blank=True)
     citizenship_status = models.ForeignKey(CitizenshipStatus, on_delete=models.SET_NULL, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    # payment = models.ForeignKey(Pricing, on_delete=models.SET_NULL, null=True, blank=True, related_name='profile_payment')
+    payment_completed = models.BooleanField(default=False)
     panels = [
         FieldPanel('user'),
         FieldPanel('date_of_birth'),
@@ -274,6 +274,7 @@ class Profile(models.Model):
         FieldPanel('study_hours_per_week'),
         FieldPanel('employment_status'),
         FieldPanel('have_a_laptop'),
+        FieldPanel('payment_completed'),
     ]
 
     def __str__(self):

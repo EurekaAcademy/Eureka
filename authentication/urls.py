@@ -27,9 +27,9 @@ urlpatterns = [
         view=views.UserLoginView.as_view(),
         name='login'
     ),
-    path('signout', auth_views.LogoutView.as_view(), name='logout'),
+    path('signout/', view=views.LogoutView.as_view(), name='logout'),
     path(
-        route='reset-password',
+        route='reset-password/',
         view=views.PasswordResetView.as_view(),
         name='password_reset'
     ),
@@ -39,13 +39,13 @@ urlpatterns = [
          views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('password-reset_complete/done/', views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
-    path('password-change', views.PasswordChangeView.as_view(),
+    path('password-change/', views.PasswordChangeView.as_view(),
          name='password_change'),
     path('password-change/done/', views.PasswordChangeDoneView.as_view(),
          name='password_change_done'),
-     path('email/verification/confirm', views.EmailVerificationConfirm.as_view(),
+     path('email/verification/confirm/', views.EmailVerificationConfirm.as_view(),
          name='email_verification_confirm'),
-     path('email/verification/invalid', views.EmailVerificationInvalid.as_view(),
+     path('email/verification/invalid/', views.EmailVerificationInvalid.as_view(),
          name='email_verification_invalid'),
     path('activate/<uidb64>/<token>/',
          views.activate, name='activate'),
