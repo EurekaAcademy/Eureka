@@ -21,8 +21,8 @@
                   {% endfor %}
                 {% else %}
                 <div class="form-wrapper">
-                  <label for="id_program-program" class="form-label">Select program <span>*</span></label>
-                  <select class="form-select" name="program-program" aria-label="Default select example" id="id_program-program" onclick="clickProgType()" onchange="changeProgType()">
+                  <label for="id_program-schedule" class="form-label">Select program <span>*</span></label>
+                  <select class="form-select" name="program-schedule" aria-label="Default select example" id="id_program-schedule" onclick="clickProgType()" onchange="changeProgType()">
                       <option selected>Select your program schedule</option>
                       {% for program in schedules %}
                       <option value="{{program.id}}">{{program}}</option>
@@ -41,9 +41,9 @@
           </form>
         </div>
         <div class="col beginIconsContainer">
-          <div class="pointer-metrics" style="margin-bottom: 40px; background-color: #e7e7e7; padding: 10px; border-radius: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <div class="pointer-metrics pricing-container">
             {% for item in pricing %}
-            <div class="pricing-card" style="background-color: aliceblue; padding: 10px; border-radius: 15px; width: fit-content;">
+            <div class="pricing-card">
               <div style="display: flex; gap: 10px; align-items: center;">
                 <span style="font-weight: 600; font-size: 17px;">{{item.course}}</span>
                 <span style="background-color: rgb(42, 42, 43); padding: 3px 8px; border-radius: 10px; font-weight: 800; font-size: 13px; color: #ffffff; margin: 0;">${{item.price}}</span>

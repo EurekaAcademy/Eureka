@@ -10,10 +10,7 @@ from courses.models import ProgramCategory
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from courses.models import Course
-from django.conf import settings
-from django.http.response import JsonResponse
-import stripe
-from django.shortcuts import redirect
+
 
 
 class Portal(Page):
@@ -33,45 +30,6 @@ class Portal(Page):
         context['profile'] = profile
         return context
 
-    def checkout_url(self):
-        domain_url = settings.WAGTAILADMIN_BASE_URL
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        profile = Profile.objects.get(user=self.request.user)
-        try:
-            # Create new Checkout Session for the order
-            # Other optional params include:
-            # [billing_address_collection] - to display billing address details on the page
-            # [customer] - if you have an existing Stripe Customer ID
-            # [payment_intent_data] - capture the payment later
-            # [customer_email] - prefill the email input in the form
-            # For full details see https://stripe.com/docs/api/checkout/sessions/create
-
-            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-            checkout_session = stripe.checkout.Session.create(
-                success_url=domain_url + '/success/',
-                cancel_url=domain_url + '/cancel/',
-                payment_method_types=['card'],
-                mode='payment',
-                currency= "usd",
-                customer_email = profile.user.email.replace(" ", ""),
-                line_items=[
-                    {
-                        'quantity': 1,
-                        'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': profile.schedule.course.price,
-                        'product_data': {
-                            'name': str(profile.schedule.course.course),
-                            'description': str(profile.schedule.course.course_level),
-                            # 'images': ['https://example.com/t-shirt.png'],
-                        },
-                        },
-                    }
-                ]
-            )
-        except Exception as e:
-            return JsonResponse({'error': str(e)})
-        return redirect(checkout_session.url, code=303)
     
     
 

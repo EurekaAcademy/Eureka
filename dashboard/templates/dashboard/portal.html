@@ -112,7 +112,7 @@
                                         <p><b>Email:</b> <span>{{profile.user.email}}</span></p>
                                         <p><b>Name:</b> <span>{{profile.user.first_name}} {{profile.user.last_name}}</span></p>
                                         <p><b>Phone number:</b> <span>{{profile.user.phone_number}}</span></p>
-                                        <a href="{{self.checkout_url}}"><button class="ui primary button" tabindex="-1">Continue to Billing</button></a>
+                                        <a href="{% url 'dashboard:checkout' %}"><button class="ui primary button" tabindex="-1">Continue to Billing</button></a>
                                     </div>
                                 </div>
                             </div>

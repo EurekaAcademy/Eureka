@@ -108,8 +108,8 @@
                                                     </div>
                                                     <div class="equal width fields">
                                                         <div class="required field">
-                                                            <label>How many hours per week do you have to commit to studying for the Boot Camp outside of class time?</label>
-                                                            <select class="ui dropdown">
+                                                            <label for="id_about-study_hours_per_week">How many hours per week do you have to commit to studying for the Boot Camp outside of class time?</label>
+                                                            <select class="ui dropdown" name="about-study_hours_per_week" id="id_about-study_hours_per_week">
                                                                 <option value="">Select how many hours per week do you commit to studying for the Boot Camp outside of class time</option>
                                                                 {% for hour in study_hours_per_week %}
                                                                 <option value="{{hour.id}}">{{hour.hour}}</option>

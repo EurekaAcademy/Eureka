@@ -18,6 +18,12 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
+from django.views import View
+from django.conf import settings
+from django.http.response import JsonResponse
+import stripe
+from django.shortcuts import redirect
+from django.views.generic import TemplateView
 
 
 FORMS = [("program", ApplicantDetailsForm),
@@ -45,8 +51,9 @@ class EnrolWizard(NamedUrlSessionWizardView):
         user.phone_number = form_dict['phone_number']
         user.save()
         login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
-        
-        profile = Profile(user=user, schedule=form_dict['schedule'])
+        print(form_dict['schedule'])
+        profile = Profile(user=user)
+        profile.schedule = form_dict['schedule']
         profile.save()
 
         # current_site = get_current_site(self.request)
@@ -155,3 +162,53 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('dashboard:enrol')
     login_url = "authentication:login"
     redirect_field_name = "redirect_to"
+
+
+
+class CheckoutView(View):
+    def get(self, request):
+        domain_url = settings.WAGTAILADMIN_BASE_URL
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        profile = Profile.objects.get(user=request.user)
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer] - if you have an existing Stripe Customer ID
+            # [payment_intent_data] - capture the payment later
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + '/success/',
+                cancel_url=domain_url + '/cancel/',
+                payment_method_types=['card'],
+                mode='payment',
+                currency= "usd",
+                customer_email = profile.user.email.replace(" ", ""),
+                line_items=[
+                    {
+                        'quantity': 1,
+                        'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': int(profile.schedule.course.price*100),
+                        'product_data': {
+                            'name': str(profile.schedule.course.course),
+                            'description': str(profile.schedule.course.course_level),
+                            # 'images': ['https://example.com/t-shirt.png'],
+                        },
+                        },
+                    }
+                ]
+            )
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+        return redirect(checkout_session.url, code=303)
+    
+class SuccessView(TemplateView):
+    template_name = 'shop/success.html'
+
+
+class CancelledView(TemplateView):
+    template_name = 'shop/cancel.html'

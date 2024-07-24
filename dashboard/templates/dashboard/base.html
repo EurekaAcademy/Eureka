@@ -60,7 +60,9 @@
                         <div class="card card-body">
                             {% block manage_profile %}
                             {% if user.is_authenticated %}
+                            {% if profile %}
                             <li><a class="dropdown-item" href="{% url 'dashboard:profile_update' user.candidate.id %}">Manage Profile</a></li>
+                            {% endif %}
                             <li><a class="dropdown-item" href="{% url 'dashboard:user_update' user.id %}">Manage User Info</a></li>
                             <li><a class="dropdown-item" href="{% url 'authentication:password_reset' %}">Change Password</a></li>
                             {% endif %}

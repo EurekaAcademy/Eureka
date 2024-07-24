@@ -5731,7 +5731,15 @@ html.gutenberg body.organic ul.iti__country-list li::before {
         font-size: 18px;
         line-height: 24px
     }
+    .beginIconsContainer .pointer-metrics{
+        margin-top: 30px;
+    }
+    .pricing-card{
+        width: 100%;
+    } 
 }
+
+
 
 @media (min-width:768px) {
     #calendly-apply_thank-you {

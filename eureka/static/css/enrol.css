@@ -248,3 +248,30 @@ form {
     text-decoration: none;
     border-radius: 0.28571429rem;
 }
+.beginIconsContainer .pricing-container{
+    margin-bottom: 40px; 
+    background-color: #e7e7e7; 
+    padding: 10px; 
+    border-radius: 15px; 
+    display: flex; 
+    gap: 10px; 
+    flex-wrap: wrap;
+}
+.pricing-card{
+    background-color: aliceblue; 
+    padding: 10px; 
+    border-radius: 15px; 
+    width: fit-content;
+}
+
+@media (max-width:480px) {
+    .beginIconsContainer .pricing-container{
+        margin-top: 30px;
+    }
+    .pricing-card{
+        width: 100%;
+    }
+    .beginIconsContainer {
+        padding: 10px;
+    }
+}
