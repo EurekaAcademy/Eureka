@@ -22,7 +22,7 @@
                 <aside class=no-border>
 			        <h2 class="category-list-title">About</h2>
                     <ul class=category-list>
-                        {% for cpage in page.get_children.live.in_menu %}
+                        {% for cpage in page.get_siblings.live.in_menu %}
                             <li class=""><a href="{% pageurl cpage %}">{{cpage.title|title}}</a></li>
                         {% endfor %}
                     </ul>
