@@ -57,23 +57,23 @@ class EnrolWizard(NamedUrlSessionWizardView):
         profile.payment_balance = form_dict['schedule'].course.price
         profile.save()
 
-        # current_site = get_current_site(self.request)
-        # mail_subject = 'Eureka Data Academy: New Account Creation.'
-        # message = render_to_string('authentication/activate_email.html'
-        #                             , {
-        #     'user': user,
-        #     'domain': current_site.domain,
-        #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        #     'token': default_token_generator.make_token(user),
-        #     'protocol': 'https',
-        # }
-        # )
-        # from_email = 'admin@shineintutoring.com'
-        # to_email = form_dict['email']
-        # email = EmailMessage(
-        #     mail_subject, message, from_email, to=[to_email]
-        # )
-        # email.send()
+        current_site = get_current_site(self.request)
+        mail_subject = 'Eureka Data Academy: New Account Creation.'
+        message = render_to_string('authentication/activate_email.html'
+                                    , {
+            'user': user,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': default_token_generator.make_token(user),
+            'protocol': 'https',
+        }
+        )
+        from_email = 'admin@shineintutoring.com'
+        to_email = form_dict['email']
+        email = EmailMessage(
+            mail_subject, message, from_email, to=[to_email]
+        )
+        email.send()
         
         return render(self.request, 'dashboard/done.html', {
             'form_data': [form.cleaned_data for form in form_list],
